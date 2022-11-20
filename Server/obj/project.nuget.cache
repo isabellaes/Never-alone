@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "woaoRtpweA2bx4lRImvm9Jdwx8Mz3yRqTZS2ynpvx3H1gg6suD014yf3rRehRS43X3DRcLu/UvzOKtbD8q1cWw==",
+  "dgSpecHash": "SAICGq1FFboJ9MaH8YtrwJ5ReA4WSeceU8IL1fjBPKVDUDKRj1OkZGb11oDA/+cg4wOf6jNgr0fiZDynKjwB/A==",
   "success": true,
-  "projectFilePath": "C:\\Examensarbete\\Never-alone\\Never-alone.csproj",
+  "projectFilePath": "C:\\Examensarbetet\\server\\Never-alone\\Server\\Server.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\evali\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\evali\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",

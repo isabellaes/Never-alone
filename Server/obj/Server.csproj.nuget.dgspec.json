@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Examensarbete\\Never-alone\\Never-alone.csproj": {}
+    "C:\\Examensarbetet\\server\\Never-alone\\Server\\Server.csproj": {}
   },
   "projects": {
-    "C:\\Examensarbete\\Never-alone\\Never-alone.csproj": {
+    "C:\\Examensarbetet\\server\\Never-alone\\Server\\Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Examensarbete\\Never-alone\\Never-alone.csproj",
-        "projectName": "Never-alone",
-        "projectPath": "C:\\Examensarbete\\Never-alone\\Never-alone.csproj",
+        "projectUniqueName": "C:\\Examensarbetet\\server\\Never-alone\\Server\\Server.csproj",
+        "projectName": "Server",
+        "projectPath": "C:\\Examensarbetet\\server\\Never-alone\\Server\\Server.csproj",
         "packagesPath": "C:\\Users\\evali\\.nuget\\packages\\",
-        "outputPath": "C:\\Examensarbete\\Never-alone\\obj\\",
+        "outputPath": "C:\\Examensarbetet\\server\\Never-alone\\Server\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\evali\\AppData\\Roaming\\NuGet\\NuGet.Config",

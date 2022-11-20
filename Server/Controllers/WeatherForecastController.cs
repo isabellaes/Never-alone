@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Never_alone.Controllers;
+namespace Server.Controllers;
 
 [ApiController]
 [Route("[controller]")]

@@ -1,4 +1,4 @@
-namespace Never_alone;
+namespace Server;
 
 public class WeatherForecast
 {
