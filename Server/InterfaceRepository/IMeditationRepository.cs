@@ -1,8 +1,9 @@
 using NeverAlone.Models;
 
-namespace NeverAlone.InterfaceRepository {
+namespace NeverAlone.InterfaceRepository
+{
 
-    public interface IMeditationtRepository
+    public interface IMeditationRepository
     {
         public Task<Meditation> CreateMeditation(Meditation meditation);
         public Task<bool> DeleteMeditation(int id);
