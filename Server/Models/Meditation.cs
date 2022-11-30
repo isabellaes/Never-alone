@@ -1,7 +1,7 @@
 namespace NeverAlone.Models
 {
 
-    public class User
+    public class Meditation
     {
         public int Id { get; set; }
 
