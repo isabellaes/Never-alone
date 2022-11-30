@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Examensarbetet\\server\\Never-alone\\Server\\Server.csproj": {}
+    "C:\\Examensarbete\\Never-alone\\server\\Server.csproj": {}
   },
   "projects": {
-    "C:\\Examensarbetet\\server\\Never-alone\\Server\\Server.csproj": {
+    "C:\\Examensarbete\\Never-alone\\server\\Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Examensarbetet\\server\\Never-alone\\Server\\Server.csproj",
+        "projectUniqueName": "C:\\Examensarbete\\Never-alone\\server\\Server.csproj",
         "projectName": "Server",
-        "projectPath": "C:\\Examensarbetet\\server\\Never-alone\\Server\\Server.csproj",
+        "projectPath": "C:\\Examensarbete\\Never-alone\\server\\Server.csproj",
         "packagesPath": "C:\\Users\\evali\\.nuget\\packages\\",
-        "outputPath": "C:\\Examensarbetet\\server\\Never-alone\\Server\\obj\\",
+        "outputPath": "C:\\Examensarbete\\Never-alone\\server\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\evali\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,20 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
