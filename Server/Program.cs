@@ -30,6 +30,8 @@ builder.Services.AddScoped<ITipsRepository, TipsRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 
+builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
+
 var app = builder.Build();
 
 
