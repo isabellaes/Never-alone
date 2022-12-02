@@ -1,4 +1,3 @@
-
 using NeverAlone.InterfaceRepository;
 using NeverAlone.Context;
 using Microsoft.EntityFrameworkCore;
@@ -32,6 +31,7 @@ public class ProfileRepository : IProfileRepository
 
         return profile1;
     }
+
     public async Task<bool> DeleteProfile(int id)
     {
         var result = await _context.Profile.FirstOrDefaultAsync(m => m.Id == id);
@@ -64,4 +64,6 @@ public class ProfileRepository : IProfileRepository
             return null;
         }
     }
+
+
 }

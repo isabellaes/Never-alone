@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using NeverAlone.Models;
+using NeverAlone.Repository;
 using NeverAlone.InterfaceRepository;
 
 namespace NeverAlone.Controller;
@@ -15,7 +16,7 @@ public class ContactController : ControllerBase
         _repository = repository;
     }
 
-    [HttpGet("GetById")]
+    [HttpGet("GetContactById")]
     public async Task<ActionResult<Contact>> GetContactById(int id)
     {
         var result = await _repository.GetContactById(id);
@@ -27,8 +28,8 @@ public class ContactController : ControllerBase
     }
 
 
-    [HttpGet("GetAll")]
-    public async Task<ActionResult<IEnumerable<Contact>>> GetAllContacts()
+    [HttpGet("GetContactAll")]
+    public async Task<ActionResult<IEnumerable<DailyNote>>> GetAllContacts()
     {
         var result = await _repository.GetAllContacts();
         if (result != null)
@@ -39,7 +40,7 @@ public class ContactController : ControllerBase
     }
 
 
-    [HttpPost("CreateProfile")]
+    [HttpPost("CreateContact")]
     public async Task<ActionResult<Contact>> CreateProfile(Contact contact)
     {
         var result = await _repository.CreateContact(contact);
@@ -50,7 +51,7 @@ public class ContactController : ControllerBase
         else { return NotFound(); }
     }
 
-    [HttpDelete("DeleteProfile")]
+    [HttpDelete("DeleteContact")]
     public async Task<ActionResult<bool>> DeleteContact(int id)
     {
         var result = await _repository.DeleteContact(id);
@@ -60,8 +61,4 @@ public class ContactController : ControllerBase
         }
         else { return NotFound(); }
     }
-
-
-
-
 }

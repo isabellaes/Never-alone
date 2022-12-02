@@ -1,6 +1,7 @@
 using NeverAlone.Models;
 
-namespace NeverAlone.InterfaceRepository {
+namespace NeverAlone.InterfaceRepository
+{
 
     public interface IContactRepository
     {
