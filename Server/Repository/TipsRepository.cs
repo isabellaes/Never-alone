@@ -21,7 +21,8 @@ public class TipsRepository : ITipsRepository
         Tips tips1 = new Tips()
         {
             Id = tips.Id,
-            Title = tips.Title
+            Title = tips.Title,
+            Details = tips.Details
 
         };
 

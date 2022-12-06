@@ -7,7 +7,6 @@ using Microsoft.Extensions.Hosting;
 using NeverAlone.Context;
 using NeverAlone.InterfaceRepository;
 using NeverAlone.Repository;
-using NeverAlone.Controller;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,9 +22,18 @@ builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
+builder.Services.AddScoped<IDailyNoteRepository, DailyNoteRepository>();
+builder.Services.AddScoped<IContactRepository, ContactRepository>();
+builder.Services.AddScoped<IMeditationRepository, MeditationRepository>();
+builder.Services.AddScoped<IStoryRepository, StoryRepository>();
+builder.Services.AddScoped<ITipsRepository, TipsRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+
 builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
