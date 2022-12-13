@@ -6,7 +6,7 @@ namespace NeverAlone.Dto
     public class CreateTipsDto
     {
         [Required]
-        [StringLength(maximumLength: 50, ErrorMessage = "Tiltle name is too long")]
+        [StringLength(maximumLength: 50, ErrorMessage = "Title name is too long")]
         public string? Title { get; set; }
 
         [Required]

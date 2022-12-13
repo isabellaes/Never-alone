@@ -7,7 +7,7 @@ namespace NeverAlone.Dto
     {
         public int Id { get; set; }
         [Required]
-        [StringLength(maximumLength: 50, ErrorMessage = "Tiltle name is too long")]
+        [StringLength(maximumLength: 50, ErrorMessage = "Title name is too long")]
         public string Title { get; set; }
 
         [Required]
