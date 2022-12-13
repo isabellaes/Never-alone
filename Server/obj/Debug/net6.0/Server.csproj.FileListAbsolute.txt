@@ -146,3 +146,7 @@ C:\Users\isabe\OneDrive\Systemutvecklare.NET\Examensarbete\Ny mapp\Never-alone\s
 C:\Users\isabe\OneDrive\Systemutvecklare.NET\Examensarbete\Ny mapp\Never-alone\server\obj\Debug\net6.0\Server.csproj.CopyComplete
 C:\Users\isabe\OneDrive\Systemutvecklare.NET\Examensarbete\Ny mapp\Never-alone\server\obj\Debug\net6.0\Server.genruntimeconfig.cache
 C:\Users\isabe\OneDrive\Systemutvecklare.NET\Examensarbete\Ny mapp\Never-alone\server\obj\Debug\net6.0\ref\Server.dll
+C:\Examensarbete\Never-alone\server\bin\Debug\net6.0\AutoMapper.dll
+C:\Examensarbete\Never-alone\server\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\isabe\OneDrive\Systemutvecklare.NET\Examensarbete\Ny mapp\Never-alone\server\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\isabe\OneDrive\Systemutvecklare.NET\Examensarbete\Ny mapp\Never-alone\server\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

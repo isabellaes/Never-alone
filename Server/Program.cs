@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using NeverAlone.Automapper;
 using NeverAlone.Context;
 using NeverAlone.InterfaceRepository;
 using NeverAlone.Repository;
@@ -28,9 +29,9 @@ builder.Services.AddScoped<IMeditationRepository, MeditationRepository>();
 builder.Services.AddScoped<IStoryRepository, StoryRepository>();
 builder.Services.AddScoped<ITipsRepository, TipsRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
-
-
 builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
+
+builder.Services.AddAutoMapper(typeof(AutomapperProfile));
 
 var app = builder.Build();
 

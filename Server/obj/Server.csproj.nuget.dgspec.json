@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Examensarbete\\Never-alone\\server\\Server.csproj": {}
+    "C:\\Users\\isabe\\OneDrive\\Systemutvecklare.NET\\Examensarbete\\Ny mapp\\Never-alone\\server\\Server.csproj": {}
   },
   "projects": {
-    "C:\\Examensarbete\\Never-alone\\server\\Server.csproj": {
+    "C:\\Users\\isabe\\OneDrive\\Systemutvecklare.NET\\Examensarbete\\Ny mapp\\Never-alone\\server\\Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Examensarbete\\Never-alone\\server\\Server.csproj",
+        "projectUniqueName": "C:\\Users\\isabe\\OneDrive\\Systemutvecklare.NET\\Examensarbete\\Ny mapp\\Never-alone\\server\\Server.csproj",
         "projectName": "Server",
-        "projectPath": "C:\\Examensarbete\\Never-alone\\server\\Server.csproj",
-        "packagesPath": "C:\\Users\\evali\\.nuget\\packages\\",
-        "outputPath": "C:\\Examensarbete\\Never-alone\\server\\obj\\",
+        "projectPath": "C:\\Users\\isabe\\OneDrive\\Systemutvecklare.NET\\Examensarbete\\Ny mapp\\Never-alone\\server\\Server.csproj",
+        "packagesPath": "C:\\Users\\isabe\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\isabe\\OneDrive\\Systemutvecklare.NET\\Examensarbete\\Ny mapp\\Never-alone\\server\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\evali\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\isabe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,7 +26,8 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://ci.appveyor.com/nuget/jetsoft-d8aqpho78t97": {}
         },
         "frameworks": {
           "net6.0": {
@@ -40,6 +45,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[7.0.0, )"
@@ -77,7 +90,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }
