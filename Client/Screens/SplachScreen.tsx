@@ -4,6 +4,6 @@ import { View, Text } from "react-native";
 
 export default function SplashScreen() {
   <View>
-    <Text>Home</Text>
+    <Text>SplashScreen</Text>
   </View>;
 }
