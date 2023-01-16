@@ -1,6 +1,7 @@
+import { Link } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text} from "react-native";
 import { RootStackParamList } from "../navigation/RootNavigator";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Home">;
@@ -8,7 +9,8 @@ type Props = NativeStackScreenProps<RootStackParamList, "Home">;
 export default function HomeScreen({ navigation }: Props) {
   return (
     <View>
-      <Text>Home</Text>
+      <Text style={{fontSize:25, marginBottom:25}}>Home Screen</Text>
+      <Link to="/Login"><Text>Tryck här på länken för att komma till Login</Text></Link>
     </View>
   );
 }
