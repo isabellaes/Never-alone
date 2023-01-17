@@ -6,6 +6,7 @@ import { RootStackParamList } from "../navigation/RootNavigator";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Home">;
 
+
 export default function HomeScreen({ navigation }: Props) {
   return (
     <View>
