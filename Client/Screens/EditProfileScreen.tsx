@@ -27,6 +27,7 @@ export default function EditProfile({ navigation }: Props) {
       alert("Du valde ingen bild.");
     }
   };
+
   return (
     <>
       <Text style={{ ...styles.edit }}>Ändra Profil</Text>
@@ -100,6 +101,6 @@ const styles = StyleSheet.create({
   buttonStandard: {
     display: "flex",
     alignItems: "center",
-    marginBottom: 20
+    marginBottom: 20,
   },
 });

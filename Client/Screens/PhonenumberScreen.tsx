@@ -6,13 +6,16 @@ import { RootStackParamList } from "../navigation/RootNavigator";
 
 type Props = NativeStackScreenProps<RootStackParamList, "PhoneNumber">;
 
-export default function PhonenumberScreen({navigation}: Props) {
-  return(
+export default function PhonenumberScreen({ navigation }: Props) {
+  return (
     <View>
-    <Text style={{fontSize:25, marginBottom:25}}>Phonenumber Screen</Text>
-      <Link to="/Storys" style={{marginBottom:25}}><Text>Tryck här på länken för att komma till Storys</Text></Link>
-      <Link to="/Home"><Text>Tryck här på länken för att komma till Home</Text></Link>
-  </View>
-  )
- 
+      <Text style={{ fontSize: 25, marginBottom: 25 }}>Phonenumber Screen</Text>
+      <Link to="/Storys" style={{ marginBottom: 25 }}>
+        <Text>Tryck här på länken för att komma till Storys</Text>
+      </Link>
+      <Link to="/Home">
+        <Text>Tryck här på länken för att komma till Home</Text>
+      </Link>
+    </View>
+  );
 }
