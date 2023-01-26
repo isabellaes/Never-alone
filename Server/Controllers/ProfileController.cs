@@ -6,7 +6,7 @@ using NeverAlone.InterfaceRepository;
 namespace NeverAlone.Controller;
 
 [ApiController]
-[Route("profile/[controller]")]
+[Route("api/[controller]")]
 public class ProfileController : ControllerBase
 {
     private readonly IProfileRepository _repository;
@@ -16,7 +16,7 @@ public class ProfileController : ControllerBase
         _repository = repository;
     }
 
-    [HttpGet("/getProfile")]
+    [HttpGet("GetProfile")]
     public async Task<ActionResult<Profile>> GetProfileById(int id)
     {
         var result = await _repository.GetProfileById(id);

@@ -31,7 +31,7 @@ builder.Services.AddScoped<ITipsRepository, TipsRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
 
-builder.Services.AddAutoMapper(typeof(AutomapperProfile));
+//builder.Services.AddAutoMapper(typeof(AutomapperProfile));
 
 var app = builder.Build();
 
@@ -43,7 +43,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthorization();
 

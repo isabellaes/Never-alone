@@ -20,9 +20,10 @@ export default function ProfileScreen({ navigation }: Props) {
   const currentUserProfile = useAppSelector(currentProfile);
 
   React.useEffect(() => {
-    const id: number = 1;
-    console.log(dispatch(getProfile({ id })));
+    dispatch(getProfile(1));
   }, [dispatch]);
+
+  console.log(profile);
 
   React.useEffect(() => {
     if (currentUserProfile) {
