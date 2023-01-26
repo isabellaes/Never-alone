@@ -4,17 +4,11 @@ import React from "react";
 import { View, Text } from "react-native";
 import { RootStackParamList } from "../navigation/RootNavigator";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { getProfile } from "../slices/profileSlice";
 import { useAppDispatch } from "../store/store";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Home">;
 
 export default function HomeScreen({ navigation }: Props) {
-  const dispatch = useAppDispatch();
-  React.useEffect(() => {
-    const id: number = 1;
-    console.log(dispatch(getProfile({ id })));
-  }, [dispatch]);
   return (
     <View>
       <Text style={{ fontSize: 25, marginBottom: 25 }}>Home Screen</Text>

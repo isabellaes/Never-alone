@@ -15,24 +15,45 @@ public class ProfileRepository : IProfileRepository
         _context = context;
     }
 
-    public async Task<Profile> CreateProfile(Profile profile)
+    public async Task<Profile> CreateProfile(string userId, string name)
     {
-        Profile profile1 = new Profile()
+        var user = await _context.User.FindAsync(userId);
+        if (user != null)
         {
-            Id = profile.Id,
-            Name = profile.Name,
-            image = profile.image,
-            user = profile.user,
-            UserId = profile.UserId
-        };
+            Profile profile = new Profile()
+            {
+                Id = Guid.NewGuid().ToString(),
+                Name = name,
+                image = "",
+                user = user,
+                UserId = user.Id
+            };
 
-        _context.Profile.Add(profile1);
-        _context.SaveChanges();
+            _context.Profile.Add(profile);
+            _context.SaveChanges();
 
-        return profile1;
+            return profile;
+        }
+        else { return null; }
     }
 
-    public async Task<bool> DeleteProfile(int id)
+    public async Task<Profile> EditProfile(string userId, string name)
+    {
+
+        var profile = await _context.Profile.FirstOrDefaultAsync(p => p.UserId == userId);
+
+        if (profile != null)
+        {
+            profile.Name = name;
+
+            _context.SaveChangesAsync();
+
+            return profile;
+        }
+        else { return null; }
+    }
+
+    public async Task<bool> DeleteProfile(string id)
     {
         var result = await _context.Profile.FirstOrDefaultAsync(m => m.Id == id);
         if (result != null)
@@ -52,7 +73,7 @@ public class ProfileRepository : IProfileRepository
         return await _context.Profile.ToListAsync();
     }
 
-    public async Task<Profile> GetProfileById(int id)
+    public async Task<Profile> GetProfileById(string id)
     {
         var result = await _context.Profile.FirstOrDefaultAsync(m => m.Id == id);
         if (result != null)

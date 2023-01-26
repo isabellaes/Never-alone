@@ -32,7 +32,7 @@ public class UserRepository : IUserRepository
 
         return user1;
     }
-    public async Task<bool> DeleteUser(int id)
+    public async Task<bool> DeleteUser(string id)
     {
         var result = await _context.User.FirstOrDefaultAsync(m => m.Id == id);
         if (result != null)
@@ -47,7 +47,7 @@ public class UserRepository : IUserRepository
         }
     }
 
-    public async Task<User> GetUserById(int id)
+    public async Task<User> GetUserById(string id)
     {
         var result = await _context.User.FirstOrDefaultAsync(m => m.Id == id);
         if (result != null)

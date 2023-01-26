@@ -1,26 +1,21 @@
-import { Profile } from "./types";
+const url = "http://10.0.2.2:5015/api";
 
-const url = "http://10.0.2.2:7167";
-
-export const getProfileRequest = async (id: number) => {
-  const response = await fetch(`${url}/getProfile`, {
+export const getProfileRequest = async (id: string) => {
+  const response = await fetch(`${url}/profile/GetProfile?id=${id}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      id,
-    }),
   });
-
+  console.log("test");
   if (response.ok) {
-    const data: Profile = await response.json();
+    const data = await response.json();
     return data;
   }
   throw response;
 };
 
-export const createProfileRequest = async (id: number, name: string) => {
+export const createProfileRequest = async (id: string, name: string) => {
   const response = await fetch(`${url}/profile/createProfile`, {
     method: "POST",
     headers: {
@@ -39,7 +34,7 @@ export const createProfileRequest = async (id: number, name: string) => {
   throw response;
 };
 
-export const updateProfileRequest = async (id: number, name: string) => {
+export const updateProfileRequest = async (id: string, name: string) => {
   const response = await fetch(`${url}/profile/updateProfile`, {
     method: "POST",
     headers: {

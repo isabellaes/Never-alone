@@ -6,7 +6,7 @@ using NeverAlone.InterfaceRepository;
 namespace NeverAlone.Controller;
 
 [ApiController]
-[Route("profile/[controller]")]
+[Route("api/[controller]")]
 public class ProfileController : ControllerBase
 {
     private readonly IProfileRepository _repository;
@@ -16,8 +16,8 @@ public class ProfileController : ControllerBase
         _repository = repository;
     }
 
-    [HttpGet("/getProfile")]
-    public async Task<ActionResult<Profile>> GetProfileById(int id)
+    [HttpGet("GetProfile")]
+    public async Task<ActionResult<Profile>> GetProfileById(string id)
     {
         var result = await _repository.GetProfileById(id);
         if (result != null)
@@ -41,9 +41,9 @@ public class ProfileController : ControllerBase
 
 
     [HttpPost("CreateProfile")]
-    public async Task<ActionResult<Profile>> CreateProfile(Profile profile)
+    public async Task<ActionResult<Profile>> CreateProfile(string userId, string name)
     {
-        var result = await _repository.CreateProfile(profile);
+        var result = await _repository.CreateProfile(userId, name);
         if (result != null)
         {
             return Ok(result);
@@ -52,7 +52,7 @@ public class ProfileController : ControllerBase
     }
 
     [HttpDelete("DeleteProfile")]
-    public async Task<ActionResult<bool>> DeleteProfile(int id)
+    public async Task<ActionResult<bool>> DeleteProfile(string id)
     {
         var result = await _repository.DeleteProfile(id);
         if (result)
