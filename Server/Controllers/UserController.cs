@@ -17,7 +17,7 @@ public class UserController : ControllerBase
     }
 
     [HttpGet("GetUserById")]
-    public async Task<ActionResult<User>> GetUserById(int id)
+    public async Task<ActionResult<User>> GetUserById(string id)
     {
         var result = await _repository.GetUserById(id);
         if (result != null)
@@ -40,7 +40,7 @@ public class UserController : ControllerBase
     }
 
     [HttpDelete("DeleteUser")]
-    public async Task<ActionResult<bool>> DeleteUser(int id)
+    public async Task<ActionResult<bool>> DeleteUser(string id)
     {
         var result = await _repository.DeleteUser(id);
         if (result)
