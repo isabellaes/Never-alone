@@ -6,7 +6,7 @@ using NeverAlone.InterfaceRepository;
 namespace NeverAlone.Controller;
 
 [ApiController]
-[Route("story")]
+[Route("api/[controller]")]
 public class StoryController : ControllerBase
 {
     private readonly IStoryRepository _repository;

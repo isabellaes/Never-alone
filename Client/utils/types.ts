@@ -13,4 +13,11 @@ interface User {
   password: string;
 }
 
-export type { Profile };
+interface DailyNote {
+  title: string;
+  content?: string;
+  datetime?: string;
+  userId?: number;
+}
+
+export type { Profile, DailyNote };

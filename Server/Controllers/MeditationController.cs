@@ -6,7 +6,7 @@ using NeverAlone.InterfaceRepository;
 namespace NeverAlone.Controller;
 
 [ApiController]
-[Route("meitation")]
+[Route("api/[controller]")]
 public class MeditationController : ControllerBase
 {
     private readonly IMeditationRepository _repository;

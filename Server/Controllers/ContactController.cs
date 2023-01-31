@@ -6,7 +6,7 @@ using NeverAlone.InterfaceRepository;
 namespace NeverAlone.Controller;
 
 [ApiController]
-[Route("contact")]
+[Route("api/[controller]")]
 public class ContactController : ControllerBase
 {
     private readonly IContactRepository _repository;
