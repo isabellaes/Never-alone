@@ -7,6 +7,7 @@ import { getProfile } from "../slices/profileSlice";
 import { useAppDispatch, useAppSelector } from "../store/store";
 import { Profile } from "../utils/types";
 import { AppState } from "../store/store";
+import OverviewCard from "../Componets/OverviewCard";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Profile">;
 
