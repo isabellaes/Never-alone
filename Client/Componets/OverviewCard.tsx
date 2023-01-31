@@ -1,4 +1,5 @@
 import * as React from "react";
+import { View } from "react-native";
 import { Button, Card, Text } from "react-native-paper";
 import { ImageSource } from "react-native-vector-icons/Icon";
 
@@ -16,15 +17,17 @@ export default function OverviewCard({
   uri,
 }: prop) {
   return (
-    <Card mode="elevated">
-      <Card.Cover source={{ uri }} />
-      <Card.Title title={title} />
-      <Card.Content>
-        <Text variant="bodyMedium">{description}</Text>
-      </Card.Content>
-      <Card.Actions>
-        <Button onPress={onPress}>{title}</Button>
-      </Card.Actions>
-    </Card>
+    <View style={{ padding: 25 }}>
+      <Card mode="elevated">
+        <Card.Cover source={{ uri }} />
+        <Card.Title title={title} />
+        <Card.Content>
+          <Text variant="bodyMedium">{description}</Text>
+        </Card.Content>
+        <Card.Actions>
+          <Button onPress={onPress}>{title}</Button>
+        </Card.Actions>
+      </Card>
+    </View>
   );
 }
