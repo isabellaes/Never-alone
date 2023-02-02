@@ -3,26 +3,27 @@ using NeverAlone.Models;
 using NeverAlone.Repository;
 using NeverAlone.InterfaceRepository;
 using Microsoft.AspNetCore.Identity;
+using NeverAlone.Models.RequestModels;
 
 namespace NeverAlone.Controller;
 
 [ApiController]
 [Route("api/[controller]")]
-public class ContactController : ControllerBase
+public class DailyNoteController : ControllerBase
 {
-    private readonly IContactRepository _repository;
+    private readonly IDailyNoteRepository _repository;
     private readonly UserManager<IdentityUser> _userManager;
 
-    public ContactController(IContactRepository repository, UserManager<IdentityUser> userManager)
+    public DailyNoteController(IDailyNoteRepository repository, UserManager<IdentityUser> userManager)
     {
         _repository = repository;
         _userManager = userManager;
     }
 
-    [HttpGet("GetContactById")]
+    [HttpGet("GetById")]
     public async Task<ActionResult<Contact>> GetContactById(string id)
     {
-        var result = await _repository.GetContactById(id);
+        var result = await _repository.GetDailyNoteById(id);
         if (result != null)
         {
             return Ok(result);
@@ -31,10 +32,10 @@ public class ContactController : ControllerBase
     }
 
 
-    [HttpGet("GetContactAll")]
+    [HttpGet("GetAll")]
     public async Task<ActionResult<IEnumerable<DailyNote>>> GetAllContacts()
     {
-        var result = await _repository.GetAllContacts();
+        var result = await _repository.GetAllDailyNotes();
         if (result != null)
         {
             return Ok(result);
@@ -43,10 +44,11 @@ public class ContactController : ControllerBase
     }
 
 
-    [HttpPost("CreateContact")]
-    public async Task<ActionResult<Contact>> CreateProfile(Contact contact)
+    [HttpPost("Create")]
+    public async Task<ActionResult<Contact>> CreateProfile([FromBody] DailyNoteCreate dailynote)
     {
-        var result = await _repository.CreateContact(contact);
+        var user = await _userManager.FindByNameAsync(User.Identity.Name);
+        var result = await _repository.CreateDailyNote(user.Id, dailynote.Title, dailynote.Content);
         if (result != null)
         {
             return Ok(result);
@@ -54,10 +56,12 @@ public class ContactController : ControllerBase
         else { return NotFound(); }
     }
 
-    [HttpDelete("DeleteContact")]
+    [HttpDelete("Delete")]
     public async Task<ActionResult<bool>> DeleteContact(string id)
     {
-        var result = await _repository.DeleteContact(id);
+        var user = await _userManager.FindByNameAsync(User.Identity.Name);
+        var result = await _repository.DeleteDailyNote(id);
+
         if (result)
         {
             return Ok(result);

@@ -1,0 +1,45 @@
+
+POST http://localhost:5015/api/Authentication/register
+Content-Type: application/json
+
+{
+    "Email": "user@email.com",
+    "Username": "user",
+    "Password": "password"
+   
+}
+
+
+###
+
+POST http://localhost:5015/api/Authentication/login
+Content-Type: application/json
+
+{
+    "username": "user",
+    "password": "password"
+}
+
+
+###
+
+GET http://localhost:5015/api/Profile/GetProfile
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoidXNlciIsImp0aSI6IjZiNzI4MzI0LWNmYzktNDU5YS1iMjA0LTgxMmFmOTlhMzU0NCIsImV4cCI6MTY3NTQzMTQ4NCwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDE1In0.cEKTDncAHCQNdQl_6miippX56Z6frtaTXIZLn9ngHHM
+
+###
+
+POST http://localhost:5015/api/Profile/UpdateProfile
+Content-Type: application/json
+Authorization: Bearer Lägg till Bearer här
+
+{
+    "Name": "Namn"
+}
+
+###
+
+POST http://localhost:5015/api/Profile/DeleteProfile
+Content-Type: application/json
+Authorization: Bearer Lägg till Bearer här
+

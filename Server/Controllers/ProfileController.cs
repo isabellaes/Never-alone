@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using NeverAlone.Models;
 using NeverAlone.Repository;
 using NeverAlone.InterfaceRepository;
+using Microsoft.AspNetCore.Identity;
 
 namespace NeverAlone.Controller;
 
@@ -10,28 +11,19 @@ namespace NeverAlone.Controller;
 public class ProfileController : ControllerBase
 {
     private readonly IProfileRepository _repository;
+    private readonly UserManager<IdentityUser> _userManager;
 
-    public ProfileController(IProfileRepository repository)
+    public ProfileController(IProfileRepository repository, UserManager<IdentityUser> userManager)
     {
         _repository = repository;
+        _userManager = userManager;
     }
 
     [HttpGet("GetProfile")]
-    public async Task<ActionResult<Profile>> GetProfileById(string id)
+    public async Task<ActionResult<Profile>> GetProfileForUser()
     {
-        var result = await _repository.GetProfileById(id);
-        if (result != null)
-        {
-            return Ok(result);
-        }
-        else { return NotFound(); }
-    }
-
-
-    [HttpGet("GetAll")]
-    public async Task<ActionResult<IEnumerable<Profile>>> GetAllProfiles()
-    {
-        var result = await _repository.GetAllProfiles();
+        var user = await _userManager.FindByNameAsync(User.Identity.Name);
+        var result = await _repository.GetProfileForUser(user);
         if (result != null)
         {
             return Ok(result);
@@ -41,9 +33,11 @@ public class ProfileController : ControllerBase
 
 
     [HttpPost("CreateProfile")]
-    public async Task<ActionResult<Profile>> CreateProfile(string userId, string name)
+    public async Task<ActionResult<Profile>> CreateProfile(string name)
     {
-        var result = await _repository.CreateProfile(userId, name);
+        var user = await _userManager.FindByNameAsync(User.Identity.Name);
+        var result = await _repository.CreateProfile(user, name);
+
         if (result != null)
         {
             return Ok(result);
@@ -52,9 +46,10 @@ public class ProfileController : ControllerBase
     }
 
     [HttpDelete("DeleteProfile")]
-    public async Task<ActionResult<bool>> DeleteProfile(string id)
+    public async Task<ActionResult<bool>> DeleteProfile()
     {
-        var result = await _repository.DeleteProfile(id);
+        var user = await _userManager.FindByNameAsync(User.Identity.Name);
+        var result = await _repository.DeleteProfile(user);
         if (result)
         {
             return Ok(result);

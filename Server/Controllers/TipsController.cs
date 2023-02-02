@@ -6,7 +6,7 @@ using NeverAlone.InterfaceRepository;
 namespace NeverAlone.Controller;
 
 [ApiController]
-[Route("tips")]
+[Route("api/[controller]")]
 public class TipsController : ControllerBase
 {
     private readonly ITipsRepository _repository;
@@ -17,7 +17,7 @@ public class TipsController : ControllerBase
     }
 
     [HttpGet("GetById")]
-    public async Task<ActionResult<Profile>> GetTipsById(int id)
+    public async Task<ActionResult<Profile>> GetTipsById(string id)
     {
         var result = await _repository.GetTipsById(id);
         if (result != null)
@@ -52,7 +52,7 @@ public class TipsController : ControllerBase
     }
 
     [HttpDelete("DeleteTips")]
-    public async Task<ActionResult<bool>> DeleteTips(int id)
+    public async Task<ActionResult<bool>> DeleteTips(string id)
     {
         var result = await _repository.DeleteTips(id);
         if (result)

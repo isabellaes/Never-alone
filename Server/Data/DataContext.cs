@@ -17,6 +17,5 @@ namespace NeverAlone.Context
         public DbSet<Profile> Profile { get; set; }
         public DbSet<Story> Story { get; set; }
         public DbSet<Tips> Tips { get; set; }
-        public DbSet<User> User { get; set; }
     }
 }
