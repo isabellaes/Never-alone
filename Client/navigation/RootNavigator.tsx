@@ -39,7 +39,7 @@ export const RootNavigator = () => {
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
-          header: (props) => <CustomNavigationBar {...props} />,
+          header: () => <CustomNavigationBar title={"Never Alone"} />,
         }}
       >
         <Stack.Group>

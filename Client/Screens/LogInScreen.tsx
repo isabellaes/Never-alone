@@ -55,18 +55,15 @@ const styles = StyleSheet.create({
     fontSize: 30,
     marginLeft: 10,
     marginBottom: 50,
-    
   },
   textInput: {
     marginLeft: 10,
     marginRight: 10,
-  
-    },
+  },
   nyttKonto: {
     display: "flex",
     alignItems: "center",
     marginTop: 30,
-    
   },
   buttonStandard: {
     display: "flex",
@@ -74,3 +71,11 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
 });
+//modal som visar info om appen klicka på en ikon för att se den
+/* <Portal>
+          <Modal
+            visible={ModalVisible}
+            onDismiss={() => setModalVisible(false)}
+            children={undefined}
+          ></Modal>
+        </Portal> */
