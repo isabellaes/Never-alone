@@ -3,8 +3,11 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { Appbar, Menu, useTheme } from "react-native-paper";
 
-export function CustomNavigationBar({ route }: NativeStackHeaderProps) {
-  const title = "Never Alone";
+interface Prop {
+  title: string;
+}
+
+export function CustomNavigationBar({ title }: Prop) {
   return (
     <Appbar.Header mode="center-aligned" statusBarHeight={20}>
       <Appbar.Content
