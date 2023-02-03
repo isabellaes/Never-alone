@@ -17,7 +17,7 @@ const ButtonStandard = ({ text, icon, onPress, disabled }: Props) => {
       onPress={onPress}
       mode="elevated"
       style={{
-        width: "100%",
+        width: "50%",
         backgroundColor: "#ad6ab0",
         elevation: 5,
       }}
