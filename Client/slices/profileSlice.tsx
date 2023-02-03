@@ -20,11 +20,11 @@ const initialState: ProfileState = {
   },
 };
 
-export const getProfile = createAsyncThunk<Profile, { id: string }>(
-  "profile/GetProfile",
+export const getProfile = createAsyncThunk<Profile>(
+  "profile/Get",
   async (data, { rejectWithValue }) => {
     try {
-      const respons = await getProfileRequest(data.id);
+      const respons = await getProfileRequest();
       return respons;
     } catch (error) {
       console.log(error);
@@ -33,28 +33,28 @@ export const getProfile = createAsyncThunk<Profile, { id: string }>(
   }
 );
 
-export const updateProfile = createAsyncThunk<
-  Profile,
-  { id: string; name: string }
->("profile/updateProfile", async (data, { rejectWithValue }) => {
-  try {
-    const respons = await updateProfileRequest(data.id, data.name);
-    return respons;
-  } catch (error) {
-    return rejectWithValue("Failed to fetch");
+export const updateProfile = createAsyncThunk<Profile, { name: string }>(
+  "profile/update",
+  async (data, { rejectWithValue }) => {
+    try {
+      const respons = await updateProfileRequest(data.name);
+      return respons;
+    } catch (error) {
+      return rejectWithValue("Failed to fetch");
+    }
   }
-});
-export const createProfile = createAsyncThunk<
-  Profile,
-  { id: string; name: string }
->("profile/createProfile", async (data, { rejectWithValue }) => {
-  try {
-    const respons = await createProfileRequest(data.id, data.name);
-    return respons;
-  } catch (error) {
-    return rejectWithValue("Failed to fetch");
+);
+export const createProfile = createAsyncThunk<Profile, { name: string }>(
+  "profile/create",
+  async (data, { rejectWithValue }) => {
+    try {
+      const respons = await createProfileRequest(data.name);
+      return respons;
+    } catch (error) {
+      return rejectWithValue("Failed to fetch");
+    }
   }
-});
+);
 
 const profileSlice = createSlice({
   name: "profile",

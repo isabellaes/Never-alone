@@ -13,4 +13,4 @@ interface User {
   password: string;
 }
 
-export type { Profile };
+export type { Profile, User };
