@@ -11,7 +11,7 @@ using NeverAlone.Context;
 namespace Server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230202131515_migrations")]
+    [Migration("20230203173953_migrations")]
     partial class migrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -3,6 +3,7 @@ using NeverAlone.Models;
 using NeverAlone.Repository;
 using NeverAlone.InterfaceRepository;
 using Microsoft.AspNetCore.Identity;
+using NeverAlone.Models.RequestModels;
 
 namespace NeverAlone.Controller;
 
@@ -19,11 +20,11 @@ public class ProfileController : ControllerBase
         _userManager = userManager;
     }
 
-    [HttpGet("GetProfile")]
+    [HttpGet("Get")]
     public async Task<ActionResult<Profile>> GetProfileForUser()
     {
         var user = await _userManager.FindByNameAsync(User.Identity.Name);
-        var result = await _repository.GetProfileForUser(user);
+        var result = await _repository.GetProfileForUser(user.Id);
         if (result != null)
         {
             return Ok(result);
@@ -32,11 +33,11 @@ public class ProfileController : ControllerBase
     }
 
 
-    [HttpPost("CreateProfile")]
-    public async Task<ActionResult<Profile>> CreateProfile(string name)
+    [HttpPost("Create")]
+    public async Task<ActionResult<Profile>> CreateProfile([FromBody] ProfileCreate profile)
     {
         var user = await _userManager.FindByNameAsync(User.Identity.Name);
-        var result = await _repository.CreateProfile(user, name);
+        var result = await _repository.CreateProfile(user.Id, profile.Name);
 
         if (result != null)
         {
@@ -45,12 +46,12 @@ public class ProfileController : ControllerBase
         else { return NotFound(); }
     }
 
-    [HttpDelete("DeleteProfile")]
-    public async Task<ActionResult<bool>> DeleteProfile()
+    [HttpPost("Update")]
+    public async Task<ActionResult<Profile>> UpdateProfile([FromBody] ProfileUpdate profile)
     {
         var user = await _userManager.FindByNameAsync(User.Identity.Name);
-        var result = await _repository.DeleteProfile(user);
-        if (result)
+        var result = await _repository.UpdateProfile(user.Id, profile.Name);
+        if (result != null)
         {
             return Ok(result);
         }

@@ -16,8 +16,8 @@ public class StoryController : ControllerBase
         _repository = repository;
     }
 
-    [HttpGet("GetStoryById")]
-    public async Task<ActionResult<Profile>> GetStoryById(string id)
+    [HttpGet("GetById")]
+    public async Task<ActionResult<Story>> GetStoryById(string id)
     {
         var result = await _repository.GetStoryById(id);
         if (result != null)
@@ -28,8 +28,8 @@ public class StoryController : ControllerBase
     }
 
 
-    [HttpGet("GetAllStorys")]
-    public async Task<ActionResult<IEnumerable<Profile>>> GetAllStorys()
+    [HttpGet("GetAll")]
+    public async Task<ActionResult<IEnumerable<Story>>> GetAllStorys()
     {
         var result = await _repository.GetAllStorys();
         if (result != null)
@@ -40,7 +40,7 @@ public class StoryController : ControllerBase
     }
 
 
-    [HttpPost("CreateStory")]
+    [HttpPost("Create")]
     public async Task<ActionResult<Story>> CreateStory(Story story)
     {
         var result = await _repository.CreateStory(story);
@@ -51,7 +51,7 @@ public class StoryController : ControllerBase
         else { return NotFound(); }
     }
 
-    [HttpDelete("DeleteStory")]
+    [HttpDelete("Delete")]
     public async Task<ActionResult<bool>> DeleteStory(string id)
     {
         var result = await _repository.DeleteStory(id);

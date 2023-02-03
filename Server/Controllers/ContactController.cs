@@ -32,7 +32,7 @@ public class ContactController : ControllerBase
 
 
     [HttpGet("GetContactAll")]
-    public async Task<ActionResult<IEnumerable<DailyNote>>> GetAllContacts()
+    public async Task<ActionResult<IEnumerable<Contact>>> GetAllContacts()
     {
         var result = await _repository.GetAllContacts();
         if (result != null)

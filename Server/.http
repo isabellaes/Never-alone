@@ -23,15 +23,25 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:5015/api/Profile/GetProfile
+GET http://localhost:5015/api/Profile/Get
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoidXNlciIsImp0aSI6IjZiNzI4MzI0LWNmYzktNDU5YS1iMjA0LTgxMmFmOTlhMzU0NCIsImV4cCI6MTY3NTQzMTQ4NCwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDE1In0.cEKTDncAHCQNdQl_6miippX56Z6frtaTXIZLn9ngHHM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoidXNlciIsImp0aSI6ImE0YTljZDc5LWI5OGUtNDMzMC1hZmNlLTgzZDY5M2I5OTlhYiIsImV4cCI6MTY3NTUyNzcwNCwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDE1In0.A0ib5nR_lI7DVuIEVLR4G6hcn-bVKHrj0okUCN5mxbI
 
 ###
 
-POST http://localhost:5015/api/Profile/UpdateProfile
+POST http://localhost:5015/api/Profile/Update
 Content-Type: application/json
-Authorization: Bearer Lägg till Bearer här
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoidXNlciIsImp0aSI6ImE0YTljZDc5LWI5OGUtNDMzMC1hZmNlLTgzZDY5M2I5OTlhYiIsImV4cCI6MTY3NTUyNzcwNCwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDE1In0.A0ib5nR_lI7DVuIEVLR4G6hcn-bVKHrj0okUCN5mxbI
+
+{
+    "Name": "Namn!"
+}
+
+###
+
+POST http://localhost:5015/api/Profile/Create
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoidXNlciIsImp0aSI6ImE0YTljZDc5LWI5OGUtNDMzMC1hZmNlLTgzZDY5M2I5OTlhYiIsImV4cCI6MTY3NTUyNzcwNCwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDE1In0.A0ib5nR_lI7DVuIEVLR4G6hcn-bVKHrj0okUCN5mxbI
 
 {
     "Name": "Namn"
@@ -39,7 +49,30 @@ Authorization: Bearer Lägg till Bearer här
 
 ###
 
-POST http://localhost:5015/api/Profile/DeleteProfile
+GET http://localhost:5015/api/DailyNote/GetAll
 Content-Type: application/json
-Authorization: Bearer Lägg till Bearer här
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoidXNlciIsImp0aSI6ImE0YTljZDc5LWI5OGUtNDMzMC1hZmNlLTgzZDY5M2I5OTlhYiIsImV4cCI6MTY3NTUyNzcwNCwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDE1In0.A0ib5nR_lI7DVuIEVLR4G6hcn-bVKHrj0okUCN5mxbI
+
+###
+
+POST http://localhost:5015/api/DailyNote/Create
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoidXNlciIsImp0aSI6ImE0YTljZDc5LWI5OGUtNDMzMC1hZmNlLTgzZDY5M2I5OTlhYiIsImV4cCI6MTY3NTUyNzcwNCwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDE1In0.A0ib5nR_lI7DVuIEVLR4G6hcn-bVKHrj0okUCN5mxbI
+
+{
+    "Title": "Test",
+    "Content": "Lite random text"
+}
+
+###
+
+GET http://localhost:5015/api/DailyNote/GetById
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoidXNlciIsImp0aSI6ImE0YTljZDc5LWI5OGUtNDMzMC1hZmNlLTgzZDY5M2I5OTlhYiIsImV4cCI6MTY3NTUyNzcwNCwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDE1In0.A0ib5nR_lI7DVuIEVLR4G6hcn-bVKHrj0okUCN5mxbI
+
+{
+    "Id": "3088b2ce-e159-49ca-a3a2-16bd2201332f"    
+}
+
+
 

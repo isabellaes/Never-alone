@@ -21,9 +21,9 @@ public class DailyNoteController : ControllerBase
     }
 
     [HttpGet("GetById")]
-    public async Task<ActionResult<Contact>> GetContactById(string id)
+    public async Task<ActionResult<DailyNote>> GetDailyNotetById([FromBody] DailyNoteGetById dailynote)
     {
-        var result = await _repository.GetDailyNoteById(id);
+        var result = await _repository.GetDailyNoteById(dailynote.Id);
         if (result != null)
         {
             return Ok(result);
@@ -33,7 +33,7 @@ public class DailyNoteController : ControllerBase
 
 
     [HttpGet("GetAll")]
-    public async Task<ActionResult<IEnumerable<DailyNote>>> GetAllContacts()
+    public async Task<ActionResult<IEnumerable<DailyNote>>> GetAllDailyNotes()
     {
         var result = await _repository.GetAllDailyNotes();
         if (result != null)
@@ -45,7 +45,7 @@ public class DailyNoteController : ControllerBase
 
 
     [HttpPost("Create")]
-    public async Task<ActionResult<Contact>> CreateProfile([FromBody] DailyNoteCreate dailynote)
+    public async Task<ActionResult<DailyNote>> CreateDailyNote([FromBody] DailyNoteCreate dailynote)
     {
         var user = await _userManager.FindByNameAsync(User.Identity.Name);
         var result = await _repository.CreateDailyNote(user.Id, dailynote.Title, dailynote.Content);
@@ -57,10 +57,10 @@ public class DailyNoteController : ControllerBase
     }
 
     [HttpDelete("Delete")]
-    public async Task<ActionResult<bool>> DeleteContact(string id)
+    public async Task<ActionResult<bool>> DeleteDailyNote([FromBody] DailyNoteDelete dailynote)
     {
         var user = await _userManager.FindByNameAsync(User.Identity.Name);
-        var result = await _repository.DeleteDailyNote(id);
+        var result = await _repository.DeleteDailyNote(dailynote.Id);
 
         if (result)
         {

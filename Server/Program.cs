@@ -6,6 +6,7 @@ using NeverAlone.Repository;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Identity;
 using System.Text;
+using NeverAlone.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -96,6 +97,15 @@ app.MapControllers();
 app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
+
+//Endast för testdata
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<DataContext>();
+    var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
+    await SeedingDataForTest.SeedAsync(context, userManager);
+}
 
 
 app.Run();

@@ -17,31 +17,27 @@ public class ProfileRepository : IProfileRepository
 
     }
 
-    public async Task<Profile> CreateProfile(IdentityUser user, string name)
+    public async Task<Profile> CreateProfile(string userId, string name)
     {
-        if (user != null)
+        Profile profile = new Profile()
         {
-            Profile profile = new Profile()
-            {
-                Id = Guid.NewGuid().ToString(),
-                Name = name,
-                image = "",
-                user = user,
-                UserId = user.Id
-            };
+            Id = Guid.NewGuid().ToString(),
+            Name = name,
+            image = "",
+            UserId = userId
+        };
 
-            _context.Profile.Add(profile);
-            _context.SaveChanges();
+        _context.Profile.Add(profile);
+        _context.SaveChanges();
 
-            return profile;
-        }
-        else { return null; }
+        return profile;
+
     }
 
-    public async Task<Profile> EditProfile(IdentityUser user, string name)
+    public async Task<Profile> UpdateProfile(string userId, string name)
     {
 
-        var profile = await _context.Profile.FirstOrDefaultAsync(p => p.user == user);
+        var profile = await _context.Profile.FirstOrDefaultAsync(p => p.UserId == userId);
 
         if (profile != null)
         {
@@ -54,24 +50,9 @@ public class ProfileRepository : IProfileRepository
         else { return null; }
     }
 
-    public async Task<bool> DeleteProfile(IdentityUser user)
+    public async Task<Profile> GetProfileForUser(string userId)
     {
-        var result = await _context.Profile.FirstOrDefaultAsync(m => m.user == user);
-        if (result != null)
-        {
-            _context.Profile.Remove(result);
-            _context.SaveChanges();
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    public async Task<Profile> GetProfileForUser(IdentityUser user)
-    {
-        var result = await _context.Profile.FirstOrDefaultAsync(m => m.user == user);
+        var result = await _context.Profile.FirstOrDefaultAsync(m => m.UserId == userId);
         if (result != null)
         {
             return result;

@@ -17,7 +17,7 @@ public class TipsController : ControllerBase
     }
 
     [HttpGet("GetById")]
-    public async Task<ActionResult<Profile>> GetTipsById(string id)
+    public async Task<ActionResult<Tips>> GetTipsById(string id)
     {
         var result = await _repository.GetTipsById(id);
         if (result != null)
@@ -28,7 +28,7 @@ public class TipsController : ControllerBase
     }
 
 
-    [HttpGet("GetAllTips")]
+    [HttpGet("GetAll")]
     public async Task<ActionResult<IEnumerable<Tips>>> GetAllTips()
     {
         var result = await _repository.GetAllTips();
@@ -40,7 +40,7 @@ public class TipsController : ControllerBase
     }
 
 
-    [HttpPost("CreateTips")]
+    [HttpPost("Create")]
     public async Task<ActionResult<Tips>> CreateTis(Tips tips)
     {
         var result = await _repository.CreateTips(tips);
@@ -51,7 +51,7 @@ public class TipsController : ControllerBase
         else { return NotFound(); }
     }
 
-    [HttpDelete("DeleteTips")]
+    [HttpDelete("Delete")]
     public async Task<ActionResult<bool>> DeleteTips(string id)
     {
         var result = await _repository.DeleteTips(id);
