@@ -1,5 +1,5 @@
 interface Profile {
-  id: number;
+  id: string;
   name: string;
   image: string;
   userId: number;
@@ -7,10 +7,22 @@ interface Profile {
 }
 
 interface User {
-  id: number;
   username: string;
   email: string;
-  password: string;
 }
 
-export type { Profile, User };
+interface LogInRespons {
+  user: User;
+  token: string;
+  expiration: string;
+}
+
+interface RegisterRespons {
+  accepted: boolean;
+}
+
+interface Error {
+  error: string;
+}
+
+export type { Profile, User, LogInRespons, RegisterRespons, Error };

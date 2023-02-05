@@ -58,7 +58,6 @@ builder.Services.AddAuthentication(options =>
     {
         ValidateIssuer = true,
         ValidateAudience = false,
-        // ValidAudience = builder.Configuration["JWT:Audience"],
         ValidIssuer = builder.Configuration["JWT:Issuer"],
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]))
     };
@@ -71,23 +70,8 @@ builder.Services.AddScoped<IStoryRepository, StoryRepository>();
 builder.Services.AddScoped<ITipsRepository, TipsRepository>();
 builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
 
-builder.Services.AddCors(options =>
-{
-    options.AddDefaultPolicy(builder =>
-    {
-        builder.AllowAnyHeader()
-            .AllowAnyMethod()
-            .WithOrigins("http://localhost:19000")
-            .AllowCredentials()
-            .AllowAnyHeader();
-    });
-});
-
-
 var app = builder.Build();
 
-
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
 

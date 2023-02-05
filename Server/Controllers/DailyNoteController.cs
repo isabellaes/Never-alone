@@ -4,10 +4,12 @@ using NeverAlone.Repository;
 using NeverAlone.InterfaceRepository;
 using Microsoft.AspNetCore.Identity;
 using NeverAlone.Models.RequestModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace NeverAlone.Controller;
 
 [ApiController]
+[Authorize]
 [Route("api/[controller]")]
 public class DailyNoteController : ControllerBase
 {

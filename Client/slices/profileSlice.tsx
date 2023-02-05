@@ -12,11 +12,11 @@ export interface ProfileState {
 
 const initialState: ProfileState = {
   profile: {
-    id: 0,
+    id: "1",
     name: "Test",
     image: "test",
     userId: 0,
-    user: { id: 0, username: "test", password: "test", email: "test" },
+    user: { username: "test", email: "test" },
   },
 };
 

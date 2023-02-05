@@ -78,7 +78,7 @@ public class AuthenticationController : ControllerBase
         return Ok();
     }
 
-    public Task<IActionResult> Me()
+    /*public Task<IActionResult> Me()
     {
         return Task.FromResult<IActionResult>(Ok(
             new
@@ -87,7 +87,7 @@ public class AuthenticationController : ControllerBase
                 User.Identity.IsAuthenticated,
                 User.Identity.AuthenticationType,
             }));
-    }
+    }*/
 
     private JwtSecurityToken GetToken(List<Claim> authClaims)
     {

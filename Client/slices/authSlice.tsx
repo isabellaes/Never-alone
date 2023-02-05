@@ -1,17 +1,25 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { User } from "../utils/types";
+import { User, LogInRespons, Error, RegisterRespons } from "../utils/types";
 import { loginRequest, registerRequest } from "../utils/api";
 
 export interface AuthState {
-  user: User;
+  user: User | null;
+  token: string | null;
+  expiration: string | null;
+  errormessage: string | null;
+  registeraccepted: boolean;
 }
 
 const initialState: AuthState = {
-  user: { id: 0, username: "test", password: "test", email: "test" },
+  user: null,
+  token: null,
+  expiration: null,
+  errormessage: null,
+  registeraccepted: false,
 };
 
 export const login = createAsyncThunk<
-  User,
+  LogInRespons | Error,
   { username: string; password: string }
 >("authentication/login", async (data, { rejectWithValue }) => {
   try {
@@ -23,7 +31,7 @@ export const login = createAsyncThunk<
 });
 
 export const register = createAsyncThunk<
-  User,
+  RegisterRespons | Error,
   { email: string; username: string; password: string }
 >("authentication/register", async (data, { rejectWithValue }) => {
   try {
@@ -43,16 +51,35 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     setCurrentUser: (state, action) => {
-      state = action.payload.user;
+      state.user = action.payload.user;
+      state.token = action.payload.token;
+      state.expiration = action.payload.expiration;
+      state.errormessage = null;
+      state.registeraccepted = true;
     },
   },
 
   extraReducers(builder) {
     builder.addCase(login.fulfilled, (state, action) => {
-      state.user = action.payload;
+      const respons = action.payload as LogInRespons;
+      state.user = respons.user;
+      state.token = respons.token;
+      state.expiration = respons.expiration;
     });
+    builder.addCase(login.rejected, (state, action) => {
+      const respons = action.payload as Error;
+      state.errormessage = respons.error;
+    });
+
     builder.addCase(register.fulfilled, (state, action) => {
-      state.user = action.payload;
+      const respons = action.payload as RegisterRespons;
+      state.registeraccepted = respons.accepted;
+    });
+
+    builder.addCase(register.rejected, (state, action) => {
+      const respons = action.payload as Error;
+      state.errormessage = respons.error;
+      state.registeraccepted = false;
     });
   },
 });
