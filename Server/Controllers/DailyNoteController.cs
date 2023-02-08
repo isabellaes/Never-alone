@@ -17,7 +17,7 @@ public class DailyNoteController : ControllerBase
     }
 
     [HttpGet("GetDailyNoteById")]
-    public async Task<ActionResult<Meditation>> GetDailyNoteById(int id)
+    public async Task<ActionResult<DailyNote>> GetDailyNoteById(int id)
     {
         var result = await _repository.GetDailyNoteById(id);
         if (result != null)
@@ -29,7 +29,7 @@ public class DailyNoteController : ControllerBase
 
 
     [HttpGet("GetAllDailyNotes")]
-    public async Task<ActionResult<IEnumerable<Meditation>>> GetAllDailyNotes()
+    public async Task<ActionResult<IEnumerable<DailyNote>>> GetAllDailyNotes()
     {
         var result = await _repository.GetAllDailyNotes();
         if (result != null)
@@ -41,7 +41,7 @@ public class DailyNoteController : ControllerBase
 
 
     [HttpPost("CreateDailyNote")]
-    public async Task<ActionResult<Meditation>> CreateDailyNote(DailyNote dailyNote)
+    public async Task<ActionResult<DailyNote>> CreateDailyNote(DailyNote dailyNote)
     {
         var result = await _repository.CreateDailyNote(dailyNote);
         if (result != null)

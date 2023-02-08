@@ -1,3 +1,4 @@
+ import {User} from "./types"
 const url = "http://10.0.2.2:5015/api";
 
 export const getProfileRequest = async (id: string) => {
@@ -53,14 +54,14 @@ export const updateProfileRequest = async (id: string, name: string) => {
   throw response;
 };
 
-export const getDailyNoteRequest = async (id: string) => {
-  const response = await fetch(`${url}/dailyNote/GetDailyNote?id=${id}`, {
+export const getDailyNoteRequest = async () => {
+  const response = await fetch(`${url}/dailyNote/GetAllDailyNote`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
     },
   });
-  console.log("test");
+ 
   if (response.ok) {
     const data = await response.json();
     return data;
@@ -68,7 +69,7 @@ export const getDailyNoteRequest = async (id: string) => {
   throw response;
 };
 
-export const createDailyNoteRequest = async (id: string, name: string) => {
+export const createDailyNoteRequest = async (id: string, title: string, content: string, UserId: string, user: User) => {
   const response = await fetch(`${url}/dailyNote/createDailyNote`, {
     method: "POST",
     headers: {
@@ -76,7 +77,11 @@ export const createDailyNoteRequest = async (id: string, name: string) => {
     },
     body: JSON.stringify({
       id,
-      name,
+      title,
+      content,
+     // dateTime,
+      UserId,
+      user
     }),
   });
 

@@ -4,45 +4,109 @@ import {
   View,
   Text,
   StyleSheet,
+  ScrollView,
+  Button,
+  FlatList,
 } from "react-native";
 import { RootStackParamList } from "../navigation/RootNavigator";
-import { DailyNote } from "../utils/types";
 import { AppState, useAppDispatch, useAppSelector } from "../store/store";
-import { getDailyNote } from "../slices/dailynoteSlice";
-import NoteCard from "../Componets/NoteCard";
+
+import { TextInput } from "react-native-paper";
+import { DailyNote } from "../utils/types";
+import { createDailyNote, setCurrentDailyNote } from "../slices/dailynoteSlice";
+
 
 type Props = NativeStackScreenProps<RootStackParamList, "DailyNote">;
 
 export default function DailyNotes({ navigation }: Props) {
-  // const [text, setText] = React.useState("");
-  const [note, setNote] = React.useState<DailyNote | null>();
-  const [selectedEmoji, setSelectedEmoji] = useState();
+  const [dailyNote, setDailyNote] = React.useState<DailyNote[] | null>();
 
-  const dispatch = useAppDispatch();
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+
   const currentNote = (state: AppState) => {
     return state.dailyNote.dailyNote;
   };
-  const currentUserNote = useAppSelector(currentNote);
+
+  const onTitleChanged = (title: string) => setTitle(title);
+  const onContentChanged = (content: string) => setContent(content);
+
+  const dispatch = useAppDispatch();
+  const currentDailyNote = useAppSelector(currentNote);
 
   React.useEffect(() => {
-    dispatch(getDailyNote({ id: "1" }));
-  }, [dispatch]);
-
-  React.useEffect(() => {
-    if (currentUserNote) {
-      setNote(currentUserNote);
+    if (currentDailyNote) {
+      setDailyNote(currentDailyNote);
     }
-  }, [currentUserNote]);
+  }, [currentDailyNote]);
+  function onPress() {
+    if (title && content) {
+      //const dailyNote: DailyNote = {id: "1", title:title, content:content, datetime: "2023-05-08", userId: 1, user: {id: 0, username: "test", password: "test", email: "test"} }
+      dispatch(
+        createDailyNote({
+          id: "1",
+          title: title,
+          content: content,
+          UserId: "1",
+          user: { id: "0", username: "test", password: "test", email: "test" },
+        })
+      );
+    }
+  }
+
   return (
-     <View style={styles.container}>
-      <Text >
-      <NoteCard note={[currentUserNote]} onPress={function (): void {
-         navigation.navigate("Home")
-        } }></NoteCard>
-      </Text>
-     </View>
+    <View style={styles.container}>
+      <ScrollView style={{ width: "95%" }}>
+        <View>
+          <View>
+            <Text>
+              <TextInput
+                value={title}
+                onChangeText={onTitleChanged}
+                placeholder="titel"
+                placeholderTextColor="#bebebe"
+                underlineColorAndroid={"transparent"}
+                underlineColor="transparent"
+                style={styles.textInput}
+              />
+              <TextInput
+                value={content}
+                onChangeText={onContentChanged}
+                placeholder="titel"
+                placeholderTextColor="#bebebe"
+                underlineColorAndroid={"transparent"}
+                underlineColor="transparent"
+                style={styles.textInput}
+              />
+              <Button
+                onPress={onPress}
+                title="Learn More"
+                color="#841584"
+                accessibilityLabel="Learn more about this purple button"
+              ></Button>
+            </Text>
+          </View>
+          {/* <View>
+            if(dailyNote)
+            {
+              <FlatList
+                data={dailyNote}
+                renderItem={({ note }) => (
+                  <NotesList dailyNote={note}></NotesList>
+                )}
+              ></FlatList>
+            }
+          </View> */}
+          {/* <FlatList></FlatList> */}
+        </View>
+      </ScrollView>
+    </View>
   );
 }
+
+// {dailyNote?.map((note) => {
+//   <NotesList dailyNote={note}></NotesList>;
+// })}
 
 const styles = StyleSheet.create({
   container: {
@@ -52,7 +116,14 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     alignContent: "center",
-    marginTop: 10,
-  }
-
+  },
+  textInput: {
+    width: "92%",
+    elevation: 5,
+    shadowColor: "black",
+    borderBottomRightRadius: 10,
+    borderBottomLeftRadius: 10,
+    fontSize: 20,
+    paddingHorizontal: 20,
+  },
 });
