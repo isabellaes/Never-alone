@@ -7,6 +7,7 @@ interface Profile {
 }
 
 interface User {
+  id: string;
   username: string;
   email: string;
 }
@@ -25,4 +26,13 @@ interface Error {
   error: string;
 }
 
-export type { Profile, User, LogInRespons, RegisterRespons, Error };
+
+type DailyNote = {
+  id: string,
+  title: string;
+  content: string;
+  userId: string;
+  user: User
+}
+
+export type { Profile, User, LogInRespons, RegisterRespons, Error, DailyNote };

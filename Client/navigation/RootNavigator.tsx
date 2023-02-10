@@ -8,9 +8,8 @@ import EditProfileScreen from "../Screens/EditProfileScreen";
 import LogInScreen from "../Screens/LogInScreen";
 import RegisterScreen from "../Screens/RegisterScreen";
 import StoryScreen from "../Screens/StoryScreen";
-import TipsScreen from "../Screens/TipsScreen";
 import { CustomNavigationBar } from "../Componets/CustomNavigationBar";
-import { BottomNavigation, BottomNavBarList } from "./BottomNavigation";
+import { BottomNavigation } from "./BottomNavigation";
 import { useAppSelector } from "../store/store";
 
 export type RootStackParamList = {
@@ -24,7 +23,6 @@ export type RootStackParamList = {
   Meditation: undefined;
   PhoneNumber: undefined;
   Settings: undefined;
-  Tips: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -42,68 +40,58 @@ export const RootNavigator = () => {
           header: (props) => <CustomNavigationBar {...props} />,
         }}
       >
-        {isAuthenticated ? (
-          <Stack.Group>
-            <Stack.Screen
-              name="Home"
-              component={BottomNavigation}
-              options={{ title: "Home" }}
-            />
-            <Stack.Screen
-              name="Profile"
-              component={BottomNavigation}
-              options={{ title: "Profile" }}
-            />
-            <Stack.Screen
-              name="EditProfile"
-              component={EditProfileScreen}
-              options={{ title: "EditProfile" }}
-            />
-            <Stack.Screen
-              name="Storys"
-              component={StoryScreen}
-              options={{ title: "Storys" }}
-            />
-            <Stack.Screen
-              name="DailyNote"
-              component={BottomNavigation}
-              options={{ title: "DailyNote" }}
-            />
-            <Stack.Screen
-              name="Meditation"
-              component={BottomNavigation}
-              options={{ title: "Meditation" }}
-            />
-            <Stack.Screen
-              name="PhoneNumber"
-              component={BottomNavigation}
-              options={{ title: "PhoneNumber" }}
-            />
-            <Stack.Screen
-              name="Settings"
-              component={BottomNavigation}
-              options={{ title: "Settings" }}
-            />
-            <Stack.Screen
-              name="Tips"
-              component={TipsScreen}
-              options={{ title: "Tips" }}
-            />
-          </Stack.Group>
-        ) : (
-          <Stack.Group>
-            <Stack.Screen
-              name="Login"
-              component={LogInScreen}
-              options={{ title: "Login" }}
-            />
-            <Stack.Screen
-              name="Register"
-              component={RegisterScreen}
-              options={{ title: "Register" }}
-            />
-          </Stack.Group>
-        )}
+        <Stack.Group>
+          <Stack.Screen
+            name="Home"
+            component={BottomNavigation}
+            options={{ title: "Home" }}
+          />
+          <Stack.Screen
+            name="Login"
+            component={LogInScreen}
+            options={{ title: "Login" }}
+          />
+          <Stack.Screen
+            name="Register"
+            component={RegisterScreen}
+            options={{ title: "Register" }}
+          />
+          <Stack.Screen
+            name="Profile"
+            component={BottomNavigation}
+            options={{ title: "Profile" }}
+          />
+          <Stack.Screen
+            name="EditProfile"
+            component={EditProfileScreen}
+            options={{ title: "EditProfile" }}
+          />
+          <Stack.Screen
+            name="Storys"
+            component={StoryScreen}
+            options={{ title: "Storys" }}
+          />
+          <Stack.Screen
+            name="DailyNote"
+            component={BottomNavigation}
+            options={{ title: "DailyNote" }}
+          />
+          <Stack.Screen
+            name="Meditation"
+            component={BottomNavigation}
+            options={{ title: "Meditation" }}
+          />
+          <Stack.Screen
+            name="PhoneNumber"
+            component={BottomNavigation}
+            options={{ title: "PhoneNumber" }}
+          />
+          <Stack.Screen
+            name="Settings"
+            component={BottomNavigation}
+            options={{ title: "Settings" }}
+          />
+        </Stack.Group>
       </Stack.Navigator>
     </NavigationContainer>
   );
