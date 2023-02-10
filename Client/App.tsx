@@ -1,28 +1,47 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React, { useEffect } from "react";
 import { Provider as ReduxProvider } from "react-redux";
-import { store } from "./store/store";
-import { BottomNavigation } from "./navigation/BottomNavigation";
+import { store, useAppDispatch } from "./store/store";
 import { RootNavigator } from "./navigation/RootNavigator";
 import { StatusBar } from "expo-status-bar";
-import { NavigationContainer } from "@react-navigation/native";
-import { Provider as PaperProvider } from "react-native-paper";
+import { MD2LightTheme, Provider as PaperProvider } from "react-native-paper";
+import { setCurrentUser } from "./store/authSlice";
+import { getPersistedAuthValues } from "./utils/startGetUser";
+import { getProfile } from "./store/profileSlice";
+
 export default function App() {
   return (
-    <PaperProvider>
-      <ReduxProvider store={store}>
+    <ReduxProvider store={store}>
+      <StartupGate>
         <StatusBar style="auto" />
         <RootNavigator />
-      </ReduxProvider>
-    </PaperProvider>
+      </StartupGate>
+    </ReduxProvider>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+interface Props {
+  children: JSX.Element[];
+}
+
+function StartupGate({ children }: Props) {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+
+    (async () => {
+      const persistedAuth = await getPersistedAuthValues();
+      dispatch(setCurrentUser(persistedAuth));
+
+      interval = setInterval(() => {
+        dispatch(getProfile());
+      }, 3000);
+    })();
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [dispatch]);
+
+  return <PaperProvider theme={MD2LightTheme}>{children}</PaperProvider>;
+}

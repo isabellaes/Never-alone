@@ -12,7 +12,7 @@ import DailyNoteScreen from "../Screens/DailyNoteScreen";
 import ProfileScreen from "../Screens/ProfileScreen";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import { CustomNavigationBar } from "../Componets/CustomNavigationBar.tsx";
+import { CustomNavigationBar } from "../Componets/CustomNavigationBar";
 import { NativeStackHeaderProps } from "@react-navigation/native-stack";
 
 const Tab = createMaterialBottomTabNavigator<BottomNavBarList>();

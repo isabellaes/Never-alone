@@ -3,11 +3,7 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { Appbar, Menu, useTheme } from "react-native-paper";
 
-interface Prop {
-  title: string;
-}
-
-export function CustomNavigationBar({ title }: Prop) {
+export function CustomNavigationBar({ options }: NativeStackHeaderProps) {
   return (
     <Appbar.Header mode="center-aligned" statusBarHeight={20}>
       <Appbar.Content
@@ -15,7 +11,7 @@ export function CustomNavigationBar({ title }: Prop) {
           fontSize: 24,
           fontWeight: "bold",
         }}
-        title={title}
+        title={options.title}
       />
     </Appbar.Header>
   );

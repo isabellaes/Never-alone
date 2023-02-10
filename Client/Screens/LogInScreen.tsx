@@ -5,11 +5,26 @@ import { View, Text, StyleSheet } from "react-native";
 import { RootStackParamList } from "../navigation/RootNavigator";
 import { TextInput } from "react-native-paper";
 import ButtonStandard from "../Componets/ButtonStandard";
+import { useAppDispatch } from "../store/store";
+import { login } from "../store/authSlice";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Login">;
 
 export default function LogInScreen({ navigation }: Props) {
-  // const [text, setText] = React.useState("");
+  const [userName, setUserName] = React.useState<string | null>(null);
+  const [passWord, setPassword] = React.useState<string | null>(null);
+  const dispatch = useAppDispatch();
+
+  const onUserNameChanged = (username: string) => setUserName(username);
+  const onPasswordChanged = (password: string) => setPassword(password);
+
+  function logInUser() {
+    if (userName && passWord) {
+      dispatch(login({ username: userName, password: passWord }));
+      navigation.navigate("Home");
+    }
+  }
+
   return (
     <View style={{ ...styles.container }}>
       <Text style={{ ...styles.loggaIn }}>Logga in</Text>
@@ -19,6 +34,7 @@ export default function LogInScreen({ navigation }: Props) {
         label="Användarnamn"
         placeholder="E-post"
         right={<TextInput.Affix text="/50" />}
+        onChangeText={onUserNameChanged}
       />
       <TextInput
         style={{ ...styles.textInput }}
@@ -26,14 +42,10 @@ export default function LogInScreen({ navigation }: Props) {
         label="Ange ditt lösen ord"
         placeholder="Minst 8 tecken"
         right={<TextInput.Affix text="/15" />}
+        onChangeText={onPasswordChanged}
       />
       <View style={{ ...styles.buttonStandard }}>
-        <ButtonStandard
-          onPress={function (): void {
-            navigation.navigate("Home");
-          }}
-          text={"Logga in"}
-        ></ButtonStandard>
+        <ButtonStandard onPress={logInUser} text={"Logga in"}></ButtonStandard>
       </View>
       <View style={{ ...styles.nyttKonto }}>
         <ButtonStandard

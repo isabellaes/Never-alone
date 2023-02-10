@@ -1,3 +1,5 @@
+import { get } from "./securestore";
+
 const url = "http://10.0.2.2:5015/api";
 
 export const getProfileRequest = async () => {
@@ -5,6 +7,7 @@ export const getProfileRequest = async () => {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${await get("user.token")}`,
     },
   });
   console.log("test");
@@ -20,6 +23,7 @@ export const createProfileRequest = async (name: string) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${await get("user.token")}`,
     },
     body: JSON.stringify({
       name,
@@ -38,6 +42,7 @@ export const updateProfileRequest = async (name: string) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${await get("user.token")}`,
     },
     body: JSON.stringify({
       name,
