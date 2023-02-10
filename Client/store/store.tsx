@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import profileSlice from "../slices/profileSlice";
+import dailynoteSlice from "../slices/dailynoteSlice";
 
 export const store = configureStore({
   reducer: {
     profile: profileSlice,
+    dailyNote: dailynoteSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

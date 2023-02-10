@@ -14,7 +14,6 @@ import ProfileScreen from "../Screens/ProfileScreen";
 import RegisterScreen from "../Screens/RegisterScreen";
 import SettingsScreen from "../Screens/Settings";
 import StoryScreen from "../Screens/StoryScreen";
-import TipsScreen from "../Screens/TipsScreen";
 import { CustomNavigationBar } from "../Componets/CustomNavigationBar.tsx";
 import { BottomNavigation } from "./BottomNavigation";
 
@@ -29,7 +28,6 @@ export type RootStackParamList = {
   Meditation: undefined;
   PhoneNumber: undefined;
   Settings: undefined;
-  Tips: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -92,11 +90,6 @@ export const RootNavigator = () => {
             name="Settings"
             component={BottomNavigation}
             options={{ title: "Settings" }}
-          />
-          <Stack.Screen
-            name="Tips"
-            component={TipsScreen}
-            options={{ title: "Tips" }}
           />
         </Stack.Group>
       </Stack.Navigator>

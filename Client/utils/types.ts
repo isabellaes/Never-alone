@@ -7,10 +7,18 @@ interface Profile {
 }
 
 interface User {
-  id: number;
+  id: string;
   username: string;
   email: string;
   password: string;
 }
 
-export type { Profile };
+type DailyNote = {
+  id: string,
+  title: string;
+  content: string;
+  userId: string;
+  user: User
+}
+
+export type { Profile, DailyNote, User };
