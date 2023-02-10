@@ -7,17 +7,18 @@ interface Profile {
 }
 
 interface User {
-  id: number;
+  id: string;
   username: string;
   email: string;
   password: string;
 }
 
-interface DailyNote {
+type DailyNote = {
+  id: string,
   title: string;
-  content?: string;
-  datetime?: string;
-  userId?: number;
+  content: string;
+  userId: string;
+  user: User
 }
 
-export type { Profile, DailyNote };
+export type { Profile, DailyNote, User };

@@ -5,113 +5,127 @@ import {
   Text,
   StyleSheet,
   ScrollView,
+  Button,
 } from "react-native";
 import { RootStackParamList } from "../navigation/RootNavigator";
-import { Card, TextInput } from "react-native-paper";
-import ButtonStandard from "../Componets/ButtonStandard";
-import { DailyNote } from "../utils/types";
 import { AppState, useAppDispatch, useAppSelector } from "../store/store";
-import { getDailyNote } from "../slices/dailynoteSlice";
-import { Picker } from "@react-native-picker/picker";
+import { TextInput } from "react-native-paper";
+import { DailyNote } from "../utils/types";
+import { createDailyNote, setCurrentDailyNote } from "../slices/dailynoteSlice";
+import NoteCard from "../Componets/NoteCard";
 
 type Props = NativeStackScreenProps<RootStackParamList, "DailyNote">;
 
 export default function DailyNotes({ navigation }: Props) {
-  // const [text, setText] = React.useState("");
-  const [note, setNote] = React.useState<DailyNote | null>();
-  const [selectedEmoji, setSelectedEmoji] = useState();
+  const [dailyNote, setDailyNote] = React.useState<DailyNote[] | null>();
 
-  const dispatch = useAppDispatch();
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+
   const currentNote = (state: AppState) => {
     return state.dailyNote.dailyNote;
   };
-  const currentUserNote = useAppSelector(currentNote);
+
+  const onTitleChanged = (title: string) => setTitle(title);
+  const onContentChanged = (content: string) => setContent(content);
+
+  const dispatch = useAppDispatch();
+  const currentDailyNote = useAppSelector(currentNote);
 
   React.useEffect(() => {
-    dispatch(getDailyNote({ id: "1" }));
-  }, [dispatch]);
-
-  React.useEffect(() => {
-    if (currentUserNote) {
-      setNote(currentUserNote);
+    if (currentDailyNote) {
+      setDailyNote(currentDailyNote);
     }
-  }, [currentUserNote]);
+  }, [currentDailyNote]);
+
+  function onPress() {
+    if (title && content) {
+      dispatch(
+        createDailyNote({
+          id: "15",
+          title: title,
+          content: content,
+          UserId: "15",
+          user: { id: "0", username: "test", password: "test", email: "test" },
+        })
+      );
+      setTitle("");
+      setContent("");
+    }
+  }
+  console.log(onPress);
+
   return (
-    <ScrollView style={{ ...styles.container }}>
-      <View>
-        <Card style={{ ...styles.card }}>
-          <Text style={{ ...styles.title }}>Dag anteckningar</Text>
-          <Picker style={{...styles.picker}}
-            selectedValue={selectedEmoji}
-            onValueChange={(itemValue, itemIndex) =>
-              setSelectedEmoji(itemValue)
-            }
-          >
-            <Picker.Item label="ledsen" value={currentUserNote.title} />
-            <Picker.Item label="arg" value={currentUserNote.title} />
-            <Picker.Item label="lite nere" value={currentUserNote.title} />
-            <Picker.Item label="okey" value={currentUserNote.title} />
-            <Picker.Item label="glad" value={currentUserNote.title} />
-            <Picker.Item label="lycklig" value={currentUserNote.title} />
-          </Picker>
-          <Text style={styles.text}>Några rader om dagen</Text>
-          <TextInput
-            style={{ ...styles.textInput, marginBottom: 40 }}
-            label={note?.content}
-            right={<TextInput.Affix text="/50" />}
-          />
-          <View style={{ ...styles.nyttKonto }}>
-            <ButtonStandard 
-              onPress={function (): void {
-                navigation.navigate("Home");
-              }}
-              text={"Spara"}
-            ></ButtonStandard>
-          </View>
-        </Card>
-      </View>
-    </ScrollView>
+    <View style={styles.container}>
+      <ScrollView style={{ width: "95%" }}>
+        <TextInput
+          value={title}
+          onChangeText={onTitleChanged}
+          placeholder="titel för dagen.."
+          placeholderTextColor="#d978fa"
+          underlineColorAndroid={"transparent"}
+          multiline
+          numberOfLines={1}
+          maxLength={30}
+          style={styles.title}
+        />
+        <TextInput
+          value={content}
+          onChangeText={onContentChanged}
+          placeholder="Skriv några rader om dagen.."
+          placeholderTextColor="#d978fa"
+          underlineColorAndroid={"transparent"}
+          underlineColor="transparent"
+          multiline
+          numberOfLines={6}
+          maxLength={200}
+          style={styles.content}
+        />
+    
+          <Button onPress={onPress} title="Spara" color="#f0ccfc"></Button>
+
+        {currentDailyNote?.map((note) => {
+          //console.log(onPress);
+          return (
+            <Text key={note.id}>
+              <NoteCard dailyNote={note}></NoteCard>
+            </Text>
+            
+          );
+        })}
+      </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  card: {
-    backgroundColor: "#ad6ae9",
-  },
   container: {
-    paddingTop: 50,
-    borderradius: 25,
-    padding: 20,
+    flex: 1,
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    alignContent: "center",
+    justifyContent: "space-between",
+    marginTop: 20
+
   },
   title: {
-    fontSize: 30,
-    marginLeft: 10,
+    elevation: 5,
+    shadowColor: "black",
+    borderBottomRightRadius: 10,
+    borderBottomLeftRadius: 10,
+    fontSize: 20,
+    paddingTop:10,
   },
-  textInput: {
-    marginLeft: 10,
-    marginRight: 10,
-    paddingBottom:50,
-    borderRadius: 5,
-    marginTop: 20
+  content: {
+    elevation: 30,
+    shadowColor: "black",
+    borderBottomRightRadius: 10,
+    borderBottomLeftRadius: 10,
+    fontSize: 20,
+    paddingTop:10
   },
-  nyttKonto: {
-    display: "flex",
-    alignItems: "center",
-    marginTop: 50,
-  },
-  buttonStandard: {
-    display: "flex",
-    alignItems: "center",
-   
-  },
-  picker: {
-    width: 150,
-    marginLeft: 10
-
-
-  },
-  text: {
-    marginLeft:10,
-    marginTop: 20
-  }
 });
+
+
