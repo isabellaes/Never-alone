@@ -9,12 +9,10 @@ import {
 } from "react-native";
 import { RootStackParamList } from "../navigation/RootNavigator";
 import { AppState, useAppDispatch, useAppSelector } from "../store/store";
-
 import { TextInput } from "react-native-paper";
 import { DailyNote } from "../utils/types";
 import { createDailyNote, setCurrentDailyNote } from "../slices/dailynoteSlice";
 import NoteCard from "../Componets/NoteCard";
-import OverviewCard from "../Componets/OverviewCard";
 
 type Props = NativeStackScreenProps<RootStackParamList, "DailyNote">;
 
@@ -63,10 +61,9 @@ export default function DailyNotes({ navigation }: Props) {
         <TextInput
           value={title}
           onChangeText={onTitleChanged}
-          placeholder="titel för dagen"
-          placeholderTextColor="#bebebe"
+          placeholder="titel för dagen.."
+          placeholderTextColor="#d978fa"
           underlineColorAndroid={"transparent"}
-          underlineColor="transparent"
           multiline
           numberOfLines={1}
           maxLength={30}
@@ -75,8 +72,8 @@ export default function DailyNotes({ navigation }: Props) {
         <TextInput
           value={content}
           onChangeText={onContentChanged}
-          placeholder="Skriv några rader om dagen"
-          placeholderTextColor="#bebebe"
+          placeholder="Skriv några rader om dagen.."
+          placeholderTextColor="#d978fa"
           underlineColorAndroid={"transparent"}
           underlineColor="transparent"
           multiline
@@ -85,12 +82,12 @@ export default function DailyNotes({ navigation }: Props) {
           style={styles.content}
         />
     
-          <Button onPress={onPress} title="Spara" color="#841584"></Button>
+          <Button onPress={onPress} title="Spara" color="#f0ccfc"></Button>
 
         {currentDailyNote?.map((note) => {
           //console.log(onPress);
           return (
-            <Text style={styles.card} key={note.id}>
+            <Text key={note.id}>
               <NoteCard dailyNote={note}></NoteCard>
             </Text>
             
@@ -104,9 +101,13 @@ export default function DailyNotes({ navigation }: Props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
     alignItems: "center",
     alignContent: "center",
-    marginTop: 10
+    justifyContent: "space-between",
+    marginTop: 20
 
   },
   title: {
@@ -115,17 +116,16 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 10,
     borderBottomLeftRadius: 10,
     fontSize: 20,
-    paddingTop:10
+    paddingTop:10,
   },
   content: {
-    elevation: 5,
+    elevation: 30,
     shadowColor: "black",
     borderBottomRightRadius: 10,
     borderBottomLeftRadius: 10,
     fontSize: 20,
     paddingTop:10
   },
-  card: {
-    marginTop:30
-  }
 });
+
+

@@ -105,3 +105,4 @@ export const { setCurrentDailyNote} = dailyNoteSlice.actions;
 
 
 export default dailyNoteSlice.reducer;
+
