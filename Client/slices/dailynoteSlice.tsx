@@ -18,7 +18,14 @@ const initialState: DailyNoteState = {
     userId: "1",
     user: {id: "0", username: "test", password: "test", email: "test" }
 
-  }]
+  },
+  {
+    id: "2",
+    title: "test titel2",
+    content: "testar content2",
+    userId: "2",
+    user: {id: "0", username: "test", password: "test", email: "test" }
+}]
   
 }
 

@@ -6,7 +6,6 @@ import {
   StyleSheet,
   ScrollView,
   Button,
-  FlatList,
 } from "react-native";
 import { RootStackParamList } from "../navigation/RootNavigator";
 import { AppState, useAppDispatch, useAppSelector } from "../store/store";
@@ -14,7 +13,8 @@ import { AppState, useAppDispatch, useAppSelector } from "../store/store";
 import { TextInput } from "react-native-paper";
 import { DailyNote } from "../utils/types";
 import { createDailyNote, setCurrentDailyNote } from "../slices/dailynoteSlice";
-
+import NoteCard from "../Componets/NoteCard";
+import OverviewCard from "../Componets/OverviewCard";
 
 type Props = NativeStackScreenProps<RootStackParamList, "DailyNote">;
 
@@ -39,91 +39,93 @@ export default function DailyNotes({ navigation }: Props) {
       setDailyNote(currentDailyNote);
     }
   }, [currentDailyNote]);
+
   function onPress() {
     if (title && content) {
-      //const dailyNote: DailyNote = {id: "1", title:title, content:content, datetime: "2023-05-08", userId: 1, user: {id: 0, username: "test", password: "test", email: "test"} }
       dispatch(
         createDailyNote({
-          id: "1",
+          id: "15",
           title: title,
           content: content,
-          UserId: "1",
+          UserId: "15",
           user: { id: "0", username: "test", password: "test", email: "test" },
         })
       );
+      setTitle("");
+      setContent("");
     }
   }
+  console.log(onPress);
 
   return (
     <View style={styles.container}>
       <ScrollView style={{ width: "95%" }}>
-        <View>
-          <View>
-            <Text>
-              <TextInput
-                value={title}
-                onChangeText={onTitleChanged}
-                placeholder="titel"
-                placeholderTextColor="#bebebe"
-                underlineColorAndroid={"transparent"}
-                underlineColor="transparent"
-                style={styles.textInput}
-              />
-              <TextInput
-                value={content}
-                onChangeText={onContentChanged}
-                placeholder="titel"
-                placeholderTextColor="#bebebe"
-                underlineColorAndroid={"transparent"}
-                underlineColor="transparent"
-                style={styles.textInput}
-              />
-              <Button
-                onPress={onPress}
-                title="Learn More"
-                color="#841584"
-                accessibilityLabel="Learn more about this purple button"
-              ></Button>
+        <TextInput
+          value={title}
+          onChangeText={onTitleChanged}
+          placeholder="titel för dagen"
+          placeholderTextColor="#bebebe"
+          underlineColorAndroid={"transparent"}
+          underlineColor="transparent"
+          multiline
+          numberOfLines={1}
+          maxLength={30}
+          style={styles.title}
+        />
+        <TextInput
+          value={content}
+          onChangeText={onContentChanged}
+          placeholder="Skriv några rader om dagen"
+          placeholderTextColor="#bebebe"
+          underlineColorAndroid={"transparent"}
+          underlineColor="transparent"
+          multiline
+          numberOfLines={6}
+          maxLength={200}
+          style={styles.content}
+        />
+    
+          <Button onPress={onPress} title="Spara" color="#841584"></Button>
+
+        {currentDailyNote?.map((note) => {
+          //console.log(onPress);
+          return (
+            <Text style={styles.card} key={note.id}>
+              <NoteCard dailyNote={note}></NoteCard>
             </Text>
-          </View>
-          {/* <View>
-            if(dailyNote)
-            {
-              <FlatList
-                data={dailyNote}
-                renderItem={({ note }) => (
-                  <NotesList dailyNote={note}></NotesList>
-                )}
-              ></FlatList>
-            }
-          </View> */}
-          {/* <FlatList></FlatList> */}
-        </View>
+            
+          );
+        })}
       </ScrollView>
     </View>
   );
 }
 
-// {dailyNote?.map((note) => {
-//   <NotesList dailyNote={note}></NotesList>;
-// })}
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: "100%",
-    display: "flex",
-    flexDirection: "column",
     alignItems: "center",
     alignContent: "center",
+    marginTop: 10
+
   },
-  textInput: {
-    width: "92%",
+  title: {
     elevation: 5,
     shadowColor: "black",
     borderBottomRightRadius: 10,
     borderBottomLeftRadius: 10,
     fontSize: 20,
-    paddingHorizontal: 20,
+    paddingTop:10
   },
+  content: {
+    elevation: 5,
+    shadowColor: "black",
+    borderBottomRightRadius: 10,
+    borderBottomLeftRadius: 10,
+    fontSize: 20,
+    paddingTop:10
+  },
+  card: {
+    marginTop:30
+  }
 });
