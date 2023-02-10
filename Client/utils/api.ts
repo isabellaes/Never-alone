@@ -1,4 +1,5 @@
 import { get } from "./securestore";
+import { User } from "./types";
 
 const url = "http://10.0.2.2:5015/api";
 
@@ -90,6 +91,65 @@ export const registerRequest = async (
       password,
     }),
   });
+  if (response.ok) {
+    const data = await response.json();
+    return data;
+  }
+  throw response;
+};
+
+export const getDailyNoteRequest = async () => {
+  const response = await fetch(`${url}/dailyNote/GetAll`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${await get("user.token")}`,
+    },
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    return data;
+  }
+  throw response;
+};
+
+export const createDailyNoteRequest = async (
+  title: string,
+  content: string
+) => {
+  const response = await fetch(`${url}/dailyNote/Create`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${await get("user.token")}`,
+    },
+    body: JSON.stringify({
+      title,
+      content,
+    }),
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    return data;
+  }
+  throw response;
+};
+
+export const updateDailyNoteRequest = async (id: string, title: string) => {
+  const response = await fetch(`${url}/dailyNote/updateDailyNote`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${await get("user.token")}`,
+    },
+    body: JSON.stringify({
+      id,
+      title,
+    }),
+  });
+
   if (response.ok) {
     const data = await response.json();
     return data;

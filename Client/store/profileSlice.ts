@@ -7,17 +7,11 @@ import {
 } from "../utils/api";
 
 export interface ProfileState {
-  profile: Profile;
+  profile: Profile | null;
 }
 
 const initialState: ProfileState = {
-  profile: {
-    id: "1",
-    name: "Test",
-    image: "test",
-    userId: 0,
-    user: { username: "test", email: "test" },
-  },
+  profile: null,
 };
 
 export const getProfile = createAsyncThunk<Profile>(

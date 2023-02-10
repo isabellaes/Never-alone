@@ -1,17 +1,11 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  Button,
-} from "react-native";
+import { View, Text, StyleSheet, ScrollView, Button } from "react-native";
 import { RootStackParamList } from "../navigation/RootNavigator";
 import { AppState, useAppDispatch, useAppSelector } from "../store/store";
 import { TextInput } from "react-native-paper";
 import { DailyNote } from "../utils/types";
-import { createDailyNote, setCurrentDailyNote } from "../slices/dailynoteSlice";
+import { createDailyNote, getDailyNote } from "../store/dailynoteSlice";
 import NoteCard from "../Componets/NoteCard";
 
 type Props = NativeStackScreenProps<RootStackParamList, "DailyNote">;
@@ -33,6 +27,10 @@ export default function DailyNotes({ navigation }: Props) {
   const currentDailyNote = useAppSelector(currentNote);
 
   React.useEffect(() => {
+    dispatch(getDailyNote());
+  }, [dispatch]);
+
+  React.useEffect(() => {
     if (currentDailyNote) {
       setDailyNote(currentDailyNote);
     }
@@ -42,11 +40,8 @@ export default function DailyNotes({ navigation }: Props) {
     if (title && content) {
       dispatch(
         createDailyNote({
-          id: "15",
           title: title,
           content: content,
-          UserId: "15",
-          user: { id: "0", username: "test", password: "test", email: "test" },
         })
       );
       setTitle("");
@@ -81,16 +76,15 @@ export default function DailyNotes({ navigation }: Props) {
           maxLength={200}
           style={styles.content}
         />
-    
-          <Button onPress={onPress} title="Spara" color="#f0ccfc"></Button>
 
-        {currentDailyNote?.map((note) => {
+        <Button onPress={onPress} title="Spara" color="#f0ccfc"></Button>
+
+        {dailyNote?.map((note) => {
           //console.log(onPress);
           return (
             <Text key={note.id}>
               <NoteCard dailyNote={note}></NoteCard>
             </Text>
-            
           );
         })}
       </ScrollView>
@@ -107,8 +101,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignContent: "center",
     justifyContent: "space-between",
-    marginTop: 20
-
+    marginTop: 20,
   },
   title: {
     elevation: 5,
@@ -116,7 +109,7 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 10,
     borderBottomLeftRadius: 10,
     fontSize: 20,
-    paddingTop:10,
+    paddingTop: 10,
   },
   content: {
     elevation: 30,
@@ -124,8 +117,6 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 10,
     borderBottomLeftRadius: 10,
     fontSize: 20,
-    paddingTop:10
+    paddingTop: 10,
   },
 });
-
-

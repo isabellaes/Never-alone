@@ -8,16 +8,17 @@ import OverviewCard from "../Componets/OverviewCard";
 import MoodPicker from "../Componets/MoodPicker";
 import { Button } from "react-native-paper";
 import { logout } from "../store/authSlice";
+//import { BottomBar } from "../Componets/BottomBar";
 type Props = NativeStackScreenProps<RootStackParamList, "Home">;
 
 //Fixa styling och lägg in passande bild till dailynote
 
-export default function HomeScreen({ navigation }: Props) {
+export default function HomeScreen({ navigation, route }: Props) {
   const dispatch = useAppDispatch();
   function LogOutUser() {
     dispatch(logout);
-    navigation.navigate("Login");
   }
+
   return (
     <View style={styles.container}>
       <ScrollView style={{ width: "95%" }}>

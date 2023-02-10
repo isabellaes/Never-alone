@@ -6,25 +6,28 @@ import { RootStackParamList } from "../navigation/RootNavigator";
 import { useAppDispatch } from "../store/store";
 import OverviewCard from "../Componets/OverviewCard";
 import Meditation from "../Componets/Meditation";
+//import { BottomBar } from "../Componets/BottomBar";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Meditation">;
 
-export default function MeditationScreen({ navigation }: Props) {
+export default function MeditationScreen({ navigation, route }: Props) {
   return (
-    <View style={styles.container}>
-      <ScrollView style={{ width: "95%" }}>
-        <Text style={styles.title}>
-          Sätt dig eller lägg dig ner bekvämtt så kopplar vi av lite, username
-        </Text>
-        <Image
-          style={styles.image}
-          source={{
-            uri: "https://img.freepik.com/free-photo/meditation_1048-1840.jpg",
-          }}
-        ></Image>
+    <View>
+      <View style={styles.container}>
+        <ScrollView style={{ width: "95%" }}>
+          <Text style={styles.title}>
+            Sätt dig eller lägg dig ner bekvämtt så kopplar vi av lite, username
+          </Text>
+          <Image
+            style={styles.image}
+            source={{
+              uri: "https://img.freepik.com/free-photo/meditation_1048-1840.jpg",
+            }}
+          ></Image>
 
-        <Meditation></Meditation>
-      </ScrollView>
+          <Meditation></Meditation>
+        </ScrollView>
+      </View>
     </View>
   );
 }

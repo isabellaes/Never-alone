@@ -9,10 +9,11 @@ import { Profile } from "../utils/types";
 import { AppState } from "../store/store";
 import OverviewCard from "../Componets/OverviewCard";
 import ButtonStandard from "../Componets/ButtonStandard";
+//import { BottomBar } from "../Componets/BottomBar";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Profile">;
 
-export default function ProfileScreen({ navigation }: Props) {
+export default function ProfileScreen({ navigation, route }: Props) {
   const [profile, setProfile] = React.useState<Profile | null>();
 
   const dispatch = useAppDispatch();
