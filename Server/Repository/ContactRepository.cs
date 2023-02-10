@@ -19,7 +19,7 @@ public class ContactRepository : IContactRepository
     {
         Contact newContact = new Contact()
         {
-            Id = contact.Id,
+            Id = Guid.NewGuid().ToString(),
             Name = contact.Name,
             PhoneNumber = contact.PhoneNumber,
             user = contact.user,
@@ -31,7 +31,7 @@ public class ContactRepository : IContactRepository
         return newContact;
 
     }
-    public async Task<bool> DeleteContact(int id)
+    public async Task<bool> DeleteContact(string id)
     {
         var result = await _context.Contact.FirstOrDefaultAsync(c => c.Id == id);
         if (result != null)
@@ -49,7 +49,7 @@ public class ContactRepository : IContactRepository
 
     }
 
-    public async Task<Contact> GetContactById(int id)
+    public async Task<Contact> GetContactById(string id)
     {
         var result = await _context.Contact.FirstOrDefaultAsync(c => c.Id == id);
 

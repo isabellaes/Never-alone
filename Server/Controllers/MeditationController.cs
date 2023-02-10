@@ -17,7 +17,7 @@ public class MeditationController : ControllerBase
     }
 
     [HttpGet("GetMeditationById")]
-    public async Task<ActionResult<Meditation>> GetMeditationById(int id)
+    public async Task<ActionResult<Meditation>> GetMeditationById(string id)
     {
         var result = await _repository.GetMeditationById(id);
         if (result != null)
@@ -41,9 +41,9 @@ public class MeditationController : ControllerBase
 
 
     [HttpPost("CreateMeditation")]
-    public async Task<ActionResult<Meditation>> CreateMedtiation(Meditation meditation)
+    public async Task<ActionResult<Meditation>> CreateMedtiation(string title, string details)
     {
-        var result = await _repository.CreateMeditation(meditation);
+        var result = await _repository.CreateMeditation(title, details);
         if (result != null)
         {
             return Ok(result);
@@ -52,7 +52,7 @@ public class MeditationController : ControllerBase
     }
 
     [HttpDelete("DeleteMeditation")]
-    public async Task<ActionResult<bool>> DeleteMeditation(int id)
+    public async Task<ActionResult<bool>> DeleteMeditation(string id)
     {
         var result = await _repository.DeleteMeditation(id);
         if (result)

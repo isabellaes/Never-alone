@@ -4,18 +4,18 @@ import {
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React, { Component } from "react";
-import DailyNoteScreen from "../Screens/DailyNoteScreen";
 import EditProfileScreen from "../Screens/EditProfileScreen";
-import HomeScreen from "../Screens/HomeScreen";
 import LogInScreen from "../Screens/LogInScreen";
+import RegisterScreen from "../Screens/RegisterScreen";
+import StoryScreen from "../Screens/StoryScreen";
+import { CustomNavigationBar } from "../Componets/CustomNavigationBar";
+import { BottomNavigation } from "./BottomNavigation";
+import { useAppSelector } from "../store/store";
+import HomeScreen from "../Screens/HomeScreen";
+import ProfileScreen from "../Screens/ProfileScreen";
+import DailyNotes from "../Screens/DailyNoteScreen";
 import MeditationScreen from "../Screens/MeditationScreen";
 import PhonenumberScreen from "../Screens/PhonenumberScreen";
-import ProfileScreen from "../Screens/ProfileScreen";
-import RegisterScreen from "../Screens/RegisterScreen";
-import SettingsScreen from "../Screens/Settings";
-import StoryScreen from "../Screens/StoryScreen";
-import { CustomNavigationBar } from "../Componets/CustomNavigationBar.tsx";
-import { BottomNavigation } from "./BottomNavigation";
 
 export type RootStackParamList = {
   Home: undefined;
@@ -33,65 +33,76 @@ export type RootStackParamList = {
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export const RootNavigator = () => {
+  const auth = useAppSelector((state) => state.user);
+
+  const isAuthenticated = auth.expiration
+    ? new Date(auth.expiration).getTime() > new Date().getTime() && !!auth.token
+    : false;
   return (
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
-          header: () => <CustomNavigationBar title={"Never Alone"} />,
+          header: (props) => <CustomNavigationBar {...props} />,
         }}
       >
-        <Stack.Group>
-          <Stack.Screen
-            name="Home"
-            component={BottomNavigation}
-            options={{ title: "Home" }}
-          />
-          <Stack.Screen
-            name="Login"
-            component={LogInScreen}
-            options={{ title: "Login" }}
-          />
-          <Stack.Screen
-            name="Register"
-            component={RegisterScreen}
-            options={{ title: "Register" }}
-          />
-          <Stack.Screen
-            name="Profile"
-            component={BottomNavigation}
-            options={{ title: "Profile" }}
-          />
-          <Stack.Screen
-            name="EditProfile"
-            component={EditProfileScreen}
-            options={{ title: "EditProfile" }}
-          />
-          <Stack.Screen
-            name="Storys"
-            component={StoryScreen}
-            options={{ title: "Storys" }}
-          />
-          <Stack.Screen
-            name="DailyNote"
-            component={BottomNavigation}
-            options={{ title: "DailyNote" }}
-          />
-          <Stack.Screen
-            name="Meditation"
-            component={BottomNavigation}
-            options={{ title: "Meditation" }}
-          />
-          <Stack.Screen
-            name="PhoneNumber"
-            component={BottomNavigation}
-            options={{ title: "PhoneNumber" }}
-          />
-          <Stack.Screen
-            name="Settings"
-            component={BottomNavigation}
-            options={{ title: "Settings" }}
-          />
-        </Stack.Group>
+        {isAuthenticated ? (
+          <Stack.Group>
+            <Stack.Screen
+              name="Home"
+              component={BottomNavigation}
+              options={{ title: "Home" }}
+            />
+
+            <Stack.Screen
+              name="Profile"
+              component={BottomNavigation}
+              options={{ title: "Profile" }}
+            />
+            <Stack.Screen
+              name="EditProfile"
+              component={EditProfileScreen}
+              options={{ title: "EditProfile" }}
+            />
+            <Stack.Screen
+              name="Storys"
+              component={StoryScreen}
+              options={{ title: "Storys" }}
+            />
+            <Stack.Screen
+              name="DailyNote"
+              component={BottomNavigation}
+              options={{ title: "DailyNote" }}
+            />
+            <Stack.Screen
+              name="Meditation"
+              component={BottomNavigation}
+              options={{ title: "Meditation" }}
+            />
+            <Stack.Screen
+              name="PhoneNumber"
+              component={BottomNavigation}
+              options={{ title: "PhoneNumber" }}
+            />
+            <Stack.Screen
+              name="Settings"
+              component={BottomNavigation}
+              options={{ title: "Settings" }}
+            />
+          </Stack.Group>
+        ) : (
+          <Stack.Group>
+            <Stack.Screen
+              name="Login"
+              component={LogInScreen}
+              options={{ title: "Login" }}
+            />
+            <Stack.Screen
+              name="Register"
+              component={RegisterScreen}
+              options={{ title: "Register" }}
+            />
+          </Stack.Group>
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );

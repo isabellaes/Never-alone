@@ -1,5 +1,5 @@
 interface Profile {
-  id: number;
+  id: string;
   name: string;
   image: string;
   userId: number;
@@ -10,8 +10,22 @@ interface User {
   id: string;
   username: string;
   email: string;
-  password: string;
 }
+
+interface LogInRespons {
+  user: User;
+  token: string;
+  expiration: string;
+}
+
+interface RegisterRespons {
+  accepted: boolean;
+}
+
+interface Error {
+  error: string;
+}
+
 
 type DailyNote = {
   id: string,
@@ -21,4 +35,4 @@ type DailyNote = {
   user: User
 }
 
-export type { Profile, DailyNote, User };
+export type { Profile, User, LogInRespons, RegisterRespons, Error, DailyNote };

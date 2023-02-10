@@ -2,24 +2,30 @@ using Microsoft.AspNetCore.Mvc;
 using NeverAlone.Models;
 using NeverAlone.Repository;
 using NeverAlone.InterfaceRepository;
+using Microsoft.AspNetCore.Identity;
+using NeverAlone.Models.RequestModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace NeverAlone.Controller;
 
 [ApiController]
+[Authorize]
 [Route("api/[controller]")]
 public class DailyNoteController : ControllerBase
 {
     private readonly IDailyNoteRepository _repository;
+    private readonly UserManager<IdentityUser> _userManager;
 
-    public DailyNoteController(IDailyNoteRepository repository)
+    public DailyNoteController(IDailyNoteRepository repository, UserManager<IdentityUser> userManager)
     {
         _repository = repository;
+        _userManager = userManager;
     }
 
-    [HttpGet("GetDailyNoteById")]
-    public async Task<ActionResult<DailyNote>> GetDailyNoteById(int id)
+    [HttpGet("GetById")]
+    public async Task<ActionResult<DailyNote>> GetDailyNotetById([FromBody] DailyNoteGetById dailynote)
     {
-        var result = await _repository.GetDailyNoteById(id);
+        var result = await _repository.GetDailyNoteById(dailynote.Id);
         if (result != null)
         {
             return Ok(result);
@@ -28,7 +34,7 @@ public class DailyNoteController : ControllerBase
     }
 
 
-    [HttpGet("GetAllDailyNotes")]
+    [HttpGet("GetAll")]
     public async Task<ActionResult<IEnumerable<DailyNote>>> GetAllDailyNotes()
     {
         var result = await _repository.GetAllDailyNotes();
@@ -40,10 +46,11 @@ public class DailyNoteController : ControllerBase
     }
 
 
-    [HttpPost("CreateDailyNote")]
-    public async Task<ActionResult<DailyNote>> CreateDailyNote(DailyNote dailyNote)
+    [HttpPost("Create")]
+    public async Task<ActionResult<DailyNote>> CreateDailyNote([FromBody] DailyNoteCreate dailynote)
     {
-        var result = await _repository.CreateDailyNote(dailyNote);
+        var user = await _userManager.FindByNameAsync(User.Identity.Name);
+        var result = await _repository.CreateDailyNote(user.Id, dailynote.Title, dailynote.Content);
         if (result != null)
         {
             return Ok(result);
@@ -51,10 +58,12 @@ public class DailyNoteController : ControllerBase
         else { return NotFound(); }
     }
 
-    [HttpDelete("DeleteDailyNote")]
-    public async Task<ActionResult<bool>> DeleteDailyNote(int id)
+    [HttpDelete("Delete")]
+    public async Task<ActionResult<bool>> DeleteDailyNote([FromBody] DailyNoteDelete dailynote)
     {
-        var result = await _repository.DeleteDailyNote(id);
+        var user = await _userManager.FindByNameAsync(User.Identity.Name);
+        var result = await _repository.DeleteDailyNote(dailynote.Id);
+
         if (result)
         {
             return Ok(result);
@@ -62,6 +71,3 @@ public class DailyNoteController : ControllerBase
         else { return NotFound(); }
     }
 }
-
-
-

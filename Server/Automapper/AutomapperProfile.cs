@@ -10,7 +10,7 @@ namespace NeverAlone.Automapper
         {
             CreateMap<Tips, TipsDto>().ReverseMap();
             CreateMap<DailyNote, DailyNoteDto>().ReverseMap();
-            CreateMap<User, UserDto>().ReverseMap();
+            //CreateMap<User, UserDto>().ReverseMap();
         }
     }
 }

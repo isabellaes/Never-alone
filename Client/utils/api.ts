@@ -1,11 +1,14 @@
- import {User} from "./types"
+import { get } from "./securestore";
+import { User } from "./types";
+
 const url = "http://10.0.2.2:5015/api";
 
-export const getProfileRequest = async (id: string) => {
-  const response = await fetch(`${url}/profile/GetProfile?id=${id}`, {
+export const getProfileRequest = async () => {
+  const response = await fetch(`${url}/profile/Get`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${await get("user.token")}`,
     },
   });
   console.log("test");
@@ -16,14 +19,14 @@ export const getProfileRequest = async (id: string) => {
   throw response;
 };
 
-export const createProfileRequest = async (id: string, name: string) => {
-  const response = await fetch(`${url}/profile/createProfile`, {
+export const createProfileRequest = async (name: string) => {
+  const response = await fetch(`${url}/profile/create`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${await get("user.token")}`,
     },
     body: JSON.stringify({
-      id,
       name,
     }),
   });
@@ -35,18 +38,59 @@ export const createProfileRequest = async (id: string, name: string) => {
   throw response;
 };
 
-export const updateProfileRequest = async (id: string, name: string) => {
-  const response = await fetch(`${url}/profile/updateProfile`, {
+export const updateProfileRequest = async (name: string) => {
+  const response = await fetch(`${url}/profile/update`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${await get("user.token")}`,
+    },
+    body: JSON.stringify({
+      name,
+    }),
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    return data;
+  }
+  throw response;
+};
+
+export const loginRequest = async (username: string, password: string) => {
+  const response = await fetch(`${url}/authentication/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      id,
-      name,
+      username,
+      password,
     }),
   });
+  if (response.ok) {
+    const data = await response.json();
+    return data;
+  }
+  throw response;
+};
 
+export const registerRequest = async (
+  email: string,
+  username: string,
+  password: string
+) => {
+  const response = await fetch(`${url}/authentication/register`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email,
+      username,
+      password,
+    }),
+  });
   if (response.ok) {
     const data = await response.json();
     return data;
@@ -55,13 +99,14 @@ export const updateProfileRequest = async (id: string, name: string) => {
 };
 
 export const getDailyNoteRequest = async () => {
-  const response = await fetch(`${url}/dailyNote/GetAllDailyNote`, {
+  const response = await fetch(`${url}/dailyNote/GetAll`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${await get("user.token")}`,
     },
   });
- 
+
   if (response.ok) {
     const data = await response.json();
     return data;
@@ -69,19 +114,19 @@ export const getDailyNoteRequest = async () => {
   throw response;
 };
 
-export const createDailyNoteRequest = async (id: string, title: string, content: string, UserId: string, user: User) => {
-  const response = await fetch(`${url}/dailyNote/createDailyNote`, {
+export const createDailyNoteRequest = async (
+  title: string,
+  content: string
+) => {
+  const response = await fetch(`${url}/dailyNote/Create`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${await get("user.token")}`,
     },
     body: JSON.stringify({
-      id,
       title,
       content,
-     // dateTime,
-      UserId,
-      user
     }),
   });
 
@@ -97,10 +142,11 @@ export const updateDailyNoteRequest = async (id: string, title: string) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${await get("user.token")}`,
     },
     body: JSON.stringify({
       id,
-      name,
+      title,
     }),
   });
 
@@ -110,4 +156,3 @@ export const updateDailyNoteRequest = async (id: string, title: string) => {
   }
   throw response;
 };
-

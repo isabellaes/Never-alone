@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using NeverAlone.Models;
 using NeverAlone.Repository;
 using NeverAlone.InterfaceRepository;
+using Microsoft.AspNetCore.Identity;
 
 namespace NeverAlone.Controller;
 
@@ -10,14 +11,16 @@ namespace NeverAlone.Controller;
 public class ContactController : ControllerBase
 {
     private readonly IContactRepository _repository;
+    private readonly UserManager<IdentityUser> _userManager;
 
-    public ContactController(IContactRepository repository)
+    public ContactController(IContactRepository repository, UserManager<IdentityUser> userManager)
     {
         _repository = repository;
+        _userManager = userManager;
     }
 
     [HttpGet("GetContactById")]
-    public async Task<ActionResult<Contact>> GetContactById(int id)
+    public async Task<ActionResult<Contact>> GetContactById(string id)
     {
         var result = await _repository.GetContactById(id);
         if (result != null)
@@ -29,7 +32,7 @@ public class ContactController : ControllerBase
 
 
     [HttpGet("GetContactAll")]
-    public async Task<ActionResult<IEnumerable<DailyNote>>> GetAllContacts()
+    public async Task<ActionResult<IEnumerable<Contact>>> GetAllContacts()
     {
         var result = await _repository.GetAllContacts();
         if (result != null)
@@ -52,7 +55,7 @@ public class ContactController : ControllerBase
     }
 
     [HttpDelete("DeleteContact")]
-    public async Task<ActionResult<bool>> DeleteContact(int id)
+    public async Task<ActionResult<bool>> DeleteContact(string id)
     {
         var result = await _repository.DeleteContact(id);
         if (result)

@@ -20,7 +20,7 @@ public class TipsRepository : ITipsRepository
     {
         Tips tips1 = new Tips()
         {
-            Id = tips.Id,
+            Id = Guid.NewGuid().ToString(),
             Title = tips.Title,
             Details = tips.Details
 
@@ -31,7 +31,7 @@ public class TipsRepository : ITipsRepository
 
         return tips1;
     }
-    public async Task<bool> DeleteTips(int id)
+    public async Task<bool> DeleteTips(string id)
     {
         var result = await _context.Tips.FirstOrDefaultAsync(m => m.Id == id);
         if (result != null)
@@ -51,7 +51,7 @@ public class TipsRepository : ITipsRepository
         return await _context.Tips.ToListAsync();
     }
 
-    public async Task<Tips> GetTipsById(int id)
+    public async Task<Tips> GetTipsById(string id)
     {
         var result = await _context.Tips.FirstOrDefaultAsync(m => m.Id == id);
         if (result != null)

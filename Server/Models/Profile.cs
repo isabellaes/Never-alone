@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Identity;
+
 namespace NeverAlone.Models
 {
 
@@ -7,6 +9,8 @@ namespace NeverAlone.Models
         public string Name { get; set; }
         public string image { get; set; }
         public string UserId { get; set; }
-        public User user { get; set; }
+
+        public IdentityUser user { get; set; }
+
     }
 }

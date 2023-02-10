@@ -20,7 +20,7 @@ public class StoryRepository : IStoryRepository
     {
         Story story1 = new Story()
         {
-            Id = story.Id,
+            Id = Guid.NewGuid().ToString(),
             Text = story.Text,
             Title = story.Title
 
@@ -31,7 +31,7 @@ public class StoryRepository : IStoryRepository
 
         return story1;
     }
-    public async Task<bool> DeleteStory(int id)
+    public async Task<bool> DeleteStory(string id)
     {
         var result = await _context.Story.FirstOrDefaultAsync(m => m.Id == id);
         if (result != null)
@@ -51,7 +51,7 @@ public class StoryRepository : IStoryRepository
         return await _context.Story.ToListAsync();
     }
 
-    public async Task<Story> GetStoryById(int id)
+    public async Task<Story> GetStoryById(string id)
     {
         var result = await _context.Story.FirstOrDefaultAsync(m => m.Id == id);
         if (result != null)

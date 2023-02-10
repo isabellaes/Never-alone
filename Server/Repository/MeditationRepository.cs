@@ -16,21 +16,21 @@ public class MeditationRepository : IMeditationRepository
         _context = context;
     }
 
-    public async Task<Meditation> CreateMeditation(Meditation meditation)
+    public async Task<Meditation> CreateMeditation(string title, string details)
     {
-        Meditation meditation1 = new Meditation()
+        Meditation meditation = new Meditation()
         {
-            Id = meditation.Id,
-            Title = meditation.Title,
-            Details = meditation.Details
+            Id = Guid.NewGuid().ToString(),
+            Title = title,
+            Details = details
         };
 
-        _context.Meditation.Add(meditation1);
+        _context.Meditation.Add(meditation);
         _context.SaveChanges();
 
-        return meditation1;
+        return meditation;
     }
-    public async Task<bool> DeleteMeditation(int id)
+    public async Task<bool> DeleteMeditation(string id)
     {
         var result = await _context.Meditation.FirstOrDefaultAsync(m => m.Id == id);
         if (result != null)
@@ -50,7 +50,7 @@ public class MeditationRepository : IMeditationRepository
         return await _context.Meditation.ToListAsync();
     }
 
-    public async Task<Meditation> GetMeditationById(int id)
+    public async Task<Meditation> GetMeditationById(string id)
     {
         var result = await _context.Meditation.FirstOrDefaultAsync(m => m.Id == id);
         if (result != null)

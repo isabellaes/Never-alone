@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using NeverAlone.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace NeverAlone.Repository;
 
@@ -15,16 +16,15 @@ public class DailyNoteRepository : IDailyNoteRepository
         _context = context;
     }
 
-    public async Task<DailyNote> CreateDailyNote(DailyNote dailyNote)
+    public async Task<DailyNote> CreateDailyNote(string userId, string title, string content)
     {
         DailyNote newDailyNote = new DailyNote()
         {
-            Id = dailyNote.Id,
-            Title = dailyNote.Title,
-            Content = dailyNote.Content,
-            datetime = dailyNote.datetime,
-            user = dailyNote.user,
-            UserId = dailyNote.UserId
+            Id = Guid.NewGuid().ToString(),
+            Title = title,
+            Content = content,
+            datetime = new DateTime(),
+            UserId = userId
         };
 
         _context.DailyNote.Add(newDailyNote);
@@ -32,7 +32,7 @@ public class DailyNoteRepository : IDailyNoteRepository
         return newDailyNote;
 
     }
-    public async Task<bool> DeleteDailyNote(int id)
+    public async Task<bool> DeleteDailyNote(string id)
     {
         var result = await _context.DailyNote.FirstOrDefaultAsync(c => c.Id == id);
         if (result != null)
@@ -50,7 +50,7 @@ public class DailyNoteRepository : IDailyNoteRepository
 
     }
 
-    public async Task<DailyNote> GetDailyNoteById(int id)
+    public async Task<DailyNote> GetDailyNoteById(string id)
     {
         var result = await _context.DailyNote.FirstOrDefaultAsync(c => c.Id == id);
 

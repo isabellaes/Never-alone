@@ -6,28 +6,13 @@ import {
   createDailyNoteRequest,
 } from "../utils/api";
 
-  export interface DailyNoteState {
-  dailyNote: DailyNote [];
+export interface DailyNoteState {
+  dailyNote: DailyNote[] | null;
 }
 
 const initialState: DailyNoteState = {
-  dailyNote: [{
-    id: "1",
-    title: "test titel",
-    content: "testar content",
-    userId: "1",
-    user: {id: "0", username: "test", password: "test", email: "test" }
-
-  },
-  {
-    id: "2",
-    title: "test titel2",
-    content: "testar content2",
-    userId: "2",
-    user: {id: "0", username: "test", password: "test", email: "test" }
-}]
-  
-}
+  dailyNote: null,
+};
 
 // export const getDailyNotes = createAsyncThunk(
 //   "dailyNote/GetDailyNote",
@@ -41,8 +26,8 @@ const initialState: DailyNoteState = {
 //     }
 //   }
 // );
-  
-export const getDailyNote = createAsyncThunk<DailyNote[], {}>(
+
+export const getDailyNote = createAsyncThunk<DailyNote[]>(
   "dailyNote/GetAllDailyNote",
   async (data, { rejectWithValue }) => {
     try {
@@ -68,10 +53,10 @@ export const updateDailyNote = createAsyncThunk<
 });
 export const createDailyNote = createAsyncThunk<
   DailyNote,
-  { id: string, title: string, content: string, UserId: string, user: User}
+  { title: string; content: string }
 >("dailyNote/createDailyNote", async (data, { rejectWithValue }) => {
   try {
-    const respons = await createDailyNoteRequest(data.id, data.title, data.content, data.UserId, data.user);
+    const respons = await createDailyNoteRequest(data.title, data.content);
     return respons;
   } catch (error) {
     return rejectWithValue("Failed to fetch");
@@ -87,22 +72,19 @@ const dailyNoteSlice = createSlice({
     },
   },
   extraReducers(builder) {
-   
-    builder.addCase(getDailyNote.fulfilled, (state, action: PayloadAction<DailyNote[]>) => {
+    builder.addCase(getDailyNote.fulfilled, (state, action) => {
       state.dailyNote = action.payload;
     });
-  
-    builder.addCase(createDailyNote.fulfilled, (state, action: PayloadAction<DailyNote>) => {
-      state.dailyNote.push(action.payload)
+
+    builder.addCase(createDailyNote.fulfilled, (state, action) => {
+      if (state.dailyNote) state.dailyNote.push(action.payload);
     });
-    builder.addCase(updateDailyNote.fulfilled, (state, action: PayloadAction<DailyNote[]>) => {
+    builder.addCase(updateDailyNote.fulfilled, (state, action) => {
       state.dailyNote = action.payload;
     });
   },
 });
 
-export const { setCurrentDailyNote} = dailyNoteSlice.actions;
-
+export const { setCurrentDailyNote } = dailyNoteSlice.actions;
 
 export default dailyNoteSlice.reducer;
-

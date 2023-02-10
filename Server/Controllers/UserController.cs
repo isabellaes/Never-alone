@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+/*using Microsoft.AspNetCore.Mvc;
 using NeverAlone.Models;
 using NeverAlone.Repository;
 using NeverAlone.InterfaceRepository;
@@ -55,3 +55,4 @@ public class UserController : ControllerBase
 
 
 
+*/

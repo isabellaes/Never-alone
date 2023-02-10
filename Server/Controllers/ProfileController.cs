@@ -2,24 +2,31 @@ using Microsoft.AspNetCore.Mvc;
 using NeverAlone.Models;
 using NeverAlone.Repository;
 using NeverAlone.InterfaceRepository;
+using Microsoft.AspNetCore.Identity;
+using NeverAlone.Models.RequestModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace NeverAlone.Controller;
 
 [ApiController]
+[Authorize]
 [Route("api/[controller]")]
 public class ProfileController : ControllerBase
 {
     private readonly IProfileRepository _repository;
+    private readonly UserManager<IdentityUser> _userManager;
 
-    public ProfileController(IProfileRepository repository)
+    public ProfileController(IProfileRepository repository, UserManager<IdentityUser> userManager)
     {
         _repository = repository;
+        _userManager = userManager;
     }
 
-    [HttpGet("GetProfile")]
-    public async Task<ActionResult<Profile>> GetProfileById(string id)
+    [HttpGet("Get")]
+    public async Task<ActionResult<Profile>> GetProfileForUser()
     {
-        var result = await _repository.GetProfileById(id);
+        var user = await _userManager.FindByNameAsync(User.Identity.Name);
+        var result = await _repository.GetProfileForUser(user.Id);
         if (result != null)
         {
             return Ok(result);
@@ -28,10 +35,12 @@ public class ProfileController : ControllerBase
     }
 
 
-    [HttpGet("GetAll")]
-    public async Task<ActionResult<IEnumerable<Profile>>> GetAllProfiles()
+    [HttpPost("Create")]
+    public async Task<ActionResult<Profile>> CreateProfile([FromBody] ProfileCreate profile)
     {
-        var result = await _repository.GetAllProfiles();
+        var user = await _userManager.FindByNameAsync(User.Identity.Name);
+        var result = await _repository.CreateProfile(user.Id, profile.Name);
+
         if (result != null)
         {
             return Ok(result);
@@ -39,23 +48,12 @@ public class ProfileController : ControllerBase
         else { return NotFound(); }
     }
 
-
-    [HttpPost("CreateProfile")]
-    public async Task<ActionResult<Profile>> CreateProfile(string userId, string name)
+    [HttpPost("Update")]
+    public async Task<ActionResult<Profile>> UpdateProfile([FromBody] ProfileUpdate profile)
     {
-        var result = await _repository.CreateProfile(userId, name);
+        var user = await _userManager.FindByNameAsync(User.Identity.Name);
+        var result = await _repository.UpdateProfile(user.Id, profile.Name);
         if (result != null)
-        {
-            return Ok(result);
-        }
-        else { return NotFound(); }
-    }
-
-    [HttpDelete("DeleteProfile")]
-    public async Task<ActionResult<bool>> DeleteProfile(string id)
-    {
-        var result = await _repository.DeleteProfile(id);
-        if (result)
         {
             return Ok(result);
         }
