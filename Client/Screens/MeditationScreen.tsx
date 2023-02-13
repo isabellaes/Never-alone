@@ -12,22 +12,20 @@ type Props = NativeStackScreenProps<RootStackParamList, "Meditation">;
 
 export default function MeditationScreen({ navigation, route }: Props) {
   return (
-    <View>
-      <View style={styles.container}>
-        <ScrollView style={{ width: "95%" }}>
-          <Text style={styles.title}>
-            Sätt dig eller lägg dig ner bekvämtt så kopplar vi av lite, username
-          </Text>
-          <Image
-            style={styles.image}
-            source={{
-              uri: "https://img.freepik.com/free-photo/meditation_1048-1840.jpg",
-            }}
-          ></Image>
+    <View style={styles.container}>
+      <ScrollView style={{ width: "95%" }}>
+        <Text style={styles.title}>
+          Sätt dig eller lägg dig ner bekvämtt så kopplar vi av lite, username
+        </Text>
+        <Image
+          style={styles.image}
+          source={{
+            uri: "https://img.freepik.com/free-photo/meditation_1048-1840.jpg",
+          }}
+        ></Image>
 
-          <Meditation></Meditation>
-        </ScrollView>
-      </View>
+        <Meditation></Meditation>
+      </ScrollView>
     </View>
   );
 }
