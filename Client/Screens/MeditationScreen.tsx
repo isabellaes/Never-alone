@@ -15,7 +15,7 @@ export default function MeditationScreen({ navigation, route }: Props) {
     <View style={styles.container}>
       <ScrollView style={{ width: "95%" }}>
         <Text style={styles.title}>
-          Sätt dig eller lägg dig ner bekvämtt så kopplar vi av lite, username
+          Sätt dig eller lägg dig ner bekvämtt och koppla av lite, username
         </Text>
         <Image
           style={styles.image}
@@ -44,7 +44,6 @@ const styles = StyleSheet.create({
   title: {
     textAlign: "center",
     fontSize: 20,
-    fontWeight: "bold",
     padding: 5,
     marginTop: 20,
     marginBottom: 20,

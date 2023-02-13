@@ -34,6 +34,10 @@ export default function ProfileScreen({ navigation, route }: Props) {
 
   return (
     <View>
+      
+        <Link to="/EditProfile">
+          <Text>Tryck här på länken för att komma till EditProfile</Text>
+        </Link>
       <Text style={{ fontSize: 25, marginBottom: 25 }}>Profile Screen</Text>
       <Text>{profile?.name}</Text>
     </View>

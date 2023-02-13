@@ -26,10 +26,10 @@ export default function NoteCard({ dailyNote }: Props) {
 
 const styles = StyleSheet.create({
   title: {
-    backgroundColor: "#f5e6fa", 
+    backgroundColor: "#dedcdd", 
   },
     content: {
-      marginBottom: 50,
-      marginTop: 10
+    
+       marginTop:10
       },
 });

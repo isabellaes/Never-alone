@@ -9,6 +9,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../navigation/RootNavigator";
 import ButtonStandard from "../Componets/ButtonStandard";
 import { Colors } from "react-native/Libraries/NewAppScreen";
+import { Link } from "@react-navigation/native";
 
 type Props = NativeStackScreenProps<RootStackParamList, "EditProfile">;
 const PlaceholderImage: any = require("../assets/adaptive-icon.png");
@@ -30,6 +31,9 @@ export default function EditProfile({ navigation }: Props) {
 
   return (
     <>
+    <Link to="/Home">
+          <Text>Tryck här på länken för att komma till Home</Text>
+        </Link>
       <Text style={{ ...styles.edit }}>Ändra Profil</Text>
       <TextInput
         style={{ ...styles.textInput, marginBottom: 20 }}
