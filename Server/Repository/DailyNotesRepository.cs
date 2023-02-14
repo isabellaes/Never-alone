@@ -44,9 +44,9 @@ public class DailyNoteRepository : IDailyNoteRepository
         else { return false; }
     }
 
-    public async Task<IEnumerable<DailyNote>> GetAllDailyNotes()
+    public async Task<IEnumerable<DailyNote>> GetAllDailyNotes(string userId)
     {
-        return await _context.DailyNote.ToListAsync();
+        return await _context.DailyNote.Where(x => x.UserId == userId).ToListAsync();
 
     }
 
