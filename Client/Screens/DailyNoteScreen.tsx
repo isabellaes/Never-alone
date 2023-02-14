@@ -48,7 +48,6 @@ export default function DailyNotes({ navigation }: Props) {
       setContent("");
     }
   }
-  console.log(onPress);
 
   return (
     <View style={styles.container}>

@@ -42,7 +42,7 @@ export const RootNavigator = () => {
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
-          header: (props) => <CustomNavigationBar {...props} />,
+          header: (props) => <CustomNavigationBar />,
         }}
       >
         {isAuthenticated ? (

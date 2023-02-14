@@ -21,7 +21,6 @@ export const getProfile = createAsyncThunk<Profile>(
       const respons = await getProfileRequest();
       return respons;
     } catch (error) {
-      console.log(error);
       return rejectWithValue("Failed to fetch");
     }
   }
