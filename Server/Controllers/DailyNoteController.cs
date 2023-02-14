@@ -37,7 +37,8 @@ public class DailyNoteController : ControllerBase
     [HttpGet("GetAll")]
     public async Task<ActionResult<IEnumerable<DailyNote>>> GetAllDailyNotes()
     {
-        var result = await _repository.GetAllDailyNotes();
+        var user = await _userManager.FindByNameAsync(User.Identity.Name);
+        var result = await _repository.GetAllDailyNotes(user.Id);
         if (result != null)
         {
             return Ok(result);

@@ -27,20 +27,20 @@ function StartupGate({ children }: Props) {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    let interval: NodeJS.Timeout;
+    //let interval: NodeJS.Timeout;
 
     (async () => {
       const persistedAuth = await getPersistedAuthValues();
       dispatch(setCurrentUser(persistedAuth));
 
-      interval = setInterval(() => {
+      /*interval = setInterval(() => {
         dispatch(getProfile());
-      }, 3000);
+      }, 3000);*/
     })();
 
-    return () => {
+    /*return () => {
       clearInterval(interval);
-    };
+    };*/
   }, [dispatch]);
 
   return <PaperProvider theme={MD2LightTheme}>{children}</PaperProvider>;
