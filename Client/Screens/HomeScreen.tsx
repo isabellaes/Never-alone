@@ -15,14 +15,11 @@ type Props = NativeStackScreenProps<RootStackParamList, "Home">;
 
 export default function HomeScreen({ navigation, route }: Props) {
   const dispatch = useAppDispatch();
-  function LogOutUser() {
-    dispatch(logout);
-  }
 
   return (
     <View style={styles.container}>
       <ScrollView style={{ width: "95%" }}>
-        <Button mode="contained" onPress={LogOutUser}>
+        <Button mode="contained" onPress={() => dispatch(logout())}>
           Logga ut
         </Button>
         <Text style={styles.citat}>"Dagens Citat eller peppande text"</Text>

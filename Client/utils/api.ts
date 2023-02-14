@@ -11,7 +11,7 @@ export const getProfileRequest = async () => {
       Authorization: `Bearer ${await get("user.token")}`,
     },
   });
-  console.log("test");
+
   if (response.ok) {
     const data = await response.json();
     return data;

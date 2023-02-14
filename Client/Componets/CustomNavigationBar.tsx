@@ -3,7 +3,7 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { Appbar, Menu, useTheme } from "react-native-paper";
 
-export function CustomNavigationBar({ options }: NativeStackHeaderProps) {
+export function CustomNavigationBar() {
   return (
     <Appbar.Header mode="center-aligned" statusBarHeight={20}>
       <Appbar.Content
@@ -11,7 +11,7 @@ export function CustomNavigationBar({ options }: NativeStackHeaderProps) {
           fontSize: 24,
           fontWeight: "bold",
         }}
-        title={options.title}
+        title={"Never Alone"}
       />
     </Appbar.Header>
   );
