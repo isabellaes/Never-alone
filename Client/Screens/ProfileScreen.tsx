@@ -3,13 +3,12 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React, { useEffect } from "react";
 import { View, Text, StyleSheet, TextInput } from "react-native";
 import { RootStackParamList } from "../navigation/RootNavigator";
-import { createProfile, getProfile } from "../store/profileSlice";
+import { getProfile } from "../store/profileSlice";
 import { useAppDispatch, useAppSelector } from "../store/store";
 import { Profile } from "../utils/types";
 import { AppState } from "../store/store";
-import OverviewCard from "../Componets/OverviewCard";
-import ButtonStandard from "../Componets/ButtonStandard";
-//import { BottomBar } from "../Componets/BottomBar";
+import { BottomBar } from "../Componets/BottomBar";
+import { styles } from "../utils/styleSheet";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Profile">;
 
@@ -33,18 +32,18 @@ export default function ProfileScreen({ navigation, route }: Props) {
   }, [currentUserProfile]);
 
   return (
-    <View>
-      
-        <Link to="/EditProfile">
-          <Text>Tryck här på länken för att komma till EditProfile</Text>
-        </Link>
+    <View style={styles.container}>
+      <Link to="/EditProfile">
+        <Text>Tryck här på länken för att komma till EditProfile</Text>
+      </Link>
       <Text style={{ fontSize: 25, marginBottom: 25 }}>Profile Screen</Text>
       <Text>{profile?.name}</Text>
+      <BottomBar navigation={navigation} route={route}></BottomBar>
     </View>
   );
 }
 
-const styles = StyleSheet.create({
+const styless = StyleSheet.create({
   // Styles that are unchanged from previous step are hidden for brevity.
   container: {
     flex: 1,

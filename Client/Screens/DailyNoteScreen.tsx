@@ -7,10 +7,11 @@ import { TextInput } from "react-native-paper";
 import { DailyNote } from "../utils/types";
 import { createDailyNote, getDailyNote } from "../store/dailynoteSlice";
 import NoteCard from "../Componets/NoteCard";
+import { BottomBar } from "../Componets/BottomBar";
 
 type Props = NativeStackScreenProps<RootStackParamList, "DailyNote">;
 
-export default function DailyNotes({ navigation }: Props) {
+export default function DailyNotes({ navigation, route }: Props) {
   const [dailyNote, setDailyNote] = React.useState<DailyNote[] | null>();
 
   const [title, setTitle] = useState("");
@@ -93,6 +94,7 @@ export default function DailyNotes({ navigation }: Props) {
           );
         })}
       </ScrollView>
+      <BottomBar navigation={navigation} route={route}></BottomBar>
     </View>
   );
 }
