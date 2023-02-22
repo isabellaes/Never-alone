@@ -1,7 +1,4 @@
-import {
-  NavigationContainer,
-  NavigatorScreenParams,
-} from "@react-navigation/native";
+import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React, { Component } from "react";
 import EditProfileScreen from "../Screens/EditProfileScreen";
@@ -9,13 +6,13 @@ import LogInScreen from "../Screens/LogInScreen";
 import RegisterScreen from "../Screens/RegisterScreen";
 import StoryScreen from "../Screens/StoryScreen";
 import { CustomNavigationBar } from "../Componets/CustomNavigationBar";
-import { BottomNavigation } from "./BottomNavigation";
 import { useAppSelector } from "../store/store";
 import HomeScreen from "../Screens/HomeScreen";
 import ProfileScreen from "../Screens/ProfileScreen";
 import DailyNotes from "../Screens/DailyNoteScreen";
 import MeditationScreen from "../Screens/MeditationScreen";
 import PhonenumberScreen from "../Screens/PhonenumberScreen";
+import SettingsScreen from "../Screens/Settings";
 
 export type RootStackParamList = {
   Home: undefined;
@@ -42,20 +39,20 @@ export const RootNavigator = () => {
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
-          header: (props) => <CustomNavigationBar />,
+          header: (route) => <CustomNavigationBar {...route} />,
         }}
       >
         {isAuthenticated ? (
           <Stack.Group>
             <Stack.Screen
               name="Home"
-              component={BottomNavigation}
+              component={HomeScreen}
               options={{ title: "Home" }}
             />
 
             <Stack.Screen
               name="Profile"
-              component={BottomNavigation}
+              component={ProfileScreen}
               options={{ title: "Profile" }}
             />
             <Stack.Screen
@@ -70,22 +67,22 @@ export const RootNavigator = () => {
             />
             <Stack.Screen
               name="DailyNote"
-              component={BottomNavigation}
+              component={DailyNotes}
               options={{ title: "DailyNote" }}
             />
             <Stack.Screen
               name="Meditation"
-              component={BottomNavigation}
+              component={MeditationScreen}
               options={{ title: "Meditation" }}
             />
             <Stack.Screen
               name="PhoneNumber"
-              component={BottomNavigation}
+              component={PhonenumberScreen}
               options={{ title: "PhoneNumber" }}
             />
             <Stack.Screen
               name="Settings"
-              component={BottomNavigation}
+              component={SettingsScreen}
               options={{ title: "Settings" }}
             />
           </Stack.Group>
