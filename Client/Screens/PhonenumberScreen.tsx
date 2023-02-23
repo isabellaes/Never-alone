@@ -15,11 +15,11 @@ interface ContactProps {
     number: number,
     url: string
   } []
-
 }
 
+// [contakt, setContakt] = useState<ContactProps["contacts"]>(
 export default function PhonenumberScreen() {
-   const [contakt, setContakt] = useState<ContactProps["contacts"]>([
+  const contact = [
     {
       name: "Barn & ungdomspsykiatrin",
       number: 1177,
@@ -36,12 +36,12 @@ export default function PhonenumberScreen() {
       url: "https://www.1177.se/Vastra-Gotaland/barn--gravid/vard-och-stod-for-barn/bup--barn--och-ungdomspsykiatrin/"
     }
 
-   ])
+   ]
 
   return (
     <View style={styles.container}>
       <ScrollView style={{ width: "95%" }}>
-        { contakt.map(c=> (
+        { contact.map(c=> (
           <View>
             <Text style={styles.citat}>{c.name} Telefonnummer:{c.number} 
              <OpenURL url={c.url}></OpenURL>
