@@ -1,13 +1,13 @@
-import { Link } from "@react-navigation/native";
+
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React, { useState } from "react";
 import { View, Text, ScrollView , StyleSheet} from "react-native";
-import Meditation from "../Componets/Meditation";
-import OpenURL from "../Componets/OpenUrl";
+import Contacts from "../Componets/Contacts";
+
 
 import { RootStackParamList } from "../navigation/RootNavigator";
 
-// type Props = NativeStackScreenProps<RootStackParamList, "PhoneNumber">;
+type Props = NativeStackScreenProps<RootStackParamList, "PhoneNumber">;
 
 interface ContactProps {
   contacts: {
@@ -34,21 +34,50 @@ export default function PhonenumberScreen() {
       name: "test3",
       number: 123456,
       url: "https://www.1177.se/Vastra-Gotaland/barn--gravid/vard-och-stod-for-barn/bup--barn--och-ungdomspsykiatrin/"
+    },
+    {
+      name: "test4",
+      number: 123456,
+      url: "https://www.1177.se/Vastra-Gotaland/barn--gravid/vard-och-stod-for-barn/bup--barn--och-ungdomspsykiatrin/"
+    },
+    {
+      name: "test5",
+      number: 123456,
+      url: "https://www.1177.se/Vastra-Gotaland/barn--gravid/vard-och-stod-for-barn/bup--barn--och-ungdomspsykiatrin/"
+    },
+    {
+      name: "test6",
+      number: 123456,
+      url: "https://www.1177.se/Vastra-Gotaland/barn--gravid/vard-och-stod-for-barn/bup--barn--och-ungdomspsykiatrin/"
+    },
+    {
+      name: "test7",
+      number: 123456,
+      url: "https://www.1177.se/Vastra-Gotaland/barn--gravid/vard-och-stod-for-barn/bup--barn--och-ungdomspsykiatrin/"
+    },
+    {
+      name: "test8",
+      number: 123456,
+      url: "https://www.1177.se/Vastra-Gotaland/barn--gravid/vard-och-stod-for-barn/bup--barn--och-ungdomspsykiatrin/"
+    },
+    {
+      name: "test9",
+      number: 123456,
+      url: "https://www.1177.se/Vastra-Gotaland/barn--gravid/vard-och-stod-for-barn/bup--barn--och-ungdomspsykiatrin/"
     }
 
    ]
 
   return (
     <View style={styles.container}>
-      <ScrollView style={{ width: "95%" }}>
+      <Text style={{fontSize: 20, marginTop:10}}>Viktiga kontakt uppgifter!</Text>
+      <ScrollView style={styles.citat}>
         { contact.map(c=> (
           <View>
-            <Text style={styles.citat}>{c.name} Telefonnummer:{c.number} 
-             <OpenURL url={c.url}></OpenURL>
-            </Text>
+            <Contacts name={c.name} number={c.number} url={c.url} ></Contacts>
           </View>
         ))}
-
+         <Text>Här ska ev Gps funktionen ligga oxå</Text>
       </ScrollView>
     </View>
   );
@@ -60,12 +89,11 @@ const styles = StyleSheet.create({
     width: "100%",
     display: "flex",
     flexDirection: "column",
+    justifyContent: "center",
     alignItems: "center",
     alignContent: "center",
-    justifyContent: "center",
   },
   citat: {
-    fontSize: 17,
     textAlign: "center",
     padding: 15,
   },

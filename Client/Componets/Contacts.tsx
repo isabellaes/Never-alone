@@ -1,5 +1,6 @@
 import { Link } from "@react-navigation/native";
 import React from "react";
+import { View, Text, TouchableOpacity, Linking, TouchableHighlight } from "react-native";
 
 interface ContactProps {
       name: string,
@@ -10,12 +11,17 @@ interface ContactProps {
   
 
 const Contacts = ({name, number, url}:ContactProps) => {
+  const press = () => {
+    Linking.openURL(url)
+  }
   return (
-    <div>
-      <h2>{name}</h2>
-      <p>Age: {number}</p>
-      <Link to={url} children={url}></Link>
-    </div>
+    <View>
+      <Text style={{fontSize: 20, marginBottom: 10, marginLeft: 5}}>{name} Kontakt: {number}</Text>
+      <TouchableHighlight onPress={press}> 
+      <Text style={{fontSize: 15, marginBottom: 15, color: "purple", marginLeft: 5}}>{url}</Text>
+      </TouchableHighlight>
+    
+    </View>
   );
 };
 
