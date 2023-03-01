@@ -1,13 +1,10 @@
 
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-
 import React, { useState } from "react";
 import { View, Text, ScrollView , StyleSheet} from "react-native";
 import Contacts from "../Componets/Contacts";
-
-
 import { RootStackParamList } from "../navigation/RootNavigator";
-import { styles } from "../utils/styleSheet";
+
 
 type Props = NativeStackScreenProps<RootStackParamList, "PhoneNumber">;
 
