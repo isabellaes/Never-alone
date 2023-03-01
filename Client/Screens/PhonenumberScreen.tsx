@@ -3,21 +3,11 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React, { useState } from "react";
 import { View, Text, ScrollView , StyleSheet} from "react-native";
 import Contacts from "../Componets/Contacts";
-
-
 import { RootStackParamList } from "../navigation/RootNavigator";
 
 type Props = NativeStackScreenProps<RootStackParamList, "PhoneNumber">;
 
-interface ContactProps {
-  contacts: {
-    name: string,
-    number: number,
-    url: string
-  } []
-}
 
-// [contakt, setContakt] = useState<ContactProps["contacts"]>(
 export default function PhonenumberScreen() {
   const contact = [
     {

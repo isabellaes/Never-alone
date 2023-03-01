@@ -1,14 +1,11 @@
-import { Link } from "@react-navigation/native";
 import React from "react";
-import { View, Text, TouchableOpacity, Linking, TouchableHighlight } from "react-native";
+import { View, Text, Linking, TouchableHighlight } from "react-native";
 
 interface ContactProps {
       name: string,
       number: number,
       url: string
     } 
-  
-  
 
 const Contacts = ({name, number, url}:ContactProps) => {
   const press = () => {
