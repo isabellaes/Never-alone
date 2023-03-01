@@ -6,7 +6,8 @@ import { RootStackParamList } from "../navigation/RootNavigator";
 import { useAppDispatch } from "../store/store";
 import OverviewCard from "../Componets/OverviewCard";
 import Meditation from "../Componets/Meditation";
-//import { BottomBar } from "../Componets/BottomBar";
+import { BottomBar } from "../Componets/BottomBar";
+//import { styles } from "../utils/styleSheet";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Meditation">;
 
@@ -15,7 +16,7 @@ export default function MeditationScreen({ navigation, route }: Props) {
     <View style={styles.container}>
       <ScrollView style={{ width: "95%" }}>
         <Text style={styles.title}>
-          Sätt dig eller lägg dig ner bekvämtt och koppla av lite, username
+          Sätt dig eller lägg dig ner bekvämt och koppla av lite, username
         </Text>
         <Image
           style={styles.image}
@@ -26,6 +27,7 @@ export default function MeditationScreen({ navigation, route }: Props) {
 
         <Meditation></Meditation>
       </ScrollView>
+      <BottomBar navigation={navigation} route={route}></BottomBar>
     </View>
   );
 }

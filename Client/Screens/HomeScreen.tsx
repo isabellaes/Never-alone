@@ -1,4 +1,3 @@
-import { Link } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
@@ -6,18 +5,16 @@ import { RootStackParamList } from "../navigation/RootNavigator";
 import { useAppDispatch, useAppSelector } from "../store/store";
 import OverviewCard from "../Componets/OverviewCard";
 import MoodPicker from "../Componets/MoodPicker";
-import { Button } from "react-native-paper";
-import { logout } from "../store/authSlice";
 import { AppState } from "../store/store";
 import { User } from "../utils/types";
-//import { BottomBar } from "../Componets/BottomBar";
-type Props = NativeStackScreenProps<RootStackParamList, "Home">;
+import { styles } from "../utils/styleSheet";
+import { BottomBar } from "../Componets/BottomBar";
 
-//Fixa styling och lägg in passande bild till dailynote
+type Props = NativeStackScreenProps<RootStackParamList, "Home">;
 
 export default function HomeScreen({ navigation, route }: Props) {
   const [user, setUser] = React.useState<User | null>();
-  const dispatch = useAppDispatch();
+
   const currentUser = (state: AppState) => {
     return state.user.user;
   };
@@ -31,10 +28,7 @@ export default function HomeScreen({ navigation, route }: Props) {
 
   return (
     <View style={styles.container}>
-      <ScrollView style={{ width: "95%" }}>
-        <Button mode="contained" onPress={() => dispatch(logout())}>
-          Logga ut
-        </Button>
+      <ScrollView style={{ width: "100%" }}>
         <Text style={styles.citat}>"Dagens Citat eller peppande text"</Text>
         <Text style={styles.title}>Välkommen {user?.username}</Text>
         <Text style={styles.title}>Hur mår du idag?</Text>
@@ -54,30 +48,8 @@ export default function HomeScreen({ navigation, route }: Props) {
           uri="https://freepngimg.com/thumb/categories/1786.png"
         ></OverviewCard>
       </ScrollView>
+
+      <BottomBar navigation={navigation} route={route}></BottomBar>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: "100%",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    alignContent: "center",
-    justifyContent: "space-between",
-  },
-
-  title: {
-    textAlign: "center",
-    fontSize: 25,
-    fontWeight: "bold",
-    padding: 5,
-  },
-  citat: {
-    fontSize: 15,
-    textAlign: "center",
-    padding: 15,
-  },
-});
