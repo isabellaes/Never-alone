@@ -32,7 +32,8 @@ type DailyNote = {
   title: string;
   content: string;
   userId: string;
-  user: User
+  user: User;
+  date: Date
 }
 
 export type { Profile, User, LogInRespons, RegisterRespons, Error, DailyNote };
