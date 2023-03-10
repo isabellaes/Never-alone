@@ -51,7 +51,7 @@ export const createDailyNote = createAsyncThunk<
 });
 
 export const deleteDailyNote = createAsyncThunk<
-  boolean,
+  DailyNote,
   string
 >("dailyNote/deleteDailyNote", async (id, { rejectWithValue }) => {
   try {
@@ -84,7 +84,7 @@ const dailyNoteSlice = createSlice({
     builder.addCase(deleteDailyNote.fulfilled, (state, action) => {
       if (state.dailyNote) {
         state.dailyNote = state.dailyNote.filter(
-          (note) => note.id !== action.meta.arg
+          (note) => note.id !== action.payload.id
         );
       }
     });
