@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, TextInput, View, Text } from "react-native";
+import {  TextInput, View, Text } from "react-native";
 import ButtonCamera from "../Componets/ButtonCamera";
 import ImageViewer from "../Componets/ImageViewer";
 import * as ImagePicker from "expo-image-picker";
@@ -8,13 +8,34 @@ import { useState } from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../navigation/RootNavigator";
 import ButtonStandard from "../Componets/ButtonStandard";
-import { Colors } from "react-native/Libraries/NewAppScreen";
-import { Link } from "@react-navigation/native";
+import { Profile } from "../utils/types";
+import { AppState, useAppDispatch, useAppSelector } from "../store/store";
+import { getProfile, updateProfile } from "../store/profileSlice";
+import { styles } from "../utils/styleSheet";
 
 type Props = NativeStackScreenProps<RootStackParamList, "EditProfile">;
 const PlaceholderImage: any = require("../assets/adaptive-icon.png");
 
 export default function EditProfile({ navigation }: Props) {
+  const [profile, setProfile] = React.useState<Profile | null>();
+  const [newProfileName, setNewProfileName] = React.useState<string>("");
+
+  const dispatch = useAppDispatch();
+  const currentProfile = (state: AppState) => {
+    return state.profile.profile;
+  };
+  const currentUserProfile = useAppSelector(currentProfile);
+
+  React.useEffect(() => {
+    dispatch(getProfile());
+  }, [dispatch]);
+
+  React.useEffect(() => {
+    if (currentUserProfile) {
+      setProfile(currentUserProfile);
+    }
+  }, [currentUserProfile]);
+
   const [selectedImage, setSelectedImage] = useState("");
   const pickImageAsync = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -29,82 +50,50 @@ export default function EditProfile({ navigation }: Props) {
     }
   };
 
+  function handleProfileSave(): void {
+    if (newProfileName !== "") {
+      dispatch(updateProfile({ ...profile, name: newProfileName }));
+      setNewProfileName("")
+    }
+  }
+
   return (
-    <>
-    <Link to="/Home">
-          <Text>Tryck här på länken för att komma till Home</Text>
-        </Link>
-      <Text style={{ ...styles.edit }}>Ändra Profil</Text>
-      <TextInput
-        style={{ ...styles.textInput, marginBottom: 20 }}
-        placeholder="Ändra namn"
-      ></TextInput>
-      <View style={{ ...styles.buttonStandard }}>
-        <ButtonStandard
-          onPress={function (): void {
-            navigation.navigate("Home");
-          }}
-          text={"spara"}
-        ></ButtonStandard>
-      </View>
+    <View style={styles.container}>
+      <Text style={{marginTop: 20, marginBottom:20, backgroundColor: "#f9defa", paddingLeft:100, paddingRight: 100, borderRadius: 15}}>
+        <Text style={styles.title}>{profile?.name}</Text>
+        </Text>
+        <Text style={{marginBottom:50}}>Här nedan kan du ändra ditt användarnamn</Text>
+
+        <TextInput
+          style={styles.citat}
+          placeholder="Skriv namn.."
+          value={newProfileName}
+          onChange={(event) => setNewProfileName(event.nativeEvent.text)}
+          ></TextInput>
+        <View style={styles.buttonStandard}>
+          <ButtonStandard
+            onPress={handleProfileSave}
+            text={"spara"}
+          ></ButtonStandard>
+        </View>
       <View style={styles.container}>
-        <View style={styles.imageContainer}>
+        <View style={{ width: "50%", height: "65%" }}>
           <ImageViewer
             placeholderImageSource={PlaceholderImage}
             selectedImage={selectedImage}
           />
         </View>
       </View>
-      <View style={styles.footerContainer}>
+      <View>
         <ButtonCamera
           theme="primary"
           label="Välj bild"
           onPress={pickImageAsync}
         />
-        <ButtonCamera label="Använd bilden" />
+        <ButtonCamera />
       </View>
       <StatusBar style="auto" />
-    </>
+    </View>
   );
 }
 
-const styles = StyleSheet.create({
-  // Styles that are unchanged from previous step are hidden for brevity.
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  imageContainer: {
-    flex: 1,
-    paddingTop: 58,
-  },
-  image: {
-    width: 320,
-    height: 440,
-    borderRadius: 18,
-  },
-  footerContainer: {
-    flex: 1 / 3,
-    alignItems: "center",
-    marginBottom: 40,
-  },
-  textInput: {
-    marginLeft: 25,
-    marginRight: 25,
-    backgroundColor: "#f9defa",
-    borderRadius: 5,
-    padding: 20,
-  },
-  edit: {
-    fontSize: 30,
-    marginLeft: 25,
-    marginBottom: 20,
-    paddingTop: 50,
-  },
-  buttonStandard: {
-    display: "flex",
-    alignItems: "center",
-    marginBottom: 20,
-  },
-});
