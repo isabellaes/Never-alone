@@ -137,6 +137,7 @@ export const createDailyNoteRequest = async (
   throw response;
 };
 
+
 export const updateDailyNoteRequest = async (id: string, title: string) => {
   const response = await fetch(`${url}/dailyNote/updateDailyNote`, {
     method: "POST",
@@ -148,6 +149,21 @@ export const updateDailyNoteRequest = async (id: string, title: string) => {
       id,
       title,
     }),
+  });
+  
+  if (response.ok) {
+    const data = await response.json();
+    return data;
+  }
+  throw response;
+};
+
+export const deleteDailyNoteRequest = async (id: string) => {
+  const response = await fetch(`${url}/dailyNote/Delete/${id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${await get("user.token")}`,
+    },
   });
 
   if (response.ok) {

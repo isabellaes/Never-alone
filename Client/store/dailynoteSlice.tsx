@@ -4,6 +4,7 @@ import {
   getDailyNoteRequest,
   updateDailyNoteRequest,
   createDailyNoteRequest,
+  deleteDailyNoteRequest,
 } from "../utils/api";
 
 export interface DailyNoteState {
@@ -13,19 +14,6 @@ export interface DailyNoteState {
 const initialState: DailyNoteState = {
   dailyNote: null,
 };
-
-// export const getDailyNotes = createAsyncThunk(
-//   "dailyNote/GetDailyNote",
-//   async (data, { rejectWithValue }) => {
-//     try {
-//       const respons = await getDailyNoteRequest();
-//       return respons;
-//     } catch (error) {
-//       console.log(error);
-//       return rejectWithValue("Failed to fetch");
-//     }
-//   }
-// );
 
 export const getDailyNote = createAsyncThunk<DailyNote[]>(
   "dailyNote/GetAllDailyNote",
@@ -62,6 +50,18 @@ export const createDailyNote = createAsyncThunk<
   }
 });
 
+export const deleteDailyNote = createAsyncThunk<
+  DailyNote,
+  string
+>("dailyNote/deleteDailyNote", async (id, { rejectWithValue }) => {
+  try {
+    const response = await deleteDailyNoteRequest(id);
+    return response;
+  } catch (error) {
+    return rejectWithValue("Failed to fetch");
+  }
+});
+
 const dailyNoteSlice = createSlice({
   name: "dailyNote",
   initialState,
@@ -80,6 +80,13 @@ const dailyNoteSlice = createSlice({
     });
     builder.addCase(updateDailyNote.fulfilled, (state, action) => {
       state.dailyNote = action.payload;
+    });
+    builder.addCase(deleteDailyNote.fulfilled, (state, action) => {
+      if (state.dailyNote) {
+        state.dailyNote = state.dailyNote.filter(
+          (note) => note.id !== action.payload.id
+        );
+      }
     });
   },
 });

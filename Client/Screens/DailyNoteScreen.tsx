@@ -1,13 +1,14 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React, { useState } from "react";
-import { View, Text, StyleSheet, ScrollView, Button } from "react-native";
+import { View, Text, ScrollView, Button } from "react-native";
 import { RootStackParamList } from "../navigation/RootNavigator";
 import { AppState, useAppDispatch, useAppSelector } from "../store/store";
 import { TextInput } from "react-native-paper";
 import { DailyNote } from "../utils/types";
-import { createDailyNote, getDailyNote } from "../store/dailynoteSlice";
+import { createDailyNote, deleteDailyNote, getDailyNote } from "../store/dailynoteSlice";
 import NoteCard from "../Componets/NoteCard";
 import { BottomBar } from "../Componets/BottomBar";
+import { styles } from "../utils/styleSheet";
 
 type Props = NativeStackScreenProps<RootStackParamList, "DailyNote">;
 
@@ -53,10 +54,18 @@ export default function DailyNotes({ navigation, route }: Props) {
     }
   }
 
+  const handleDeleteNote = (id: string) => {
+    if (dailyNote) {
+      const updatedNotes = dailyNote.filter(note => note.id !== id);
+      setDailyNote(updatedNotes);
+      dispatch(deleteDailyNote(id));
+    }
+  };
+ 
   return (
     <View style={styles.container}>
       <ScrollView style={{ width: "95%" }}>
-        <Text style={styles.text}> - {month} -</Text>
+        <Text style={styles.citat}> - {month} -</Text>
         <View>
           <TextInput
             value={title}
@@ -79,17 +88,16 @@ export default function DailyNotes({ navigation, route }: Props) {
             multiline
             numberOfLines={6}
             maxLength={200}
-            style={styles.content}
+            style={styles.citat}
           />
-          <Button onPress={onPress} title="Spara" color="#d6b2bb"></Button>
+          <Button onPress={onPress} title="Spara" color="#B18DC1"></Button>
         </View>
 
-        <Text style={{ marginBottom: 40, marginTop: 5 }}></Text>
         {dailyNote?.map((note) => {
-          //console.log(onPress);
           return (
             <Text key={note.id}>
-              <NoteCard dailyNote={note}></NoteCard>
+             <NoteCard dailyNote={note} onDelete={handleDeleteNote} child={"ta bort"}></NoteCard>
+
             </Text>
           );
         })}
@@ -99,40 +107,3 @@ export default function DailyNotes({ navigation, route }: Props) {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: "100%",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    alignContent: "center",
-    justifyContent: "space-between",
-    marginTop: 20,
-  },
-  title: {
-    flexDirection: "column",
-    elevation: 10,
-    shadowColor: "black",
-    fontSize: 20,
-    paddingTop: 5,
-    marginTop: 30,
-  },
-  content: {
-    flexDirection: "column",
-    elevation: 30,
-    shadowColor: "black",
-    borderBottomRightRadius: 10,
-    borderBottomLeftRadius: 10,
-    fontSize: 20,
-    paddingTop: 10,
-  },
-  text: {
-    fontSize: 20,
-    backgroundColor: "#d6b2bb",
-    marginRight: 190,
-    padding: 10,
-    borderRadius: 10,
-    color: "white",
-  },
-});
