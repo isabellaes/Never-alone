@@ -65,7 +65,7 @@ export const styles = StyleSheet.create({
     paddingRight: 10,
     borderRadius: 5,
     paddingBottom: 10,
-    elevation: 10,
+    elevation: 20,
   },
  
   //card
