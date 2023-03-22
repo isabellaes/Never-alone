@@ -1,20 +1,17 @@
-import React, {useCallback} from 'react';
-import {Alert, Button, Linking, StyleSheet, View, Text} from 'react-native';
+import React, { useCallback } from "react";
+import { Alert, Button, Linking, StyleSheet, View, Text } from "react-native";
+import { styles } from "../utils/styleSheet";
 
-
-
-const LearnMeditationURL = 'https://www.mindful.org/how-to-meditate/';
-const MeditationURL = 'https://www.youtube.com/results?search_query=meditation';
+const LearnMeditationURL = "https://www.mindful.org/how-to-meditate/";
+const MeditationURL = "https://www.youtube.com/results?search_query=meditation";
 
 type OpenURLButtonProps = {
   url: string;
   children: string;
-
 };
 
-const OpenURLButton = ({url, children}: OpenURLButtonProps) => {
+const OpenURLButton = ({ url, children }: OpenURLButtonProps) => {
   const handlePress = useCallback(async () => {
-  
     const supported = await Linking.canOpenURL(url);
 
     if (supported) {
@@ -24,37 +21,28 @@ const OpenURLButton = ({url, children}: OpenURLButtonProps) => {
     }
   }, [url]);
 
-  return <Button color="#B69EC3" title={children} onPress={handlePress} />;
+  return (
+    <View style={styles.buttontwo}>
+      <Text onPress={handlePress}>{children} </Text>
+    </View>
+  );
 };
 
 const Meditation = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}></Text>
-      <OpenURLButton url={MeditationURL}>Direkt till meditation</OpenURLButton>
-       <Text style={styles.texttvå}> eller </Text>
-      <OpenURLButton  url={LearnMeditationURL}>Lära dig mer om meditation</OpenURLButton>
+      <Text style={styles.title}></Text>
+      <Text>
+        <OpenURLButton url={MeditationURL}>
+          Direkt till meditation
+        </OpenURLButton>
+        <Text >   </Text>
+        <OpenURLButton url={LearnMeditationURL}>
+          Mer om meditation..
+        </OpenURLButton>
+      </Text>
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-   
-  },
-  text: {
-   
-   
-    
-  },
-  texttvå: {
-   marginBottom: 5,
-    fontSize: 20
-  },
-});
-
 export default Meditation;
-
