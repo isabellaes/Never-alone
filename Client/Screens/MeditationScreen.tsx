@@ -15,7 +15,7 @@ type Props = NativeStackScreenProps<RootStackParamList, "Meditation">;
 export default function MeditationScreen({ navigation, route }: Props) {
   return (
     <View style={styles.container}>
-      <ScrollView style={{ width: "85%" , marginTop: 20 }}>
+      <ScrollView style={{ width: "90%" , marginTop: 20 }}>
         <Image
           style={styles.imagetwo}
           source={{

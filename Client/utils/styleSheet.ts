@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
           alignItems: "center",
           alignContent: "center",
           justifyContent: "space-between",
-          padding: 50
+          padding: 40
     
         },
    // texts     
@@ -45,6 +45,7 @@ export const styles = StyleSheet.create({
   citat: {
     fontSize: 15,
     textAlign: "center",
+    paddingBottom: 10,
     color: "#404040",
   },
 
@@ -59,7 +60,7 @@ export const styles = StyleSheet.create({
   buttontwo: {
     display: "flex",
     alignItems: "center",
-    backgroundColor: "#fFeECC",
+    backgroundColor: "#fBe1FB",
     paddingTop: 10,
     paddingLeft: 10,
     paddingRight: 10,
@@ -72,8 +73,8 @@ export const styles = StyleSheet.create({
   card: {
     backgroundColor: "#FBF1FB",
     borderRadius: 10,
-    marginTop: 15,
-    padding: 40
+    marginTop: 25,
+    padding: 30
     
   },
 

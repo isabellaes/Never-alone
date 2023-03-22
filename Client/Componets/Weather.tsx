@@ -28,7 +28,8 @@ export default function Weather() {
       .then((res) => res.json())
       .then((result: Weather) => {
         setWeather(result);
-      });
+      }
+      );
   };
 
   return (
@@ -38,15 +39,15 @@ export default function Weather() {
           placeholder="Skriv stad eller land.."
           onChangeText={(text) => setSearch(text)}
         />
-        <Button color="#B18DC1" title="Sök" onPress={SearchPressed} />
         {typeof weather.main != "undefined" ? (
           <View>
-            <Text style={styles.title}>Graderna i {weather.name} är: {weather.main.temp} *C</Text>
+            <Text style={styles.citat}>temperatur: {weather.main.temp} *C</Text>
 
           </View>
         ) : (
           <></>
-        )}
+          )}
+          <Button color="#B18DC1" title="Sök" onPress={SearchPressed} />
       </View>
     </View>
   );
