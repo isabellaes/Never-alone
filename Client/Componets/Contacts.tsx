@@ -1,25 +1,43 @@
-import React from "react";
-import { View, Text, Linking, TouchableHighlight } from "react-native";
+import React, { useState, useEffect } from 'react';
+import { View , Text} from 'react-native';
+import { styles } from "../utils/styleSheet"
 
-interface ContactProps {
-      name: string,
-      number: number,
-      url: string
-    } 
+interface IData {
+  id: number;
+  name: string;
+  number: string;
+  url: string
+}
 
-const Contacts = ({name, number, url}:ContactProps) => {
-  const press = () => {
-    Linking.openURL(url)
-  }
+const Contacts: React.FC = () => {
+  const [data, setData] = useState<IData[]>([]);
+ 
+
+  const fetchData = async () => {
+    try {
+      const jsonData = require('./PhoneNumbers.json');
+      setData(jsonData.contact);
+    } catch (error) {
+      console.log("Error fetching data", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
-    <View>
-      <Text style={{fontSize: 20, marginBottom: 10, marginLeft: 5}}>{name} Kontakt: {number}</Text>
-      <TouchableHighlight onPress={press}> 
-      <Text style={{fontSize: 15, marginBottom: 15, color: "purple", marginLeft: 5}}>{url}</Text>
-      </TouchableHighlight>
-    
+    <View style={styles.card} >
+      {data.map((item) => (
+        <View key={item.id}>
+          <Text style={styles.citat}>{item.name}  nummer: {item.number}</Text>
+          <Text >{item.url}</Text>
+        </View>
+      ))}
     </View>
   );
 };
 
 export default Contacts;
+
+
