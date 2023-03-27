@@ -50,17 +50,17 @@ export const createDailyNote = createAsyncThunk<
   }
 });
 
-export const deleteDailyNote = createAsyncThunk<
-  DailyNote,
-  string
->("dailyNote/deleteDailyNote", async (id, { rejectWithValue }) => {
-  try {
-    const response = await deleteDailyNoteRequest(id);
-    return response;
-  } catch (error) {
-    return rejectWithValue("Failed to fetch");
+export const deleteDailyNote = createAsyncThunk<DailyNote, { id: string }>(
+  "dailyNote/delete",
+  async (data, { rejectWithValue }) => {
+    try {
+      const respons = await deleteDailyNoteRequest(data.id);
+      return respons;
+    } catch (error) {
+      return rejectWithValue("Failed to fetch");
+    }
   }
-});
+);
 
 const dailyNoteSlice = createSlice({
   name: "dailyNote",

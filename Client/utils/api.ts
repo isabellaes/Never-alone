@@ -80,7 +80,7 @@ export const registerRequest = async (
   username: string,
   password: string
 ) => {
-  const response = await fetch(`${url}/authentication/register`, {
+  const response = await fetch(`${url}/Authentication/register`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -91,10 +91,13 @@ export const registerRequest = async (
       password,
     }),
   });
+
   if (response.ok) {
     const data = await response.json();
+
     return data;
   }
+
   throw response;
 };
 
@@ -137,7 +140,6 @@ export const createDailyNoteRequest = async (
   throw response;
 };
 
-
 export const updateDailyNoteRequest = async (id: string, title: string) => {
   const response = await fetch(`${url}/dailyNote/updateDailyNote`, {
     method: "POST",
@@ -150,7 +152,7 @@ export const updateDailyNoteRequest = async (id: string, title: string) => {
       title,
     }),
   });
-  
+
   if (response.ok) {
     const data = await response.json();
     return data;
@@ -159,16 +161,20 @@ export const updateDailyNoteRequest = async (id: string, title: string) => {
 };
 
 export const deleteDailyNoteRequest = async (id: string) => {
-  const response = await fetch(`${url}/dailyNote/Delete/${id}`, {
+  const response = await fetch(`${url}/dailyNote/Delete`, {
     method: "DELETE",
     headers: {
+      "Content-Type": "application/json",
       Authorization: `Bearer ${await get("user.token")}`,
     },
+    body: JSON.stringify({
+      id,
+    }),
   });
-
   if (response.ok) {
     const data = await response.json();
     return data;
   }
+
   throw response;
 };

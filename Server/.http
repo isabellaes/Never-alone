@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
     "Email": "user@email.com",
-    "Username": "user",
+    "Username": "userrr",
     "Password": "password"
    
 }
@@ -72,6 +72,16 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hc
 
 {
     "Id": "3088b2ce-e159-49ca-a3a2-16bd2201332f"    
+}
+
+###
+
+DELETE http://localhost:5015/api/DailyNote/Delete
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoidXNlciIsImp0aSI6IjA4ZDc3YjZlLTc1YWMtNGI2ZS1iZmNkLTYwNDcyZjkwZjMwZiIsImV4cCI6MTY4MDAxNjAxNiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDE1In0.jeL2Ib_SSX4Jq-qDfz2Anb5kzb5Iy8J2Izc8AzRg9TY
+
+{
+    "Id": "4"    
 }
 
 
