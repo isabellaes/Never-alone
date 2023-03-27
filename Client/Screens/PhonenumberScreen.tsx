@@ -1,6 +1,6 @@
 
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, ScrollView , StyleSheet} from "react-native";
 import Contacts from "../Componets/Contacts";
 import { RootStackParamList } from "../navigation/RootNavigator";
@@ -8,16 +8,40 @@ import { RootStackParamList } from "../navigation/RootNavigator";
 
 type Props = NativeStackScreenProps<RootStackParamList, "PhoneNumber">;
 
+interface IData {
+  id: number;
+  name: string;
+  number: string;
+  url: string
+}
 
 export default function PhonenumberScreen() {
+  const [data, setData] = useState<IData[]>([]);
+ 
 
+  const fetchData = async () => {
+    try {
+      const jsonData = require('./PhoneNumbers.json');
+      setData(jsonData.contact);
+    } catch (error) {
+      console.log("Error fetching data", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <View style={styles.container}>
 
       <Text style={{fontSize: 20, marginTop:10}}>Viktiga kontakt uppgifter!</Text>
       <ScrollView style={styles.citat}>
-        <Contacts></Contacts>
+        { data.map(c=> (
+          <View>
+            <Contacts key={c.id} name={c.name} number={c.number} url={c.url} ></Contacts>
+          </View>
+        ))}
          <Text>Här ska ev Gps funktionen ligga oxå</Text>
       </ScrollView>
 
@@ -40,5 +64,4 @@ const styles = StyleSheet.create({
     padding: 15,
   },
 });
-
 
