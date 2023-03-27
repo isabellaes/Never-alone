@@ -5,7 +5,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { RootStackParamList } from "../navigation/RootNavigator";
 import { TextInput } from "react-native-paper";
 import ButtonStandard from "../Componets/ButtonStandard";
-import { useAppDispatch } from "../store/store";
+import { AppState, useAppDispatch, useAppSelector } from "../store/store";
 import { register } from "../store/authSlice";
 import { createProfile } from "../store/profileSlice";
 
@@ -26,6 +26,7 @@ export default function RegisterScreen({ navigation }: Props) {
       dispatch(
         register({ email: email, username: userName, password: passWord })
       );
+
       dispatch(createProfile({ name: userName }));
 
       navigation.navigate("Login");
@@ -38,14 +39,14 @@ export default function RegisterScreen({ navigation }: Props) {
         style={{ ...styles.textInput, marginBottom: 40 }}
         mode="outlined"
         label="Namn"
-        placeholder="Förnamn och Efternamn"
+        placeholder="Namn"
         right={<TextInput.Affix text="/50" />}
         onChangeText={onUserNameChanged}
       />
       <TextInput
         style={{ ...styles.textInput, marginBottom: 40 }}
         mode="outlined"
-        label="Användarnamn"
+        label="Email"
         placeholder="E-post"
         right={<TextInput.Affix text="/50" />}
         onChangeText={onEmailChanged}
@@ -53,7 +54,7 @@ export default function RegisterScreen({ navigation }: Props) {
       <TextInput
         style={{ ...styles.textInput }}
         mode="outlined"
-        label="Ange ditt lösen ord"
+        label="Lösenord"
         placeholder="Minst 8 tecken"
         right={<TextInput.Affix text="/15" />}
         onChangeText={onPasswordChanged}

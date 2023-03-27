@@ -5,7 +5,11 @@ import { RootStackParamList } from "../navigation/RootNavigator";
 import { AppState, useAppDispatch, useAppSelector } from "../store/store";
 import { TextInput } from "react-native-paper";
 import { DailyNote } from "../utils/types";
-import { createDailyNote, deleteDailyNote, getDailyNote } from "../store/dailynoteSlice";
+import {
+  createDailyNote,
+  deleteDailyNote,
+  getDailyNote,
+} from "../store/dailynoteSlice";
 import NoteCard from "../Componets/NoteCard";
 import { BottomBar } from "../Componets/BottomBar";
 import { styles } from "../utils/styleSheet";
@@ -33,13 +37,11 @@ export default function DailyNotes({ navigation, route }: Props) {
 
   React.useEffect(() => {
     dispatch(getDailyNote());
-  }, [dispatch]);
 
-  React.useEffect(() => {
     if (currentDailyNote) {
       setDailyNote(currentDailyNote);
     }
-  }, [currentDailyNote]);
+  }, [dispatch, currentDailyNote]);
 
   function onPress() {
     if (title && content) {
@@ -55,13 +57,14 @@ export default function DailyNotes({ navigation, route }: Props) {
   }
 
   const handleDeleteNote = (id: string) => {
-    if (dailyNote) {
-      const updatedNotes = dailyNote.filter(note => note.id !== id);
+    if (dailyNote && id) {
+      const updatedNotes = dailyNote.filter((note) => note.id !== id);
       setDailyNote(updatedNotes);
-      dispatch(deleteDailyNote(id));
+      console.log(id);
+      dispatch(deleteDailyNote({ id: id }));
     }
   };
- 
+
   return (
     <View style={styles.container}>
       <ScrollView style={{ width: "95%" }}>
@@ -96,8 +99,11 @@ export default function DailyNotes({ navigation, route }: Props) {
         {dailyNote?.map((note) => {
           return (
             <Text key={note.id}>
-             <NoteCard dailyNote={note} onDelete={handleDeleteNote} child={"ta bort"}></NoteCard>
-
+              <NoteCard
+                dailyNote={note}
+                onDelete={handleDeleteNote}
+                child={"ta bort"}
+              ></NoteCard>
             </Text>
           );
         })}
@@ -106,4 +112,3 @@ export default function DailyNotes({ navigation, route }: Props) {
     </View>
   );
 }
-
