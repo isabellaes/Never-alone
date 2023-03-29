@@ -1,6 +1,6 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React, { useEffect, useState } from "react";
-import { View, Text, ScrollView, StyleSheet } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import Contacts from "../Componets/Contacts";
 import { RootStackParamList } from "../navigation/RootNavigator";
 import { styles } from "../utils/styleSheet";
@@ -32,10 +32,8 @@ export default function PhonenumberScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={{ fontSize: 18, marginTop: 10 }}>
-        Viktiga kontakt uppgifter!
-      </Text>
-      <ScrollView style={{marginTop: 10, width: "95%" }}>
+      <ScrollView style={{marginTop: 15, width: "90%" }}>
+      <Text style={styles.titletwo}>Vid akuta lägen ring: <Text style={{fontWeight: "bold"}}>112</Text></Text>
         {data.map((c) => (
           <View style={styles.citat}>
             <Contacts
@@ -46,24 +44,8 @@ export default function PhonenumberScreen() {
             ></Contacts>
           </View>
         ))}
-        <Text>Här ska ev Gps funktionen ligga oxå</Text>
       </ScrollView>
     </View>
   );
 }
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     width: "100%",
-//     display: "flex",
-//     flexDirection: "column",
-//     justifyContent: "center",
-//     alignItems: "center",
-//     alignContent: "center",
-//   },
-//   citat: {
-//     textAlign: "center",
-//     padding: 15,
-//   },
-// });
