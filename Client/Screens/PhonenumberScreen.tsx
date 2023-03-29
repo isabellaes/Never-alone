@@ -2,6 +2,7 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React, { useState } from "react";
 import { View, Text, ScrollView , StyleSheet} from "react-native";
+import { BottomBar } from "../Componets/BottomBar";
 import Contacts from "../Componets/Contacts";
 import { RootStackParamList } from "../navigation/RootNavigator";
 
@@ -9,7 +10,7 @@ import { RootStackParamList } from "../navigation/RootNavigator";
 type Props = NativeStackScreenProps<RootStackParamList, "PhoneNumber">;
 
 
-export default function PhonenumberScreen() {
+export default function PhonenumberScreen({navigation, route }: Props) {
   const contact = [
     {
       name: "Barn & ungdomspsykiatrin",
@@ -71,7 +72,7 @@ export default function PhonenumberScreen() {
         ))}
          <Text>Här ska ev Gps funktionen ligga oxå</Text>
       </ScrollView>
-
+      <BottomBar navigation={navigation} route={route}></BottomBar>
     </View>
   );
 }
