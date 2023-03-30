@@ -12,11 +12,12 @@ import { Profile } from "../utils/types";
 import { AppState, useAppDispatch, useAppSelector } from "../store/store";
 import { getProfile, updateProfile } from "../store/profileSlice";
 import { styles } from "../utils/styleSheet";
+import { BottomBar } from "../Componets/BottomBar";
 
 type Props = NativeStackScreenProps<RootStackParamList, "EditProfile">;
 const PlaceholderImage: any = require("../assets/adaptive-icon.png");
 
-export default function EditProfile({ navigation }: Props) {
+export default function EditProfile({ navigation, route }: Props) {
   const [profile, setProfile] = React.useState<Profile | null>();
   const [newProfileName, setNewProfileName] = React.useState<string>("");
 
@@ -93,6 +94,8 @@ export default function EditProfile({ navigation }: Props) {
         <ButtonCamera />
       </View>
       <StatusBar style="auto" />
+      <BottomBar navigation={navigation} route={route}></BottomBar>
+      
     </View>
   );
 }
