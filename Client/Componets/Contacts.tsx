@@ -1,21 +1,23 @@
 import React from "react";
 import { View, Text, Linking, TouchableHighlight } from "react-native";
+import { styles } from "../utils/styleSheet";
 
 interface ContactProps {
       name: string,
-      number: number,
+      number: string,
       url: string
     } 
 
 const Contacts = ({name, number, url}:ContactProps) => {
+  
   const press = () => {
     Linking.openURL(url)
   }
   return (
-    <View>
-      <Text style={{fontSize: 20, marginBottom: 10, marginLeft: 5}}>{name} Kontakt: {number}</Text>
-      <TouchableHighlight onPress={press}> 
-      <Text style={{fontSize: 15, marginBottom: 15, color: "purple", marginLeft: 5}}>{url}</Text>
+    <View style={styles.container}> 
+      <Text style={{fontSize: 15, marginBottom: 5, marginTop: 10}}>{name} Kontakt: {number}</Text>
+      <TouchableHighlight onPressIn={press} underlayColor="#f1c2fb" style={{width: "95%"}}> 
+      <Text style={styles.buttontwo}>{url}</Text>
       </TouchableHighlight>
     
     </View>
@@ -23,3 +25,5 @@ const Contacts = ({name, number, url}:ContactProps) => {
 };
 
 export default Contacts;
+
+

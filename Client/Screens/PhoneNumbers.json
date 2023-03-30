@@ -1,0 +1,34 @@
+{
+  "contact": [
+    {
+      "name": "Suicide zero",
+      "number": "90101",
+      "url": "https://www.suicidezero.se/fa-hjalp"
+    },
+    {
+      "name": "Startsidan 1177 ",
+      "number": "1177",
+      "url": "https://www.1177.se/Vastra-Gotaland/"
+    },
+    {
+      "name": "Barn & ungdomspsykiatrin",
+      "number": "033-6162750",
+      "url": "https://www.1177.se/Vastra-Gotaland/barn--gravid/vard-och-stod-for-barn/bup--barn--och-ungdomspsykiatrin/"
+    },
+    {
+      "name": "Är du mellan 16-25 år",
+      "number": "följ länk för att chatta",
+      "url": "https://mind.se/hitta-hjalp/livslinjen/"
+    },
+    {
+      "name": "VuxenPsykiatrin",
+      "number": "033-6164100",
+      "url": "https://www.1177.se/Vastra-Gotaland/liv--halsa/psykisk-halsa/att-soka-stod-och-hjalp/soka-psykiatrisk-vard/"
+    },
+    {
+      "name": "UMO",
+      "number": "Följ länk för fler viktiga nummer",
+      "url": "https://www.umo.se/att-ta-hjalp/hit-kan-du-ringa-maila-eller-chatta/hjalp-om-du-mar-daligt/"
+    }
+  ]
+}

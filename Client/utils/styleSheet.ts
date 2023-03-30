@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
-import shadow from "react-native-paper/lib/typescript/styles/shadow";
 
 export const styles = StyleSheet.create({
+
   //contaiers
   container: {
     flex: 1,
@@ -21,6 +21,7 @@ export const styles = StyleSheet.create({
           padding: 40
     
         },
+        
    // texts     
   textRegular: {
     fontSize: 20,
@@ -60,13 +61,14 @@ export const styles = StyleSheet.create({
   buttontwo: {
     display: "flex",
     alignItems: "center",
-    backgroundColor: "#fBe1FB",
-    paddingTop: 10,
+    backgroundColor: "#fcf0f4",
+    color: "#c76392",
+    paddingTop: 8,
     paddingLeft: 10,
     paddingRight: 10,
     borderRadius: 5,
-    paddingBottom: 10,
-    elevation: 20,
+    paddingBottom: 8,
+    elevation: 10,
   },
  
   //card

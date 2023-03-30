@@ -1,14 +1,19 @@
-
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, ScrollView , StyleSheet} from "react-native";
 import { BottomBar } from "../Componets/BottomBar";
 import Contacts from "../Componets/Contacts";
 import { RootStackParamList } from "../navigation/RootNavigator";
-
+import { styles } from "../utils/styleSheet";
 
 type Props = NativeStackScreenProps<RootStackParamList, "PhoneNumber">;
 
+interface IData {
+  id: number;
+  name: string;
+  number: string;
+  url: string;
+}
 
 export default function PhonenumberScreen({navigation, route }: Props) {
   const contact = [
@@ -57,40 +62,29 @@ export default function PhonenumberScreen({navigation, route }: Props) {
       number: 123456,
       url: "https://www.1177.se/Vastra-Gotaland/barn--gravid/vard-och-stod-for-barn/bup--barn--och-ungdomspsykiatrin/"
     }
+  };
 
-   ]
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <View style={styles.container}>
-
-      <Text style={{fontSize: 20, marginTop:10}}>Viktiga kontakt uppgifter!</Text>
-      <ScrollView style={styles.citat}>
-        { contact.map(c=> (
-          <View>
-            <Contacts name={c.name} number={c.number} url={c.url} ></Contacts>
+      <ScrollView style={{marginTop: 15, width: "90%" }}>
+      <Text style={styles.titletwo}>Vid akuta lägen ring: <Text style={{fontWeight: "bold"}}>112</Text></Text>
+        {data.map((c) => (
+          <View style={styles.citat}>
+            <Contacts
+              key={c.id}
+              name={c.name}
+              number={c.number}
+              url={c.url}
+            ></Contacts>
           </View>
         ))}
-         <Text>Här ska ev Gps funktionen ligga oxå</Text>
       </ScrollView>
       <BottomBar navigation={navigation} route={route}></BottomBar>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: "100%",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    alignContent: "center",
-  },
-  citat: {
-    textAlign: "center",
-    padding: 15,
-  },
-});
-
 
