@@ -4,6 +4,7 @@ import { View, Text, ScrollView } from "react-native";
 import Contacts from "../Componets/Contacts";
 import { RootStackParamList } from "../navigation/RootNavigator";
 import { styles } from "../utils/styleSheet";
+import { BottomBar } from "../Componets/BottomBar";
 
 type Props = NativeStackScreenProps<RootStackParamList, "PhoneNumber">;
 
@@ -14,7 +15,7 @@ interface IData {
   url: string;
 }
 
-export default function PhonenumberScreen() {
+export default function PhonenumberScreen({ navigation, route }: Props) {
   const [data, setData] = useState<IData[]>([]);
 
   const fetchData = async () => {
@@ -45,6 +46,7 @@ export default function PhonenumberScreen() {
           </View>
         ))}
       </ScrollView>
+      <BottomBar navigation={navigation} route={route}></BottomBar>
     </View>
   );
 }
