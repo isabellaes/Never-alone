@@ -1,7 +1,7 @@
 import { Link } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import React, { useEffect } from "react";
-import { View, Text, StyleSheet, TextInput } from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from "react-native";
 import { RootStackParamList } from "../navigation/RootNavigator";
 import { getProfile } from "../store/profileSlice";
 import { useAppDispatch, useAppSelector } from "../store/store";
@@ -9,11 +9,45 @@ import { Profile } from "../utils/types";
 import { AppState } from "../store/store";
 import { BottomBar } from "../Componets/BottomBar";
 import { styles } from "../utils/styleSheet";
+import ImageOption from "../Componets/ImageOption";
 
-type Props = NativeStackScreenProps<RootStackParamList, "Profile">;
+
+type Props = NativeStackScreenProps<RootStackParamList, "Profile"> 
+
+
 
 export default function ProfileScreen({ navigation, route }: Props) {
   const [profile, setProfile] = React.useState<Profile | null>();
+  const [options, SetOptions] = useState(false);
+  const [selectedImage, setSelectedImage] = useState("")
+  const [image, setImage] = useState<string[]>([]);
+
+  const fetchImage = async () => {
+    const imageIds = ["237", "238", "239"]
+    const ImageUrls: string[] = []
+  
+    for (const id of imageIds) {
+      try {
+        const response = await fetch(`https://picsum.photos/id/${id}/info`);
+        const data = await response.json();
+        const imageUrl = `https://picsum.photos/id/${id}/${data.width}/${data.height}`;
+        ImageUrls.push(imageUrl);
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    
+    setImage(ImageUrls);
+  }
+
+  useEffect(()=> {
+    fetchImage()
+  },[])
+
+  const handleImageSelect = (imageUrl: string) => {
+    setSelectedImage(imageUrl);
+    SetOptions(false)
+  }
 
   const dispatch = useAppDispatch();
   const currentProfile = (state: AppState) => {
@@ -38,6 +72,19 @@ export default function ProfileScreen({ navigation, route }: Props) {
       </Link>
       <Text style={{ fontSize: 25, marginBottom: 25 }}>Profile Screen</Text>
       <Text>{profile?.name}</Text>
+      <TouchableOpacity onPress={() => SetOptions(!options)} style={{ marginBottom: 20 }}>
+        <Text style={{ fontSize: 16, color: 'blue' }}>Välj bild</Text>
+      </TouchableOpacity>
+      {options && (
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 20 }}>
+          {image.map((imageUrl, index) => (
+            <ImageOption key={index} imageUrl={imageUrl} onSelectImage={handleImageSelect} />
+          ))}
+        </View>
+      )}
+      {selectedImage !== '' && (
+        <Image source={{ uri: selectedImage }} style={{ width: 200, height: 200, borderRadius: 100}} resizeMode="contain" />
+      )}
       <BottomBar navigation={navigation} route={route}></BottomBar>
     </View>
   );
