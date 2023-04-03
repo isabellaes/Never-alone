@@ -39,13 +39,13 @@ export default function HomeScreen({ navigation, route }: Props) {
           title="Meditation"
           description="Meditationer och övningar"
           onPress={() => navigation.navigate("Meditation")}
-          uri="https://freepngimg.com/thumb/categories/1786.png"
+          uri="https://cdn.pixabay.com/photo/2020/03/21/19/27/sea-4955005_960_720.jpg"
         ></OverviewCard>
         <OverviewCard
           title="Dagbok"
           description="Skriv ner dina tankar"
           onPress={() => navigation.navigate("DailyNote")}
-          uri="https://freepngimg.com/thumb/categories/1786.png"
+          uri="https://img.freepik.com/premium-photo/open-blank-diary-pencils-purple-background_428823-444.jpg?w=360"
         ></OverviewCard>
       </ScrollView>
 
