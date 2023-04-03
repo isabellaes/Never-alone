@@ -1,9 +1,9 @@
 import { Link } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Modal } from "react-native";
 import { RootStackParamList } from "../navigation/RootNavigator";
-import { TextInput } from "react-native-paper";
+import { IconButton, Portal, TextInput, Button } from "react-native-paper";
 import ButtonStandard from "../Componets/ButtonStandard";
 import { useAppDispatch } from "../store/store";
 import { login } from "../store/authSlice";
@@ -13,6 +13,10 @@ type Props = NativeStackScreenProps<RootStackParamList, "Login">;
 export default function LogInScreen({ navigation }: Props) {
   const [userName, setUserName] = React.useState<string | null>(null);
   const [passWord, setPassword] = React.useState<string | null>(null);
+  const [ModalVisible, setModalVisible] = React.useState(false);
+
+  const showModal = () => setModalVisible(true);
+  const hideModal = () => setModalVisible(false);
   const dispatch = useAppDispatch();
 
   const onUserNameChanged = (username: string) => setUserName(username);
@@ -54,6 +58,27 @@ export default function LogInScreen({ navigation }: Props) {
           }}
           text={"Skapa nytt konto"}
         ></ButtonStandard>
+        <IconButton
+          style={styles.iconButton}
+          onPress={showModal}
+          icon={"information-outline"}
+        ></IconButton>
+        <Portal>
+          <Modal
+            visible={ModalVisible}
+            onDismiss={() => setModalVisible(false)}
+          >
+            <View style={styles.modal}>
+              <Text style={styles.infoTitel}>{"Information"}</Text>
+              <Text style={styles.infoContent}>{"Lite info om appen..."}</Text>
+              <Text style={styles.infoContent}> </Text>
+              <ButtonStandard
+                onPress={hideModal}
+                text={"Stäng"}
+              ></ButtonStandard>
+            </View>
+          </Modal>
+        </Portal>
       </View>
     </View>
   );
@@ -82,12 +107,24 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 40,
   },
+  iconButton: {
+    marginTop: 150,
+    marginLeft: 300,
+  },
+  modal: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "95%",
+  },
+  infoTitel: {
+    fontSize: 30,
+    marginTop: 25,
+  },
+  infoContent: {
+    fontSize: 20,
+    marginTop: 25,
+  },
 });
 //modal som visar info om appen klicka på en ikon för att se den
-/* <Portal>
-          <Modal
-            visible={ModalVisible}
-            onDismiss={() => setModalVisible(false)}
-            children={undefined}
-          ></Modal>
-        </Portal> */
+/* Use snackbar to show problems with login or errors */
