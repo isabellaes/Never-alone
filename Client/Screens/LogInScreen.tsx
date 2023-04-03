@@ -108,8 +108,7 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
   iconButton: {
-    marginTop: 150,
-    marginLeft: 300,
+    marginTop: 30,
   },
   modal: {
     display: "flex",
