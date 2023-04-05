@@ -1,7 +1,13 @@
 import { Link } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import React, { useEffect } from "react";
-import { View, Text, StyleSheet, TextInput } from "react-native";
+import React, { useEffect, useState } from "react";
+import {
+  View,
+  Text,
+  Image,
+  Alert,
+  ScrollView,
+} from "react-native";
 import { RootStackParamList } from "../navigation/RootNavigator";
 import { getProfile } from "../store/profileSlice";
 import { useAppDispatch, useAppSelector } from "../store/store";
@@ -9,11 +15,27 @@ import { Profile } from "../utils/types";
 import { AppState } from "../store/store";
 import { BottomBar } from "../Componets/BottomBar";
 import { styles } from "../utils/styleSheet";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Profile">;
 
 export default function ProfileScreen({ navigation, route }: Props) {
   const [profile, setProfile] = React.useState<Profile | null>();
+  const [selectedImageUrl, setSelectedImageUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    const getSelectedImage = async () => {
+      try {
+        const selectedImage = await AsyncStorage.getItem("selectedImage");
+        if (selectedImage != null) {
+          setSelectedImageUrl(selectedImage);
+        }
+      } catch {
+        Alert.alert("Något gick fel, försök igen");
+      }
+    };
+    getSelectedImage();
+  }, []);
 
   const dispatch = useAppDispatch();
   const currentProfile = (state: AppState) => {
@@ -32,54 +54,23 @@ export default function ProfileScreen({ navigation, route }: Props) {
   }, [currentUserProfile]);
 
   return (
-    <View style={styles.container}>
-      <Link to="/EditProfile">
-        <Text>Tryck här på länken för att komma till EditProfile</Text>
-      </Link>
-      <Text style={{ fontSize: 25, marginBottom: 25 }}>Profile Screen</Text>
-      <Text>{profile?.name}</Text>
+    <View style={styles.containertwo}>
+      <ScrollView style={{ width: "90%" }}>
+        <Text style={styles.title}>{profile?.name}</Text>
+        {selectedImageUrl && (
+          <Image
+            style={styles.selectedImage}
+            source={{ uri: selectedImageUrl }}
+          ></Image>
+        )}
+        <Text style={{marginTop: 50}} ></Text>
+        <Link to="/EditProfile" style={styles.titleProfile}>
+          <Text >Redigera profilsidan</Text>
+        </Link>
+        
+      </ScrollView>
       <BottomBar navigation={navigation} route={route}></BottomBar>
     </View>
   );
 }
 
-const styless = StyleSheet.create({
-  // Styles that are unchanged from previous step are hidden for brevity.
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  imageContainer: {
-    flex: 1,
-    paddingTop: 58,
-  },
-  image: {
-    width: 320,
-    height: 440,
-    borderRadius: 18,
-  },
-  footerContainer: {
-    flex: 1 / 3,
-    alignItems: "center",
-    marginBottom: 40,
-  },
-  textInput: {
-    marginLeft: 25,
-    marginRight: 25,
-    backgroundColor: "#f9defa",
-    borderRadius: 5,
-    padding: 20,
-  },
-  edit: {
-    fontSize: 30,
-    marginLeft: 25,
-    marginBottom: 20,
-    paddingTop: 50,
-  },
-  buttonStandard: {
-    display: "flex",
-    alignItems: "center",
-    marginBottom: 20,
-  },
-});

@@ -9,7 +9,6 @@ interface Props {
 }
 
 const ButtonStandard = ({ text, icon, onPress, disabled }: Props) => {
-  
   return (
     <Button
       icon={icon}
@@ -17,7 +16,7 @@ const ButtonStandard = ({ text, icon, onPress, disabled }: Props) => {
       onPress={onPress}
       mode="elevated"
       style={{
-        width: "50%",
+        width: "80%",
         backgroundColor: "#ad6ab0",
         elevation: 5,
       }}
