@@ -9,6 +9,7 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#F3EEF6",
   },
+ 
 
   containertwo: {
           flex: 1,
@@ -21,6 +22,46 @@ export const styles = StyleSheet.create({
           padding: 40
     
         },
+
+        //profile
+        containerProfile: {
+          flex: 1,
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          alignContent: "center",
+          justifyContent: "space-evenly",
+        
+          
+             
+            },
+            imageProfile: {
+              width: 100,
+              height: 100,
+              margin: 5,
+            },
+            selectedImage: {
+              width: 300,
+              height: 300,
+              borderRadius: 1500,
+              marginBottom: 50,
+              marginTop:20
+            },
+            titleProfile: {
+              textAlign: "center",
+              fontSize: 18,
+              padding: 5,
+              color: "#40040",
+              marginBottom: 50,
+              textDecorationLine: "underline",
+              textDecorationColor: "#40040",
+              borderBottomWidth: 1,
+              borderBottomStyle: "solid"
+              
+            },
+
+          
         
    // texts     
   textRegular: {
@@ -41,7 +82,11 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     padding: 5,
     color: "#40040",
+    marginBottom: 50
+    
   },
+
+
 
   citat: {
     fontSize: 15,

@@ -1,7 +1,13 @@
 import { Link } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  Alert,
+  ScrollView,
+} from "react-native";
 import { RootStackParamList } from "../navigation/RootNavigator";
 import { getProfile } from "../store/profileSlice";
 import { useAppDispatch, useAppSelector } from "../store/store";
@@ -9,45 +15,27 @@ import { Profile } from "../utils/types";
 import { AppState } from "../store/store";
 import { BottomBar } from "../Componets/BottomBar";
 import { styles } from "../utils/styleSheet";
-import ImageOption from "../Componets/ImageOption";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-
-type Props = NativeStackScreenProps<RootStackParamList, "Profile"> 
-
-
+type Props = NativeStackScreenProps<RootStackParamList, "Profile">;
 
 export default function ProfileScreen({ navigation, route }: Props) {
   const [profile, setProfile] = React.useState<Profile | null>();
-  const [options, SetOptions] = useState(false);
-  const [selectedImage, setSelectedImage] = useState("")
-  const [image, setImage] = useState<string[]>([]);
+  const [selectedImageUrl, setSelectedImageUrl] = useState<string | null>(null);
 
-  const fetchImage = async () => {
-    const imageIds = ["237", "238", "239"]
-    const ImageUrls: string[] = []
-  
-    for (const id of imageIds) {
+  useEffect(() => {
+    const getSelectedImage = async () => {
       try {
-        const response = await fetch(`https://picsum.photos/id/${id}/info`);
-        const data = await response.json();
-        const imageUrl = `https://picsum.photos/id/${id}/${data.width}/${data.height}`;
-        ImageUrls.push(imageUrl);
-      } catch (error) {
-        console.log(error)
+        const selectedImage = await AsyncStorage.getItem("selectedImage");
+        if (selectedImage != null) {
+          setSelectedImageUrl(selectedImage);
+        }
+      } catch {
+        Alert.alert("Något gick fel, försök igen");
       }
-    }
-    
-    setImage(ImageUrls);
-  }
-
-  useEffect(()=> {
-    fetchImage()
-  },[])
-
-  const handleImageSelect = (imageUrl: string) => {
-    setSelectedImage(imageUrl);
-    SetOptions(false)
-  }
+    };
+    getSelectedImage();
+  }, []);
 
   const dispatch = useAppDispatch();
   const currentProfile = (state: AppState) => {
@@ -66,67 +54,23 @@ export default function ProfileScreen({ navigation, route }: Props) {
   }, [currentUserProfile]);
 
   return (
-    <View style={styles.container}>
-      <Link to="/EditProfile">
-        <Text>Tryck här på länken för att komma till EditProfile</Text>
-      </Link>
-      <Text style={{ fontSize: 25, marginBottom: 25 }}>Profile Screen</Text>
-      <Text>{profile?.name}</Text>
-      <TouchableOpacity onPress={() => SetOptions(!options)} style={{ marginBottom: 20 }}>
-        <Text style={{ fontSize: 16, color: 'blue' }}>Välj bild</Text>
-      </TouchableOpacity>
-      {options && (
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 20 }}>
-          {image.map((imageUrl, index) => (
-            <ImageOption key={index} imageUrl={imageUrl} onSelectImage={handleImageSelect} />
-          ))}
-        </View>
-      )}
-      {selectedImage !== '' && (
-        <Image source={{ uri: selectedImage }} style={{ width: 200, height: 200, borderRadius: 100}} resizeMode="contain" />
-      )}
+    <View style={styles.containertwo}>
+      <ScrollView style={{ width: "90%" }}>
+        <Text style={styles.title}>{profile?.name}</Text>
+        {selectedImageUrl && (
+          <Image
+            style={styles.selectedImage}
+            source={{ uri: selectedImageUrl }}
+          ></Image>
+        )}
+        <Text style={{marginTop: 50}} ></Text>
+        <Link to="/EditProfile" style={styles.titleProfile}>
+          <Text >Redigera profilsidan</Text>
+        </Link>
+        
+      </ScrollView>
       <BottomBar navigation={navigation} route={route}></BottomBar>
     </View>
   );
 }
 
-const styless = StyleSheet.create({
-  // Styles that are unchanged from previous step are hidden for brevity.
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  imageContainer: {
-    flex: 1,
-    paddingTop: 58,
-  },
-  image: {
-    width: 320,
-    height: 440,
-    borderRadius: 18,
-  },
-  footerContainer: {
-    flex: 1 / 3,
-    alignItems: "center",
-    marginBottom: 40,
-  },
-  textInput: {
-    marginLeft: 25,
-    marginRight: 25,
-    backgroundColor: "#f9defa",
-    borderRadius: 5,
-    padding: 20,
-  },
-  edit: {
-    fontSize: 30,
-    marginLeft: 25,
-    marginBottom: 20,
-    paddingTop: 50,
-  },
-  buttonStandard: {
-    display: "flex",
-    alignItems: "center",
-    marginBottom: 20,
-  },
-});

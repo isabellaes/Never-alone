@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { TouchableOpacity, View, Image, Text, Alert } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -14,7 +13,7 @@ const fetchImage = async () => {
       const imageUrl = `https://picsum.photos/id/${id}/${data.width}/${data.height}`;
       ImageUrls.push(imageUrl);
     } catch (error) {
-      Alert.alert("Kunde inte hämta bild, försök igen!")
+      Alert.alert("Problem att ladda upp bild, försök igen!")
     }
   }
 
@@ -41,7 +40,7 @@ const FetchProfileImage = () => {
           setSelectedImageUrl(selectedImage);
         }
       } catch (error) {
-        Alert.alert("Kunde inte hämta bild, försök igen!")
+        Alert.alert("Problem att ladda upp bild, försök igen!")
       }
     };
     getSelectedImage();
@@ -52,7 +51,7 @@ const FetchProfileImage = () => {
       await AsyncStorage.setItem("selectedImage", imageUrl);
       setSelectedImageUrl(imageUrl);
     } catch (error) {
-        Alert.alert("Kunde inte hämta bild, försök igen!")
+        Alert.alert("Problem att ladda upp bild, försök igen!")
     }
   };
 
