@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from "../store/store";
 import OverviewCard from "../Componets/OverviewCard";
 import MoodPicker from "../Componets/MoodPicker";
 import { AppState } from "../store/store";
-import { Profile, User } from "../utils/types";
+import { Profile } from "../utils/types";
 import { styles } from "../utils/styleSheet";
 import { BottomBar } from "../Componets/BottomBar";
 import { getProfile } from "../store/profileSlice";
