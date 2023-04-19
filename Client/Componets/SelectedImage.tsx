@@ -1,19 +1,21 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
+
 import React, { useEffect, useState } from "react";
 import {
   View,
   Image,
   Alert,
-  ScrollView,
 } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 interface Props {
-  containerStyle?: object;
-  imageStyle?: object;
+  stylescontainer?: any;
+  stylesView?: any;
+  stylesimage?: any
+
 }
 
 
-export default function selectedImage({containerStyle, imageStyle}: Props) {
+export default function SelectedImage({stylescontainer,stylesView,stylesimage}: Props) {
   const [selectedImageUrl, setSelectedImageUrl] = useState<string | null>(null);
 
   useEffect(() => {
@@ -30,17 +32,18 @@ export default function selectedImage({containerStyle, imageStyle}: Props) {
     getSelectedImage();
   }, []);
 
+
   return (
-    <View style={containerStyle} >
-      <ScrollView style={{ width: "90%" }}>
+    <View style={stylescontainer}>
         {selectedImageUrl && (
+          <View style={stylesView}>
           <Image
-            style={imageStyle}
+            style={stylesimage}
             source={{ uri: selectedImageUrl }}
-          ></Image>
+          />
+          </View>
         )}
-      </ScrollView>
-     
     </View>
   );
 }
+

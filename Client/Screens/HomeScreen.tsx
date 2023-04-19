@@ -1,5 +1,5 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, ScrollView } from "react-native";
 import { RootStackParamList } from "../navigation/RootNavigator";
 import { useAppDispatch, useAppSelector } from "../store/store";
@@ -14,13 +14,17 @@ import { getProfile } from "../store/profileSlice";
 type Props = NativeStackScreenProps<RootStackParamList, "Home">;
 
 export default function HomeScreen({ navigation, route }: Props) {
+  const dispatch = useAppDispatch();
   const [profile, setProfile] = React.useState<Profile | null>();
 
   const currentProfile = (state: AppState) => {
     return state.profile.profile;
   };
-  const dispatch = useAppDispatch();
-  dispatch(getProfile());
+
+  useEffect(() => {
+    dispatch(getProfile());
+   }, [dispatch])
+
   const currentUserProfile = useAppSelector(currentProfile);
 
   React.useEffect(() => {
