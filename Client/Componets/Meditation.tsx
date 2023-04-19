@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { Alert, Button, Linking, StyleSheet, View, Text } from "react-native";
+import { Alert, Linking, View, Text } from "react-native";
 import { styles } from "../utils/styleSheet";
 
 const LearnMeditationURL = "https://www.mindful.org/how-to-meditate/";

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { View, StyleSheet } from "react-native";
-import { Button, Card, Dialog, Portal, Text } from "react-native-paper";
+import { Button, Dialog, Portal, Text } from "react-native-paper";
 
 function Message(message: string) {}
 

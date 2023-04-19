@@ -14,6 +14,7 @@ import NoteCard from "../Componets/NoteCard";
 import { BottomBar } from "../Componets/BottomBar";
 import { styles } from "../utils/styleSheet";
 
+
 type Props = NativeStackScreenProps<RootStackParamList, "DailyNote">;
 
 export default function DailyNotes({ navigation, route }: Props) {
@@ -69,6 +70,7 @@ export default function DailyNotes({ navigation, route }: Props) {
     <View style={styles.container}>
       <ScrollView style={{ width: "95%" }}>
         <Text style={styles.citat}> - {month} -</Text>
+        
         <View>
           <TextInput
             value={title}

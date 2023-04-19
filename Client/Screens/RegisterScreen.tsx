@@ -1,11 +1,10 @@
-import { Link } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { RootStackParamList } from "../navigation/RootNavigator";
 import { TextInput } from "react-native-paper";
 import ButtonStandard from "../Componets/ButtonStandard";
-import { AppState, useAppDispatch, useAppSelector } from "../store/store";
+import { useAppDispatch } from "../store/store";
 import { register } from "../store/authSlice";
 import { createProfile } from "../store/profileSlice";
 

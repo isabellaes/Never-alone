@@ -42,7 +42,7 @@ export default function EditProfile({ navigation, route }: Props) {
     <View style={styles.containertwo}>
       <ScrollView style={{ width: "90%" }}>
         <Text style={styles.titletwo}>Användarnamn:  {profile?.name}</Text>
-        <FetchProfileImage></FetchProfileImage>
+        <FetchProfileImage />
         <TextInput
           style={styles.citat}
           placeholder="Nytt användarnamn...."

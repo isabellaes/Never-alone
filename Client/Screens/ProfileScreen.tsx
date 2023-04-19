@@ -17,6 +17,7 @@ import { BottomBar } from "../Componets/BottomBar";
 import { styles } from "../utils/styleSheet";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+
 type Props = NativeStackScreenProps<RootStackParamList, "Profile">;
 
 export default function ProfileScreen({ navigation, route }: Props) {

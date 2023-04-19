@@ -1,10 +1,7 @@
-import { Link } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React from "react";
-import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
+import { View, Text, ScrollView, Image } from "react-native";
 import { RootStackParamList } from "../navigation/RootNavigator";
-import { useAppDispatch } from "../store/store";
-import OverviewCard from "../Componets/OverviewCard";
 import Meditation from "../Componets/Meditation";
 import { BottomBar } from "../Componets/BottomBar";
 import Weather from "../Componets/Weather";
