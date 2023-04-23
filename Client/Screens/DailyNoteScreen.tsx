@@ -43,7 +43,7 @@ export default function DailyNotes({ navigation, route }: Props) {
     if (currentDailyNote) {
       setDailyNote(currentDailyNote);
     }
-  }, [dispatch, currentDailyNote]);
+  }, [dispatch]);
 
   function onPress() {
     if (title && content) {
