@@ -1,9 +1,8 @@
-import { Link } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React from "react";
 import { View, Text, StyleSheet, Modal } from "react-native";
 import { RootStackParamList } from "../navigation/RootNavigator";
-import { IconButton, Portal, TextInput, Button } from "react-native-paper";
+import { IconButton, Portal, TextInput } from "react-native-paper";
 import ButtonStandard from "../Componets/ButtonStandard";
 import { useAppDispatch } from "../store/store";
 import { login } from "../store/authSlice";

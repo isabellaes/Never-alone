@@ -54,13 +54,3 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
 });
-// style={{
-//     ...style,
-//     width: "92%",
-//     elevation: 5,
-//     shadowColor: "black",
-//     borderBottomRightRadius: 10,
-//     borderBottomLeftRadius: 10,
-//     fontSize: 20,
-//     paddingHorizontal: 20,
-//   }}

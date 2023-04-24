@@ -35,10 +35,9 @@ export default function PhonenumberScreen({ navigation, route }: Props) {
     <View style={styles.container}>
       <ScrollView style={{marginTop: 15, width: "90%" }}>
       <Text style={styles.titletwo}>Vid akuta lägen ring: <Text style={{fontWeight: "bold"}}>112</Text></Text>
-        {data.map((c) => (
-          <View style={styles.citat}>
+        {data.map((c, i) => (
+          <View style={styles.citat}  key={i}>
             <Contacts
-              key={c.id}
               name={c.name}
               number={c.number}
               url={c.url}

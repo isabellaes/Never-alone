@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Text, useTheme } from "react-native-paper";
+import { Button, Text } from "react-native-paper";
 
 interface Props {
   onPress: () => void;

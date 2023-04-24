@@ -1,7 +1,6 @@
 import * as React from "react";
 import { View } from "react-native";
 import { Button, Card, Text } from "react-native-paper";
-import { ImageSource } from "react-native-vector-icons/Icon";
 
 interface prop {
   title: string;

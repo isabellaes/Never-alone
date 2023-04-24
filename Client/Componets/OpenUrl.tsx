@@ -1,5 +1,5 @@
 import React, {useCallback} from 'react';
-import {Alert, Button, Linking, StyleSheet, TouchableOpacity, View, Text} from 'react-native';
+import {Alert, Linking, TouchableOpacity, Text} from 'react-native';
 
 
 type OpenURLProps = {

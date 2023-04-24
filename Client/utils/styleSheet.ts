@@ -9,7 +9,6 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#F3EEF6",
   },
- 
 
   containertwo: {
           flex: 1,
@@ -32,8 +31,6 @@ export const styles = StyleSheet.create({
           alignItems: "center",
           alignContent: "center",
           justifyContent: "space-evenly",
-        
-          
              
             },
             imageProfile: {
@@ -41,13 +38,18 @@ export const styles = StyleSheet.create({
               height: 100,
               margin: 5,
             },
+
             selectedImage: {
-              width: 300,
-              height: 300,
-              borderRadius: 1500,
+              width: 270,
+              height: 270,
+              borderRadius: 135,
+              marginLeft: 20,
               marginBottom: 50,
-              marginTop:20
+              marginTop:20,
+              borderWidth: 2,
+              borderColor: "#c76392",
             },
+
             titleProfile: {
               textAlign: "center",
               fontSize: 18,
@@ -60,6 +62,29 @@ export const styles = StyleSheet.create({
               borderBottomStyle: "solid"
               
             },
+
+            imagesmall: {
+              width: 80,
+              height:80,
+              borderRadius: 40,
+              borderWidth: 2,
+              borderColor: "#c76392",
+             
+            },
+            imagesmalls: {
+              width: 50,
+              height:50,
+              borderRadius: 25,
+              borderWidth: 2,
+              borderColor: "#c76392",
+              
+             
+            },
+            view: {
+              marginTop: 10
+            },
+
+           
 
           
         
