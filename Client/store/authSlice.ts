@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { User, LogInRespons, Error, RegisterRespons } from "../utils/types";
 import { loginRequest, registerRequest } from "../utils/api";
+import { Alert } from "react-native";
+import { Title } from "react-native-paper";
 
 export interface AuthState {
   user: User | null;
@@ -26,6 +28,10 @@ export const login = createAsyncThunk<
     const respons = await loginRequest(data.username, data.password);
     return respons;
   } catch (error) {
+    Alert.alert(
+      "Inloggning misslyckades",
+      "Fel lösenord eller användarnaman. Försök igen!"
+    );
     return rejectWithValue("Failed to fetch");
   }
 });
@@ -42,6 +48,10 @@ export const register = createAsyncThunk<
     );
     return respons;
   } catch (error) {
+    Alert.alert(
+      "Registrering misslyckades",
+      "Användarnamnet är upptaget. Försök med ett annat!"
+    );
     return rejectWithValue("Failed to fetch");
   }
 });
