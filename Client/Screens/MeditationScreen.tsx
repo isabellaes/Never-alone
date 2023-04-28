@@ -1,5 +1,4 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import React from "react";
 import { View, Text, ScrollView, Image } from "react-native";
 import { RootStackParamList } from "../navigation/RootNavigator";
 import Meditation from "../Componets/Meditation";
@@ -7,6 +6,8 @@ import { BottomBar } from "../Componets/BottomBar";
 import Weather from "../Componets/Weather";
 import { styles } from "../utils/styleSheet";
 import SelectedImage from "../Componets/SelectedImage";
+import React from "react";
+
 
 type Props = NativeStackScreenProps<RootStackParamList, "Meditation">;
 
