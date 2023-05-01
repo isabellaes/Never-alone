@@ -2,6 +2,7 @@ import * as React from "react";
 import { View, StyleSheet } from "react-native";
 import { Button, Dialog, Portal, Text } from "react-native-paper";
 import { Mood } from "../utils/types";
+import { setCurrentMood } from "../store/moodTrackerSlice";
 
 export default function MoodPicker() {
   const [visible, setVisible] = React.useState(false);
@@ -20,7 +21,13 @@ export default function MoodPicker() {
   ];
 
   function onPress(icon: string) {
-    if (icon == icons[3].icon || icon == icons[4].icon) {
+    setMessage("Du har nu registrerat dagens mood");
+    showDialog();
+
+    var mood: Mood = { icon: icon, number: 0, date: new Date() };
+    //setCurrentMood(mood);
+
+    /*if (icon == icons[3].icon || icon == icons[4].icon) {
       setMessage(
         "Du är inte ensam! Behöver du extra stöd idag? ❤️ klicka på hjärtat!"
       );
@@ -33,7 +40,7 @@ export default function MoodPicker() {
     } else {
       setMessage("Du verkar ha en bra dag idag! ❤️");
       showDialog();
-    }
+    }*/
   }
   return (
     <View style={styles.content}>
