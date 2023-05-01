@@ -142,6 +142,7 @@ export const styles = StyleSheet.create({
     elevation: 10,
     cursor: "pointer"
   },
+  
  
   //card
   card: {
