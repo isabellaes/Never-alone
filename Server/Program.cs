@@ -66,8 +66,6 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddScoped<IDailyNoteRepository, DailyNoteRepository>();
 builder.Services.AddScoped<IContactRepository, ContactRepository>();
 builder.Services.AddScoped<IMeditationRepository, MeditationRepository>();
-builder.Services.AddScoped<IStoryRepository, StoryRepository>();
-builder.Services.AddScoped<ITipsRepository, TipsRepository>();
 builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
 
 builder.Services.AddCors(options =>

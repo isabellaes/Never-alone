@@ -26,7 +26,7 @@ public class MeditationRepository : IMeditationRepository
         };
 
         _context.Meditation.Add(meditation);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
 
         return meditation;
     }

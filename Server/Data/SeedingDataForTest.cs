@@ -15,7 +15,6 @@ public class SeedingDataForTest
         await SeedProfilesAsync(context);
         await SeedMeditationsAsync(context);
         await SeedDailyNotesAsync(context);
-        await SeedTipsAsync(context);
     }
 
     private static async Task SeedUsersAsync(DataContext context, UserManager<IdentityUser> userManager)
@@ -61,7 +60,7 @@ public class SeedingDataForTest
         new Profile{Id = "2", Name = "user2", UserId = "2"},
         new Profile{Id = "3", Name = "user3", UserId = "3"}};
 
-            context.Profile.AddRangeAsync(profiles);
+            await context.Profile.AddRangeAsync(profiles);
             await context.SaveChangesAsync();
         }
 
@@ -81,7 +80,7 @@ public class SeedingDataForTest
         };
 
 
-            context.Meditation.AddRangeAsync(meditations);
+            await context.Meditation.AddRangeAsync(meditations);
             await context.SaveChangesAsync();
         }
 
@@ -101,27 +100,8 @@ public class SeedingDataForTest
         new DailyNote{Id ="6", Title = "user1", Content= "Some random text about something...",  UserId = "3"}
         };
 
-            context.DailyNote.AddRangeAsync(dailynotes);
+            await context.DailyNote.AddRangeAsync(dailynotes);
             await context.SaveChangesAsync();
-        }
-    }
-
-    private static async Task SeedTipsAsync(DataContext context)
-    {
-        if (!context.Tips.Any())
-        {
-            Tips[] tips = {
-            new Tips{Id ="1", Title="Tips", Details="Lorem Ipsum is simply dummy text of the printing and typesetting industry."},
-            new Tips{Id ="2", Title="Tips", Details="Lorem Ipsum is simply dummy text of the printing and typesetting industry."},
-            new Tips{Id ="3", Title="Tips", Details="Lorem Ipsum is simply dummy text of the printing and typesetting industry."},
-            new Tips{Id ="4", Title="Tips", Details="Lorem Ipsum is simply dummy text of the printing and typesetting industry. "},
-            new Tips{Id ="5", Title="Tips", Details="Lorem Ipsum is simply dummy text of the printing and typesetting industry. "},
-        };
-
-
-            context.Tips.AddRangeAsync(tips);
-            await context.SaveChangesAsync();
-
         }
     }
 }

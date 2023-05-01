@@ -54,10 +54,10 @@ export const styles = StyleSheet.create({
               textAlign: "center",
               fontSize: 18,
               padding: 5,
-              color: "#40040",
+              color: "#404040",
               marginBottom: 50,
               textDecorationLine: "underline",
-              textDecorationColor: "#40040",
+              textDecorationColor: "#404040",
               borderBottomWidth: 1,
               borderBottomStyle: "solid"
               
@@ -106,7 +106,7 @@ export const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 18,
     padding: 5,
-    color: "#40040",
+    color: "#404040",
     marginBottom: 50
     
   },
