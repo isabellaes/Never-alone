@@ -1,8 +1,7 @@
 import * as React from "react";
 import { View, StyleSheet } from "react-native";
 import { Button, Dialog, Portal, Text } from "react-native-paper";
-
-function Message(message: string) {}
+import { Mood } from "../utils/types";
 
 export default function MoodPicker() {
   const [visible, setVisible] = React.useState(false);
@@ -12,15 +11,21 @@ export default function MoodPicker() {
 
   const hideDialog = () => setVisible(false);
 
-  const icons: string[] = ["😊", "👍", "👌", "👎", "😢"];
+  const icons: Mood[] = [
+    { icon: "😊", number: 10, date: new Date() },
+    { icon: "👍", number: 8, date: new Date() },
+    { icon: "👌", number: 6, date: new Date() },
+    { icon: "👎", number: 4, date: new Date() },
+    { icon: "😢", number: 2, date: new Date() },
+  ];
 
   function onPress(icon: string) {
-    if (icon == icons[3] || icon == icons[4]) {
+    if (icon == icons[3].icon || icon == icons[4].icon) {
       setMessage(
         "Du är inte ensam! Behöver du extra stöd idag? ❤️ klicka på hjärtat!"
       );
       showDialog();
-    } else if (icon == icons[2]) {
+    } else if (icon == icons[2].icon) {
       setMessage(
         "Du kan alltid skriva av dig i dagboken! ❤️ Klicka på ikonen nere i hörnet."
       );
@@ -32,20 +37,20 @@ export default function MoodPicker() {
   }
   return (
     <View style={styles.content}>
-      <Button style={styles.button} onPress={() => onPress(icons[4])}>
-        {icons[4]}
+      <Button style={styles.button} onPress={() => onPress(icons[4].icon)}>
+        {icons[4].icon}
       </Button>
-      <Button style={styles.button} onPress={() => onPress(icons[3])}>
-        {icons[3]}
+      <Button style={styles.button} onPress={() => onPress(icons[3].icon)}>
+        {icons[3].icon}
       </Button>
-      <Button style={styles.button} onPress={() => onPress(icons[2])}>
-        {icons[2]}
+      <Button style={styles.button} onPress={() => onPress(icons[2].icon)}>
+        {icons[2].icon}
       </Button>
-      <Button style={styles.button} onPress={() => onPress(icons[1])}>
-        {icons[1]}
+      <Button style={styles.button} onPress={() => onPress(icons[1].icon)}>
+        {icons[1].icon}
       </Button>
-      <Button style={styles.button} onPress={() => onPress(icons[0])}>
-        {icons[0]}
+      <Button style={styles.button} onPress={() => onPress(icons[0].icon)}>
+        {icons[0].icon}
       </Button>
       <View>
         <Portal>

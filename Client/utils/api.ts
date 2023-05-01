@@ -1,7 +1,8 @@
 import { get } from "./securestore";
 import { User } from "./types";
 
-const url = "http://10.0.2.2:5015/api";
+//const url = "http://10.0.2.2:5015/api";
+const url = "https://faf5-83-233-39-224.eu.ngrok.io/api";
 
 export const getProfileRequest = async () => {
   const response = await fetch(`${url}/profile/Get`, {
