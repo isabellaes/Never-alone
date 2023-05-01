@@ -27,7 +27,7 @@ public class ContactRepository : IContactRepository
         };
 
         _context.Contact.Add(newContact);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
         return newContact;
 
     }

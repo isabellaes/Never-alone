@@ -28,7 +28,7 @@ public class DailyNoteRepository : IDailyNoteRepository
         };
 
         _context.DailyNote.Add(newDailyNote);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
         return newDailyNote;
 
     }
