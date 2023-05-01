@@ -28,7 +28,7 @@ public class ProfileRepository : IProfileRepository
         };
 
         _context.Profile.Add(profile);
-        _context.SaveChanges();
+       await _context.SaveChangesAsync();
 
         return profile;
 
@@ -43,7 +43,7 @@ public class ProfileRepository : IProfileRepository
         {
             profile.Name = name;
 
-            _context.SaveChangesAsync();
+           await _context.SaveChangesAsync();
 
             return profile;
         }
