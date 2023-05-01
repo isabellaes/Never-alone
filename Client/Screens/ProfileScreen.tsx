@@ -5,6 +5,7 @@ import {
   View,
   Text,
   ScrollView,
+  TouchableOpacity,
 } from "react-native";
 import { RootStackParamList } from "../navigation/RootNavigator";
 import { getProfile } from "../store/profileSlice";
@@ -43,9 +44,9 @@ export default function ProfileScreen({ navigation, route }: Props) {
         <Text style={styles.title}>{profile?.name}</Text>
        <SelectedImage stylesimage={styles.selectedImage}/>
         <Text style={{marginTop: 50}} ></Text>
-        <Link to="/EditProfile" style={styles.titleProfile}>
-          <Text >Redigera profilsidan</Text>
-        </Link>
+        <TouchableOpacity onPress={() => navigation.navigate("EditProfile")} >
+          <Text style={styles.titleProfile}>Redigera profilsidan</Text>
+        </TouchableOpacity>
         
       </ScrollView>
       <BottomBar navigation={navigation} route={route}></BottomBar>

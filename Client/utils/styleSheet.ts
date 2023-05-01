@@ -68,7 +68,7 @@ export const styles = StyleSheet.create({
               height:80,
               borderRadius: 40,
               borderWidth: 2,
-              borderColor: "#c76392",
+              borderColor: "#c48a9f",
              
             },
             imagesmalls: {
@@ -76,7 +76,7 @@ export const styles = StyleSheet.create({
               height:50,
               borderRadius: 25,
               borderWidth: 2,
-              borderColor: "#c76392",
+              borderColor: "#c48a9f",
               
              
             },
@@ -107,7 +107,7 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     padding: 5,
     color: "#404040",
-    marginBottom: 50
+    marginBottom: 30
     
   },
 
@@ -126,19 +126,21 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#B18DC1",
     widht: "50%",
+    
   },
   
   buttontwo: {
     display: "flex",
     alignItems: "center",
-    backgroundColor: "#fcf0f4",
-    color: "#c76392",
+    backgroundColor: "#c48a9f",
+    color: "white",
     paddingTop: 8,
     paddingLeft: 10,
     paddingRight: 10,
     borderRadius: 5,
     paddingBottom: 8,
     elevation: 10,
+    cursor: "pointer"
   },
  
   //card

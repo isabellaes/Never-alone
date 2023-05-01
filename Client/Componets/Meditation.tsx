@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { Alert, Linking, View, Text } from "react-native";
+import { Alert, Linking, View, Text, TouchableOpacity } from "react-native";
 import { styles } from "../utils/styleSheet";
 
 const LearnMeditationURL = "https://www.mindful.org/how-to-meditate/";
@@ -22,9 +22,9 @@ const OpenURLButton = ({ url, children }: OpenURLButtonProps) => {
   }, [url]);
 
   return (
-    <View style={styles.buttontwo}>
-      <Text onPress={handlePress}>{children} </Text>
-    </View>
+    <TouchableOpacity style={styles.buttontwo} onPress={handlePress}>
+      <Text>{children} </Text>
+    </TouchableOpacity>
   );
 };
 
@@ -32,15 +32,15 @@ const Meditation = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}></Text>
-      <Text>
+      <View style={{flexDirection: "row"}}>
         <OpenURLButton url={MeditationURL}>
           Direkt till meditation
         </OpenURLButton>
-        <Text >   </Text>
+        <View style={{ width: 10}}></View>
         <OpenURLButton url={LearnMeditationURL}>
           Mer om meditation..
         </OpenURLButton>
-      </Text>
+      </View>
     </View>
   );
 };
