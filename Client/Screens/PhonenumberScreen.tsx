@@ -1,6 +1,6 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React, { useEffect, useState } from "react";
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView, TouchableOpacity } from "react-native";
 import Contacts from "../Componets/Contacts";
 import { RootStackParamList } from "../navigation/RootNavigator";
 import { styles } from "../utils/styleSheet";
@@ -36,13 +36,13 @@ export default function PhonenumberScreen({ navigation, route }: Props) {
       <ScrollView style={{marginTop: 15, width: "90%" }}>
       <Text style={styles.titletwo}>Vid akuta lägen ring: <Text style={{fontWeight: "bold"}}>112</Text></Text>
         {data.map((c, i) => (
-          <View style={styles.citat}  key={i}>
+          <TouchableOpacity style={styles.citat}  key={i}>
             <Contacts
               name={c.name}
               number={c.number}
               url={c.url}
             ></Contacts>
-          </View>
+          </TouchableOpacity>
         ))}
       </ScrollView>
       <BottomBar navigation={navigation} route={route}></BottomBar>
