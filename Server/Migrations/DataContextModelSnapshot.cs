@@ -130,6 +130,27 @@ namespace Server.Migrations
                     b.ToTable("Meditation");
                 });
 
+            modelBuilder.Entity("NeverAlone.Models.Mood", b =>
+                {
+                    b.Property<string>("id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("icon")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("userId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("userId");
+
+                    b.ToTable("Mood");
+                });
+
             modelBuilder.Entity("NeverAlone.Models.Profile", b =>
                 {
                     b.Property<string>("Id")
@@ -151,38 +172,6 @@ namespace Server.Migrations
                     b.ToTable("Profile");
                 });
 
-            modelBuilder.Entity("NeverAlone.Models.Story", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Text")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Story");
-                });
-
-            modelBuilder.Entity("NeverAlone.Models.Tips", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Details")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Tips");
-                });
-
             modelBuilder.Entity("NeverAlone.Models.Contact", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "user")
@@ -199,6 +188,15 @@ namespace Server.Migrations
                         .HasForeignKey("UserId");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("NeverAlone.Models.Mood", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "user")
+                        .WithMany()
+                        .HasForeignKey("userId");
+
+                    b.Navigation("user");
                 });
 
             modelBuilder.Entity("NeverAlone.Models.Profile", b =>

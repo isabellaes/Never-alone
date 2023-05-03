@@ -15,6 +15,7 @@ public class SeedingDataForTest
         await SeedProfilesAsync(context);
         await SeedMeditationsAsync(context);
         await SeedDailyNotesAsync(context);
+        await SeedMoodsAsync(context);
     }
 
     private static async Task SeedUsersAsync(DataContext context, UserManager<IdentityUser> userManager)
@@ -104,4 +105,27 @@ public class SeedingDataForTest
             await context.SaveChangesAsync();
         }
     }
+
+    private static async Task SeedMoodsAsync(DataContext context)
+    {
+        if (!context.Mood.Any())
+        {
+            Mood[] moods = {
+                new Mood{id = "1", userId = "1", icon = "😢", date= new DateTime(2023-04-20)},
+                new Mood{id = "1", userId = "1", icon = "👎", date= new DateTime(2023-04-22)},
+                new Mood{id = "1", userId = "1", icon = "😢", date= new DateTime(2023-04-23)},
+                new Mood{id = "1", userId = "1", icon = "👌", date= new DateTime(2023-04-29)},
+                new Mood{id = "1", userId = "1", icon = "👌", date= new DateTime(2023-04-29)},
+                new Mood{id = "1", userId = "1", icon = "👌", date= new DateTime(2023-05-01)},
+                new Mood{id = "1", userId = "1", icon = "👍", date= new DateTime(2023-05-02)},
+                new Mood{id = "1", userId = "1", icon = "😊", date= new DateTime(2023-04-29)},
+                new Mood{id = "1", userId = "1", icon = "😊", date= new DateTime(2023-04-29)},
+                new Mood{id = "1", userId = "1", icon = "😊", date= new DateTime()}
+            };
+
+            await context.Mood.AddRangeAsync(moods);
+            await context.SaveChangesAsync();
+        }
+    }
 }
+

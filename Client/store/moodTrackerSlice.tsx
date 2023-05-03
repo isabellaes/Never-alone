@@ -1,79 +1,38 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { Mood } from "../utils/types";
+import { getAllMoodsRequest, createMoodRequest } from "../utils/api";
 
 export interface MoodTrackerState {
   data: Mood[] | null;
 }
 
 const initialState: MoodTrackerState = {
-  data: [
-    {
-      icon: "😊",
-      number: 10,
-      date: new Date(new Date().setDate(new Date().getDate() - 6)),
-    },
-    {
-      icon: "😊",
-      number: 10,
-      date: new Date(new Date().setDate(new Date().getDate() - 2)),
-    },
-    {
-      icon: "👍",
-      number: 8,
-      date: new Date(new Date().setDate(new Date().getDate() - 6)),
-    },
-    {
-      icon: "👍",
-      number: 8,
-      date: new Date(new Date().setDate(new Date().getDate() - 1)),
-    },
-    {
-      icon: "👍",
-      number: 8,
-      date: new Date(new Date().setDate(new Date().getDate() - 4)),
-    },
-    {
-      icon: "👌",
-      number: 6,
-      date: new Date(new Date().setDate(new Date().getDate() - 6)),
-    },
-    {
-      icon: "👌",
-      number: 6,
-      date: new Date(new Date().setDate(new Date().getDate() - 6)),
-    },
-    {
-      icon: "👌",
-      number: 6,
-      date: new Date(new Date().setDate(new Date().getDate() - 6)),
-    },
-    {
-      icon: "👌",
-      number: 6,
-      date: new Date(new Date().setDate(new Date().getDate() - 6)),
-    },
-    {
-      icon: "👎",
-      number: 4,
-      date: new Date(new Date().setDate(new Date().getDate() - 6)),
-    },
-    {
-      icon: "👎",
-      number: 4,
-      date: new Date(new Date().setDate(new Date().getDate() - 6)),
-    },
-    {
-      icon: "😢",
-      number: 2,
-      date: new Date(new Date().setDate(new Date().getDate() - 6)),
-    },
-    {
-      icon: "😢",
-      number: 2,
-      date: new Date(new Date().setDate(new Date().getDate() - 6)),
-    },
-  ],
+  data: null,
 };
+
+export const createMood = createAsyncThunk<Mood, { icon: string }>(
+  "mood/create",
+  async (data, { rejectWithValue }) => {
+    try {
+      const respons = await createMoodRequest(data.icon);
+      return respons;
+    } catch (error) {
+      return rejectWithValue("Failed to fetch");
+    }
+  }
+);
+
+export const getAllMoods = createAsyncThunk<Mood[]>(
+  "mood/getAll",
+  async (data, { rejectWithValue }) => {
+    try {
+      const respons = await getAllMoodsRequest();
+      return respons;
+    } catch (error) {
+      return rejectWithValue("Failed to fetch");
+    }
+  }
+);
 
 const MoodTrackerSlice = createSlice({
   name: "moodtracker",
@@ -82,6 +41,14 @@ const MoodTrackerSlice = createSlice({
     setCurrentMood: (state, action) => {
       state = action.payload.data;
     },
+  },
+  extraReducers(builder) {
+    builder.addCase(createMood.fulfilled, (state, action) => {
+      state.data?.push(action.payload);
+    });
+    builder.addCase(getAllMoods.fulfilled, (state, action) => {
+      state.data = action.payload;
+    });
   },
 });
 

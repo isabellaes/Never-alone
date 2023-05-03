@@ -1,4 +1,4 @@
-import * as React from "react";
+/*import * as React from "react";
 import { View, StyleSheet } from "react-native";
 import { Button, Dialog, Portal, Text } from "react-native-paper";
 import { Mood } from "../utils/types";
@@ -13,18 +13,18 @@ export default function MoodPicker() {
   const hideDialog = () => setVisible(false);
 
   const icons: Mood[] = [
-    { icon: "😊", number: 10, date: new Date() },
-    { icon: "👍", number: 8, date: new Date() },
-    { icon: "👌", number: 6, date: new Date() },
-    { icon: "👎", number: 4, date: new Date() },
-    { icon: "😢", number: 2, date: new Date() },
+    { icon: "😊", date: new Date() },
+    { icon: "👍", date: new Date() },
+    { icon: "👌", date: new Date() },
+    { icon: "👎", date: new Date() },
+    { icon: "😢", date: new Date() },
   ];
 
   function onPress(icon: string) {
     setMessage("Du har nu registrerat dagens mood");
     showDialog();
 
-    var mood: Mood = { icon: icon, number: 0, date: new Date() };
+    var mood: Mood = { icon: icon, date: new Date() };
     //setCurrentMood(mood);
 
     /*if (icon == icons[3].icon || icon == icons[4].icon) {
@@ -40,10 +40,15 @@ export default function MoodPicker() {
     } else {
       setMessage("Du verkar ha en bra dag idag! ❤️");
       showDialog();
-    }*/
+    }
   }
   return (
     <View style={styles.content}>
+      {icons.map((element) => (
+        <Button style={styles.button} onPress={() => onPress(element.icon)}>
+          {icons[4].icon}
+        </Button>
+      ))}
       <Button style={styles.button} onPress={() => onPress(icons[4].icon)}>
         {icons[4].icon}
       </Button>
@@ -88,3 +93,4 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
 });
+*/

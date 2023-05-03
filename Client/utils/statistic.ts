@@ -1,28 +1,64 @@
 import { Mood } from "./types";
 
-export function mapData(data: Mood[]) {
-  const startDate = new Date().getDate() - 30;
-  console.log(startDate);
-  const endDate = new Date().getDate();
-  console.log(endDate);
+const today = new Date();
+const icons: string[] = ["😢", "👎", "👌", "👍", "😊"];
 
-  console.log(data.length);
+export function getMonthlyData(data: Mood[] | null) {
+  if (data === null) return null;
+  const startDate = new Date(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDay() - today.getDay() - 29
+  );
+
+  const endDate = new Date(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDay() - today.getDay() - +1
+  );
 
   const result = data?.filter((element) => {
     if (
-      new Date(element.date).getDay() >= startDate &&
-      new Date(element.date).getDay() <= endDate
+      new Date(element.date).getDay() >= startDate.getDay() &&
+      new Date(element.date).getDay() <= endDate.getDay()
     )
       return true;
     else {
       return false;
     }
   });
-  console.log(result.length);
-  return result;
+  return sortData(result);
 }
 
-export function sortData(data: Mood[], icons: string[]) {
+export function getWeeklyData(data: Mood[] | null) {
+  if (data === null) return null;
+  const startDate = new Date(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDay() - today.getDay() - 7
+  );
+
+  const endDate = new Date(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDay() - today.getDay() - +1
+  );
+
+  const result = data?.filter((element) => {
+    if (
+      new Date(element.date).getDay() >= startDate.getDay() &&
+      new Date(element.date).getDay() <= endDate.getDay()
+    )
+      return true;
+    else {
+      return false;
+    }
+  });
+
+  return sortData(result);
+}
+
+export function sortData(data: Mood[]) {
   const numberArray: number[] = [];
   for (var icon of icons) {
     const number = data?.filter((element) => {

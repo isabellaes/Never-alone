@@ -1,8 +1,7 @@
 import { get } from "./securestore";
 import { User } from "./types";
 
-//const url = "http://10.0.2.2:5015/api";
-const url = "https://faf5-83-233-39-224.eu.ngrok.io/api";
+const url = "http://10.0.2.2:5015/api";
 
 export const getProfileRequest = async () => {
   const response = await fetch(`${url}/profile/Get`, {
@@ -171,6 +170,41 @@ export const deleteDailyNoteRequest = async (id: string) => {
     body: JSON.stringify({
       id,
     }),
+  });
+  if (response.ok) {
+    const data = await response.json();
+    return data;
+  }
+
+  throw response;
+};
+
+export const createMoodRequest = async (icon: string) => {
+  const response = await fetch(`${url}/mood/Create`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${await get("user.token")}`,
+    },
+    body: JSON.stringify({
+      icon,
+    }),
+  });
+  if (response.ok) {
+    const data = await response.json();
+    return data;
+  }
+
+  throw response;
+};
+
+export const getAllMoodsRequest = async () => {
+  const response = await fetch(`${url}/mood/GetAll`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${await get("user.token")}`,
+    },
   });
   if (response.ok) {
     const data = await response.json();
