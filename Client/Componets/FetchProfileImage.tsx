@@ -4,7 +4,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { styles } from "../utils/styleSheet";
 
 const fetchImage = async () => {
-  const imageIds = ["237", "238", "239", "1", "2", ];
+  const imageIds = ["237", "238", "239", "1", "2"];
   const ImageUrls: string[] = [];
   for (const id of imageIds) {
     try {
@@ -13,7 +13,7 @@ const fetchImage = async () => {
       const imageUrl = `https://picsum.photos/id/${id}/${data.width}/${data.height}`;
       ImageUrls.push(imageUrl);
     } catch (error) {
-      Alert.alert("Problem att ladda upp bild, försök igen!")
+      Alert.alert("Problem att ladda upp bild, försök igen!");
     }
   }
 
@@ -40,7 +40,7 @@ const FetchProfileImage = () => {
           setSelectedImageUrl(selectedImage);
         }
       } catch (error) {
-        Alert.alert("Problem att ladda upp bild, försök igen!")
+        Alert.alert("Problem att ladda upp bild, försök igen!");
       }
     };
     getSelectedImage();
@@ -51,23 +51,31 @@ const FetchProfileImage = () => {
       await AsyncStorage.setItem("selectedImage", imageUrl);
       setSelectedImageUrl(imageUrl);
     } catch (error) {
-        Alert.alert("Problem att ladda upp bild, försök igen!")
+      Alert.alert("Problem att ladda upp bild, försök igen!");
     }
   };
 
   return (
-    <View>
+    <View style={{marginBottom: 50}}>
       {selectedImageUrl ? (
         <TouchableOpacity onPress={() => setSelectedImageUrl(null)}>
-          <Image style={styles.selectedImage} source={{ uri: selectedImageUrl }} />
-          <Text style={styles.titleProfile} onPress={() => setSelectedImageUrl(null)}>Ändra profilbild</Text>
+          <Image
+            style={styles.selectedImage}
+            source={{ uri: selectedImageUrl }}
+          />
+          <TouchableOpacity onPress={() => setSelectedImageUrl(null)}>
+            <Text style={styles.titleProfile}>Ändra profilbild</Text>
+          </TouchableOpacity>
         </TouchableOpacity>
       ) : (
-        imageUrls.map((url) => (
-          <TouchableOpacity key={url} onPress={() => handleImageSelect(url)}>
-            <Image style={styles.imageProfile} source={{ uri: url }} />
-          </TouchableOpacity>
-        ))
+        <View style={{ flexDirection: "row", flexWrap: "wrap", marginLeft: 45 , marginBottom: 60}}>
+          <Text style={{marginLeft: 65,  marginRight: 50, marginBottom:10}}>Välj profilbild:</Text>
+          {imageUrls.map((url) => (
+            <TouchableOpacity key={url} onPress={() => handleImageSelect(url)}>
+              <Image style={styles.imageProfile} source={{ uri: url }} />
+            </TouchableOpacity>
+          ))}
+        </View>
       )}
     </View>
   );

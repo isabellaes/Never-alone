@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, TextInput, ScrollView } from "react-native";
+import { View, Text, TextInput, ScrollView, TouchableOpacity } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../navigation/RootNavigator";
 import { Profile } from "../utils/types";
@@ -50,7 +50,9 @@ export default function EditProfile({ navigation, route }: Props) {
           onChange={(event) => setNewProfileName(event.nativeEvent.text)}
         ></TextInput>
         <View style={styles.buttontwo}>
-          <Text onPress={handleProfileSave}> Spara ditt användarnamn</Text>
+          <TouchableOpacity  onPress={handleProfileSave}>
+          <Text> Spara ditt användarnamn</Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
       <BottomBar navigation={navigation} route={route}></BottomBar>

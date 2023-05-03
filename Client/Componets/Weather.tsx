@@ -47,7 +47,7 @@ export default function Weather() {
         ) : (
           <></>
           )}
-          <Button color="#B18DC1" title="Sök" onPress={SearchPressed} />
+          <Button color="#b76392" title="Sök" onPress={SearchPressed} />
       </View>
     </View>
   );
