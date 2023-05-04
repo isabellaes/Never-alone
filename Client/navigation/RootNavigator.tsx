@@ -40,6 +40,7 @@ export const RootNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
+        initialRouteName="Home"
         screenOptions={{
           header: (route) => <CustomNavigationBar {...route} />,
         }}

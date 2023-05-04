@@ -112,15 +112,15 @@ public class SeedingDataForTest
         {
             Mood[] moods = {
                 new Mood{id = "1", userId = "1", icon = "😢", date= new DateTime(2023-04-20)},
-                new Mood{id = "1", userId = "1", icon = "👎", date= new DateTime(2023-04-22)},
-                new Mood{id = "1", userId = "1", icon = "😢", date= new DateTime(2023-04-23)},
-                new Mood{id = "1", userId = "1", icon = "👌", date= new DateTime(2023-04-29)},
-                new Mood{id = "1", userId = "1", icon = "👌", date= new DateTime(2023-04-29)},
-                new Mood{id = "1", userId = "1", icon = "👌", date= new DateTime(2023-05-01)},
-                new Mood{id = "1", userId = "1", icon = "👍", date= new DateTime(2023-05-02)},
-                new Mood{id = "1", userId = "1", icon = "😊", date= new DateTime(2023-04-29)},
-                new Mood{id = "1", userId = "1", icon = "😊", date= new DateTime(2023-04-29)},
-                new Mood{id = "1", userId = "1", icon = "😊", date= new DateTime()}
+                new Mood{id = "2", userId = "1", icon = "👎", date= new DateTime(2023-04-22)},
+                new Mood{id = "3", userId = "1", icon = "😢", date= new DateTime(2023-04-23)},
+                new Mood{id = "4", userId = "1", icon = "👌", date= new DateTime(2023-04-29)},
+                new Mood{id = "5", userId = "1", icon = "👌", date= new DateTime(2023-04-29)},
+                new Mood{id = "6", userId = "1", icon = "👌", date= new DateTime(2023-05-01)},
+                new Mood{id = "7", userId = "1", icon = "👍", date= new DateTime(2023-05-02)},
+                new Mood{id = "8", userId = "1", icon = "😊", date= new DateTime(2023-04-29)},
+                new Mood{id = "9", userId = "1", icon = "😊", date= new DateTime(2023-04-29)},
+
             };
 
             await context.Mood.AddRangeAsync(moods);

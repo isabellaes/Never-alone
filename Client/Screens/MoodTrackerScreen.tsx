@@ -31,9 +31,9 @@ export default function MoodTrackerScreen({ navigation, route }: Props) {
   const dispatch = useAppDispatch();
 
   const currentMoodData = useAppSelector(currentData);
-  dispatch(getAllMoods());
 
   React.useEffect(() => {
+    dispatch(getAllMoods());
     if (currentMoodData) {
       setWeeklyData(sortData(currentMoodData));
     }
@@ -41,6 +41,7 @@ export default function MoodTrackerScreen({ navigation, route }: Props) {
 
   function onPress(icon: string) {
     dispatch(createMood({ icon }));
+    setMessage("Registrerat");
     showDialog();
   }
 
