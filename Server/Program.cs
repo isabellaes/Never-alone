@@ -67,6 +67,7 @@ builder.Services.AddScoped<IDailyNoteRepository, DailyNoteRepository>();
 builder.Services.AddScoped<IContactRepository, ContactRepository>();
 builder.Services.AddScoped<IMeditationRepository, MeditationRepository>();
 builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
+builder.Services.AddScoped<IMoodRepository, MoodRepository>();
 
 builder.Services.AddCors(options =>
 {

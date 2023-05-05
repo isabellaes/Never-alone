@@ -178,3 +178,38 @@ export const deleteDailyNoteRequest = async (id: string) => {
 
   throw response;
 };
+
+export const createMoodRequest = async (icon: string) => {
+  const response = await fetch(`${url}/mood/Create`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${await get("user.token")}`,
+    },
+    body: JSON.stringify({
+      icon,
+    }),
+  });
+  if (response.ok) {
+    const data = await response.json();
+    return data;
+  }
+
+  throw response;
+};
+
+export const getAllMoodsRequest = async () => {
+  const response = await fetch(`${url}/mood/GetAll`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${await get("user.token")}`,
+    },
+  });
+  if (response.ok) {
+    const data = await response.json();
+    return data;
+  }
+
+  throw response;
+};

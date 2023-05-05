@@ -3,6 +3,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import authSlice from "./authSlice";
 import profileSlice from "./profileSlice";
 import dailynoteSlice from "./dailynoteSlice";
+import moodTrackerSlice from "./moodTrackerSlice";
 import { remove, save } from "../utils/securestore";
 
 export const store = configureStore({
@@ -10,6 +11,7 @@ export const store = configureStore({
     profile: profileSlice,
     user: authSlice,
     dailyNote: dailynoteSlice,
+    mood: moodTrackerSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

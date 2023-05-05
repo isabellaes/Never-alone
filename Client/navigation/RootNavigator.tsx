@@ -14,6 +14,7 @@ import MeditationScreen from "../Screens/MeditationScreen";
 import PhonenumberScreen from "../Screens/PhonenumberScreen";
 import SettingsScreen from "../Screens/Settings";
 import TodoScreen from "../Screens/TodoScreen";
+import MoodTrackerScreen from "../Screens/MoodTrackerScreen";
 
 export type RootStackParamList = {
   Home: undefined;
@@ -27,6 +28,7 @@ export type RootStackParamList = {
   PhoneNumber: undefined;
   Settings: undefined;
   Todo: undefined;
+  MoodTracker: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -40,6 +42,7 @@ export const RootNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
+        initialRouteName="Home"
         screenOptions={{
           header: (route) => <CustomNavigationBar {...route} />,
         }}
@@ -91,6 +94,12 @@ export const RootNavigator = () => {
               name="Todo"
               component={TodoScreen}
               options={{ title: "Todo" }}
+              />
+
+              <Stack.Screen
+              name="MoodTracker"
+              component={MoodTrackerScreen}
+              options={{ title: "MoodTracker" }}
             />
           </Stack.Group>
         ) : (

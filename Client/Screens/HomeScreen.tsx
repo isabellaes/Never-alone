@@ -4,12 +4,12 @@ import { View, Text, ScrollView } from "react-native";
 import { RootStackParamList } from "../navigation/RootNavigator";
 import { useAppDispatch, useAppSelector } from "../store/store";
 import OverviewCard from "../Componets/OverviewCard";
-import MoodPicker from "../Componets/MoodPicker";
 import { AppState } from "../store/store";
 import { Profile } from "../utils/types";
 import { styles } from "../utils/styleSheet";
 import { BottomBar } from "../Componets/BottomBar";
 import { getProfile } from "../store/profileSlice";
+import ButtonStandard from "../Componets/ButtonStandard";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Home">;
 
@@ -23,7 +23,7 @@ export default function HomeScreen({ navigation, route }: Props) {
 
   useEffect(() => {
     dispatch(getProfile());
-   }, [dispatch])
+  }, [dispatch]);
 
   const currentUserProfile = useAppSelector(currentProfile);
 
@@ -33,19 +33,27 @@ export default function HomeScreen({ navigation, route }: Props) {
     }
   }, [currentUserProfile]);
 
+  function onPress() {
+    navigation.navigate("MoodTracker");
+  }
+
   return (
     <View style={styles.container}>
       <ScrollView style={{ width: "100%" }}>
         <Text style={styles.title}>Välkommen {profile?.name}</Text>
-        <Text style={styles.title}>Hur mår du idag?</Text>
 
-        <MoodPicker />
+        <ButtonStandard
+          onPress={onPress}
+          text="Historik MoodTracker"
+        ></ButtonStandard>
+
         <OverviewCard
           title="Komma ihåg"
           description="Minnet är bra men kort ibland.."
           onPress={() => navigation.navigate("Todo")}
           uri="https://cdn.pixabay.com/photo/2021/10/15/13/21/take-note-6712578_960_720.png"
         ></OverviewCard>
+
         <OverviewCard
           title="Meditation"
           description="Meditationer och övningar"

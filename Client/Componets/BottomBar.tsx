@@ -6,7 +6,7 @@ import { styles } from "../utils/styleSheet";
 
 type Props = NativeStackScreenProps<
   RootStackParamList,
-  "DailyNote" | "Home" | "Meditation" | "Profile" | "PhoneNumber" |"EditProfile" | "Todo"
+  "DailyNote" | "Home" | "Meditation" | "Profile" | "PhoneNumber" |"EditProfile" | "Todo" | "MoodTracker" 
 >;
 
 export function BottomBar({ navigation, route }: Props) {

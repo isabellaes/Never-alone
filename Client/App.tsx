@@ -6,15 +6,20 @@ import { StatusBar } from "expo-status-bar";
 import { MD2LightTheme, Provider as PaperProvider } from "react-native-paper";
 import { setCurrentUser } from "./store/authSlice";
 import { getPersistedAuthValues } from "./utils/startGetUser";
-import { getProfile } from "./store/profileSlice";
+import {
+  SafeAreaProvider,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
 
 export default function App() {
   return (
     <ReduxProvider store={store}>
-      <StartupGate>
-        <StatusBar style="auto" />
-        <RootNavigator />
-      </StartupGate>
+      <SafeAreaProvider>
+        <StartupGate>
+          <StatusBar style="auto" />
+          <RootNavigator />
+        </StartupGate>
+      </SafeAreaProvider>
     </ReduxProvider>
   );
 }
@@ -27,20 +32,10 @@ function StartupGate({ children }: Props) {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    //let interval: NodeJS.Timeout;
-
     (async () => {
       const persistedAuth = await getPersistedAuthValues();
       dispatch(setCurrentUser(persistedAuth));
-
-      /*interval = setInterval(() => {
-        dispatch(getProfile());
-      }, 3000);*/
     })();
-
-    /*return () => {
-      clearInterval(interval);
-    };*/
   }, [dispatch]);
 
   return <PaperProvider theme={MD2LightTheme}>{children}</PaperProvider>;

@@ -16,6 +16,8 @@ namespace NeverAlone.Context
         public DbSet<Meditation> Meditation { get; set; }
         public DbSet<Profile> Profile { get; set; }
 
+        public DbSet<Mood> Mood { get; set; }
+
 
     }
 }

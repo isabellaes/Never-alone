@@ -26,14 +26,26 @@ interface Error {
   error: string;
 }
 
-
 type DailyNote = {
-  id: string,
+  id: string;
   title: string;
   content: string;
   userId: string;
   user: User;
-  date: Date
+  date: Date;
+};
+
+interface Mood {
+  icon: string;
+  date: string;
 }
 
-export type { Profile, User, LogInRespons, RegisterRespons, Error, DailyNote };
+export type {
+  Profile,
+  User,
+  LogInRespons,
+  RegisterRespons,
+  Error,
+  DailyNote,
+  Mood,
+};

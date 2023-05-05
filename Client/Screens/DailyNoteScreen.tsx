@@ -16,7 +16,6 @@ import { styles } from "../utils/styleSheet";
 import SelectedImage from "../Componets/SelectedImage";
 import OverviewCard from "../Componets/OverviewCard";
 
-
 type Props = NativeStackScreenProps<RootStackParamList, "DailyNote">;
 
 export default function DailyNotes({ navigation, route }: Props) {
@@ -44,7 +43,7 @@ export default function DailyNotes({ navigation, route }: Props) {
     if (currentDailyNote) {
       setDailyNote(currentDailyNote);
     }
-  }, [dispatch]);
+  }, [currentDailyNote]);
 
   function onPress() {
     if (title && content) {
