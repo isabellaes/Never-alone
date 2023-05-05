@@ -13,6 +13,7 @@ import DailyNotes from "../Screens/DailyNoteScreen";
 import MeditationScreen from "../Screens/MeditationScreen";
 import PhonenumberScreen from "../Screens/PhonenumberScreen";
 import SettingsScreen from "../Screens/Settings";
+import TodoScreen from "../Screens/TodoScreen";
 
 export type RootStackParamList = {
   Home: undefined;
@@ -25,6 +26,7 @@ export type RootStackParamList = {
   Meditation: undefined;
   PhoneNumber: undefined;
   Settings: undefined;
+  Todo: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -84,6 +86,11 @@ export const RootNavigator = () => {
               name="Settings"
               component={SettingsScreen}
               options={{ title: "Settings" }}
+            />
+            <Stack.Screen
+              name="Todo"
+              component={TodoScreen}
+              options={{ title: "Todo" }}
             />
           </Stack.Group>
         ) : (

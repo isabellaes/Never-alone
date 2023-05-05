@@ -14,6 +14,7 @@ import NoteCard from "../Componets/NoteCard";
 import { BottomBar } from "../Componets/BottomBar";
 import { styles } from "../utils/styleSheet";
 import SelectedImage from "../Componets/SelectedImage";
+import OverviewCard from "../Componets/OverviewCard";
 
 
 type Props = NativeStackScreenProps<RootStackParamList, "DailyNote">;
@@ -72,8 +73,7 @@ export default function DailyNotes({ navigation, route }: Props) {
       <ScrollView style={{ width: "95%" }}>
         <Text style={styles.title}>Dagbok</Text>
         <SelectedImage stylescontainer={styles.container} stylesView={{ alignItems: "center" , marginTop: 20, marginBottom: 20}} stylesimage={styles.imagesmall} />
-        <Text style={styles.citat}> - {month} -</Text>
-        
+        <Text style={styles.citat}> - {month} -</Text> 
         <View>
           <TextInput
             value={title}

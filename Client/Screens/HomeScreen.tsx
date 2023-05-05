@@ -40,7 +40,12 @@ export default function HomeScreen({ navigation, route }: Props) {
         <Text style={styles.title}>Hur mår du idag?</Text>
 
         <MoodPicker />
-
+        <OverviewCard
+          title="Komma ihåg"
+          description="Minnet är bra men kort ibland.."
+          onPress={() => navigation.navigate("Todo")}
+          uri="https://cdn.pixabay.com/photo/2021/10/15/13/21/take-note-6712578_960_720.png"
+        ></OverviewCard>
         <OverviewCard
           title="Meditation"
           description="Meditationer och övningar"
