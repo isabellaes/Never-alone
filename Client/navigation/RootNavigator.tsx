@@ -13,6 +13,7 @@ import DailyNotes from "../Screens/DailyNoteScreen";
 import MeditationScreen from "../Screens/MeditationScreen";
 import PhonenumberScreen from "../Screens/PhonenumberScreen";
 import SettingsScreen from "../Screens/Settings";
+import TodoScreen from "../Screens/TodoScreen";
 import MoodTrackerScreen from "../Screens/MoodTrackerScreen";
 
 export type RootStackParamList = {
@@ -26,6 +27,7 @@ export type RootStackParamList = {
   Meditation: undefined;
   PhoneNumber: undefined;
   Settings: undefined;
+  Todo: undefined;
   MoodTracker: undefined;
 };
 
@@ -89,6 +91,12 @@ export const RootNavigator = () => {
               options={{ title: "Settings" }}
             />
             <Stack.Screen
+              name="Todo"
+              component={TodoScreen}
+              options={{ title: "Todo" }}
+              />
+
+              <Stack.Screen
               name="MoodTracker"
               component={MoodTrackerScreen}
               options={{ title: "MoodTracker" }}
