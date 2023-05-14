@@ -34,7 +34,7 @@ export default function ProfileScreen({ navigation, route }: Props) {
 
   return (
     <View style={styles.containertwo}>
-      <ScrollView style={{ width: "90%" }}>
+      <ScrollView style={{ width: "90%", marginBottom: 35 }}>
         <Text style={styles.title}>{profile?.name}</Text>
         <SelectedImage stylesimage={styles.selectedImage} />
         <Text style={{ marginTop: 50 }}></Text>

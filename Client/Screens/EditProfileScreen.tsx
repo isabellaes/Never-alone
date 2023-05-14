@@ -46,7 +46,7 @@ export default function EditProfile({ navigation, route }: Props) {
 
   return (
     <View style={styles.containertwo}>
-      <ScrollView style={{ width: "90%" }}>
+      <ScrollView style={{ width: "90%", marginBottom: 35 }}>
         <Text style={styles.titletwo}>Användarnamn: {profile?.name}</Text>
         <FetchProfileImage />
         <TextInput

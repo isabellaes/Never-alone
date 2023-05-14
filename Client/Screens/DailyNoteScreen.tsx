@@ -70,7 +70,7 @@ export default function DailyNotes({ navigation, route }: Props) {
 
   return (
     <View style={styles.container}>
-      <ScrollView style={{ width: "95%" }}>
+      <ScrollView style={{ width: "95%", marginBottom: 65 }}>
         <Text style={styles.title}>Dagbok</Text>
         <SelectedImage
           stylescontainer={styles.container}

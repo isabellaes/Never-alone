@@ -24,7 +24,6 @@ export default function LogInScreen({ navigation }: Props) {
   function logInUser() {
     if (userName && passWord) {
       dispatch(login({ username: userName, password: passWord }));
-      navigation.navigate("Home");
     }
   }
 
