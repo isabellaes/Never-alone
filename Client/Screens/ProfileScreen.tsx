@@ -1,12 +1,7 @@
 import { Link } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React from "react";
-import {
-  View,
-  Text,
-  ScrollView,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, ScrollView, TouchableOpacity } from "react-native";
 import { RootStackParamList } from "../navigation/RootNavigator";
 import { getProfile } from "../store/profileSlice";
 import { useAppDispatch, useAppSelector } from "../store/store";
@@ -15,7 +10,6 @@ import { AppState } from "../store/store";
 import { BottomBar } from "../Componets/BottomBar";
 import { styles } from "../utils/styleSheet";
 import SelectedImage from "../Componets/SelectedImage";
-
 
 type Props = NativeStackScreenProps<RootStackParamList, "Profile">;
 
@@ -30,7 +24,7 @@ export default function ProfileScreen({ navigation, route }: Props) {
 
   React.useEffect(() => {
     dispatch(getProfile());
-  }, [dispatch]);
+  }, []);
 
   React.useEffect(() => {
     if (currentUserProfile) {
@@ -42,15 +36,13 @@ export default function ProfileScreen({ navigation, route }: Props) {
     <View style={styles.containertwo}>
       <ScrollView style={{ width: "90%" }}>
         <Text style={styles.title}>{profile?.name}</Text>
-       <SelectedImage stylesimage={styles.selectedImage}/>
-        <Text style={{marginTop: 50}} ></Text>
-        <TouchableOpacity onPress={() => navigation.navigate("EditProfile")} >
+        <SelectedImage stylesimage={styles.selectedImage} />
+        <Text style={{ marginTop: 50 }}></Text>
+        <TouchableOpacity onPress={() => navigation.navigate("EditProfile")}>
           <Text style={styles.titleProfile}>Redigera profilsidan</Text>
         </TouchableOpacity>
-        
       </ScrollView>
       <BottomBar navigation={navigation} route={route}></BottomBar>
     </View>
   );
 }
-

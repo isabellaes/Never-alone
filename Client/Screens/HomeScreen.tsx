@@ -23,7 +23,7 @@ export default function HomeScreen({ navigation, route }: Props) {
 
   useEffect(() => {
     dispatch(getProfile());
-  }, [dispatch]);
+  }, []);
 
   const currentUserProfile = useAppSelector(currentProfile);
 
