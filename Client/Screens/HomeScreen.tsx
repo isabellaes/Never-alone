@@ -41,11 +41,9 @@ export default function HomeScreen({ navigation, route }: Props) {
     <View style={styles.container}>
       <ScrollView style={{ width: "100%" }}>
         <Text style={styles.title}>Välkommen {profile?.name}</Text>
-
-        <ButtonStandard
-          onPress={onPress}
-          text="Historik MoodTracker"
-        ></ButtonStandard>
+        <View style={{ display: "flex", alignItems: "center", marginTop: 20 }}>
+          <ButtonStandard onPress={onPress} text="MoodTracker"></ButtonStandard>
+        </View>
 
         <OverviewCard
           title="Komma ihåg"
