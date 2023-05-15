@@ -34,6 +34,9 @@ export default function MoodTrackerScreen({ navigation, route }: Props) {
 
   React.useEffect(() => {
     dispatch(getAllMoods());
+  }, []);
+
+  React.useEffect(() => {
     if (currentMoodData) {
       setWeeklyData(sortData(currentMoodData));
     }

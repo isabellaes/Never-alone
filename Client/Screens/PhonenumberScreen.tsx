@@ -33,15 +33,13 @@ export default function PhonenumberScreen({ navigation, route }: Props) {
 
   return (
     <View style={styles.container}>
-      <ScrollView style={{marginTop: 15, width: "90%" }}>
-      <Text style={styles.titletwo}>Vid akuta lägen ring: <Text style={{fontWeight: "bold"}}>112</Text></Text>
+      <ScrollView style={{ marginTop: 15, width: "90%", marginBottom: 35 }}>
+        <Text style={styles.titletwo}>
+          Vid akuta lägen ring: <Text style={{ fontWeight: "bold" }}>112</Text>
+        </Text>
         {data.map((c, i) => (
-          <TouchableOpacity style={styles.citat}  key={i}>
-            <Contacts
-              name={c.name}
-              number={c.number}
-              url={c.url}
-            ></Contacts>
+          <TouchableOpacity style={styles.citat} key={i}>
+            <Contacts name={c.name} number={c.number} url={c.url}></Contacts>
           </TouchableOpacity>
         ))}
       </ScrollView>

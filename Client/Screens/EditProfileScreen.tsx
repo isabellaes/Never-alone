@@ -1,5 +1,11 @@
 import React from "react";
-import { View, Text, TextInput, ScrollView, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../navigation/RootNavigator";
 import { Profile } from "../utils/types";
@@ -23,7 +29,7 @@ export default function EditProfile({ navigation, route }: Props) {
 
   React.useEffect(() => {
     dispatch(getProfile());
-  }, [dispatch]);
+  }, []);
 
   React.useEffect(() => {
     if (currentUserProfile) {
@@ -40,8 +46,8 @@ export default function EditProfile({ navigation, route }: Props) {
 
   return (
     <View style={styles.containertwo}>
-      <ScrollView style={{ width: "90%" }}>
-        <Text style={styles.titletwo}>Användarnamn:  {profile?.name}</Text>
+      <ScrollView style={{ width: "90%", marginBottom: 35 }}>
+        <Text style={styles.titletwo}>Användarnamn: {profile?.name}</Text>
         <FetchProfileImage />
         <TextInput
           style={styles.citat}
@@ -50,8 +56,8 @@ export default function EditProfile({ navigation, route }: Props) {
           onChange={(event) => setNewProfileName(event.nativeEvent.text)}
         ></TextInput>
         <View style={styles.buttontwo}>
-          <TouchableOpacity  onPress={handleProfileSave}>
-          <Text> Spara ditt användarnamn</Text>
+          <TouchableOpacity onPress={handleProfileSave}>
+            <Text> Spara ditt användarnamn</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -59,4 +65,3 @@ export default function EditProfile({ navigation, route }: Props) {
     </View>
   );
 }
-

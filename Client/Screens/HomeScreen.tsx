@@ -23,7 +23,7 @@ export default function HomeScreen({ navigation, route }: Props) {
 
   useEffect(() => {
     dispatch(getProfile());
-  }, [dispatch]);
+  }, []);
 
   const currentUserProfile = useAppSelector(currentProfile);
 
@@ -39,13 +39,11 @@ export default function HomeScreen({ navigation, route }: Props) {
 
   return (
     <View style={styles.container}>
-      <ScrollView style={{ width: "100%" }}>
+      <ScrollView style={{ width: "100%", marginBottom: 35 }}>
         <Text style={styles.title}>Välkommen {profile?.name}</Text>
-
-        <ButtonStandard
-          onPress={onPress}
-          text="Historik MoodTracker"
-        ></ButtonStandard>
+        <View style={{ display: "flex", alignItems: "center", marginTop: 20 }}>
+          <ButtonStandard onPress={onPress} text="MoodTracker"></ButtonStandard>
+        </View>
 
         <OverviewCard
           title="Komma ihåg"
