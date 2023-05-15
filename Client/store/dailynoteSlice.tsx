@@ -1,5 +1,5 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { DailyNote, User } from "../utils/types";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { DailyNote } from "../utils/types";
 import {
   getDailyNoteRequest,
   updateDailyNoteRequest,

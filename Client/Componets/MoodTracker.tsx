@@ -1,8 +1,7 @@
 import * as React from "react";
 import { View, StyleSheet, Dimensions } from "react-native";
-import { Button, Dialog, Portal, Text } from "react-native-paper";
-import { Mood } from "../utils/types";
 import { LineChart } from "react-native-chart-kit";
+import { styles } from "../utils/styleSheet";
 
 interface props {
   label: string[];
@@ -21,7 +20,7 @@ export default function MoodTracker(props: props) {
   };
 
   return (
-    <View style={styles.content}>
+    <View style={styles.moodcontent}>
       <View>
         <LineChart
           data={linedata}
@@ -49,16 +48,4 @@ export default function MoodTracker(props: props) {
   );
 }
 
-const styles = StyleSheet.create({
-  button: {
-    marginTop: 3,
-    flex: 1,
-    borderRadius: 10,
-    display: "flex",
-    alignItems: "center",
-    alignContent: "center",
-  },
-  content: {
-    flexDirection: "row",
-  },
-});
+

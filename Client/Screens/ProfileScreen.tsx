@@ -1,4 +1,3 @@
-import { Link } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React from "react";
 import { View, Text, ScrollView, TouchableOpacity } from "react-native";

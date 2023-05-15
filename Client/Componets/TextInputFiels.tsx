@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, View, StyleSheet } from "react-native";
 import { TextInput } from "react-native-paper";
+import { styles } from "../utils/styleSheet";
 
 interface TextInputFieldProps {
   title: string;
@@ -42,15 +43,3 @@ export default function TextInputField({
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  textInput: {
-    width: "92%",
-    elevation: 5,
-    shadowColor: "black",
-    borderBottomRightRadius: 10,
-    borderBottomLeftRadius: 10,
-    fontSize: 20,
-    paddingHorizontal: 20,
-  },
-});

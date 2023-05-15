@@ -2,7 +2,6 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { User, LogInRespons, Error, RegisterRespons } from "../utils/types";
 import { loginRequest, registerRequest } from "../utils/api";
 import { Alert } from "react-native";
-import { Title } from "react-native-paper";
 
 export interface AuthState {
   user: User | null;

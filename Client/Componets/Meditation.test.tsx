@@ -1,4 +1,3 @@
-import react from 'react'
 import { render , fireEvent } from '@testing-library/react-native'
 import Meditation from './Meditation'
 import React from 'react'

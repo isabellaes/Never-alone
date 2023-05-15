@@ -14,7 +14,6 @@ import NoteCard from "../Componets/NoteCard";
 import { BottomBar } from "../Componets/BottomBar";
 import { styles } from "../utils/styleSheet";
 import SelectedImage from "../Componets/SelectedImage";
-import OverviewCard from "../Componets/OverviewCard";
 
 type Props = NativeStackScreenProps<RootStackParamList, "DailyNote">;
 
@@ -98,7 +97,7 @@ export default function DailyNotes({ navigation, route }: Props) {
             maxLength={200}
             style={styles.citat}
           />
-          <Button onPress={onPress} title="Spara" color="#B18DC1"></Button>
+          <Button onPress={onPress} title="Spara" color="#c48a9f"></Button>
         </View>
 
         {dailyNote?.map((note) => {

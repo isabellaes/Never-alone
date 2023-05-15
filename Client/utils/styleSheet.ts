@@ -7,6 +7,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#F3EEF6",
+    marginTop: 10
   },
 
   containertwo: {
@@ -24,6 +25,8 @@ export const styles = StyleSheet.create({
 
   Todocontainer: {
     flex: 1,
+    backgroundColor: "#eee",
+    marginTop: 10
   },
 
   todo: {
@@ -40,14 +43,24 @@ export const styles = StyleSheet.create({
     width: "95%",
     padding: 5,
   },
+  todotext: {
+    fontSize: 20,
+    textAlign: "center",
+    padding: 10,
+    marginTop: 20,
+    textDecorationLine: "underline",
+  },
   item: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     padding: 10,
-    margin: 2,
+    marginBottom: 10,
     backgroundColor: "#eee",
+    borderWidth: 3,
+    borderColor: "gray",
+    borderRadius: 5,
   },
 
   checbox: {
@@ -55,19 +68,18 @@ export const styles = StyleSheet.create({
     textAlign: "center",
     minWidth: 48,
     minHeight: 48,
-    cursor: "pointer",
     marginright: 2,
   },
 
   todoinput: {
-    width: "95%",
-    borderWidth: 1,
+    width: "75%",
+    borderWidth: 2,
     borderColor: "gray",
     borderRadius: 5,
     padding: 10,
-    marginLeft: 10,
+    marginLeft: 20,
     marginBottom: 10,
-    marginTop: 10
+    marginTop: 10,
   },
 
   //profile
@@ -106,7 +118,6 @@ export const styles = StyleSheet.create({
     textDecorationLine: "underline",
     textDecorationColor: "#404040",
     borderBottomWidth: 1,
-    borderBottomStyle: "solid",
   },
 
   imagesmall: {
@@ -160,7 +171,7 @@ export const styles = StyleSheet.create({
   buttonStandard: {
     display: "flex",
     alignItems: "center",
-    backgroundColor: "#B18DC1",
+    backgroundColor: "#c48a9f",
     widht: "50%",
   },
 
@@ -175,7 +186,6 @@ export const styles = StyleSheet.create({
     borderRadius: 5,
     paddingBottom: 8,
     elevation: 10,
-    cursor: "pointer",
   },
 
   //card
@@ -215,5 +225,42 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     alignContent: "center",
     justifyContent: "space-between",
+  },
+
+  //FettchProfile
+  fetchContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    marginLeft: 45,
+    marginBottom: 60,
+  },
+
+  fetchtext: {
+    marginLeft: 65,
+    marginRight: 50,
+    marginBottom: 10,
+  },
+
+  //mood
+  moodcontent: {
+    flexDirection: "row",
+  },
+  moodbutton: {
+    marginTop: 3,
+    flex: 1,
+    borderRadius: 10,
+    display: "flex",
+    alignItems: "center",
+    alignContent: "center",
+  },
+
+  textInput: {
+    width: "92%",
+    elevation: 5,
+    shadowColor: "black",
+    borderBottomRightRadius: 10,
+    borderBottomLeftRadius: 10,
+    fontSize: 20,
+    paddingHorizontal: 20,
   },
 });

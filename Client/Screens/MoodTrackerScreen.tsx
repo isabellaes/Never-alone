@@ -54,9 +54,9 @@ export default function MoodTrackerScreen({ navigation, route }: Props) {
     <View style={styles.container}>
       <ScrollView style={{ width: "100%", marginBottom: 50 }}>
         <Text style={styles.title}>Hur mår du idag?</Text>
-        <View style={styles1.content}>
-          {icons.map((element) => (
-            <Button style={styles1.button} onPress={() => onPress(element)}>
+        <View style={styles.moodcontent}>
+          {icons.map((element, key) => (
+            <Button key={key} style={styles.moodbutton} onPress={() => onPress(element)}>
               {element}
             </Button>
           ))}
@@ -85,16 +85,3 @@ export default function MoodTrackerScreen({ navigation, route }: Props) {
   );
 }
 
-const styles1 = StyleSheet.create({
-  button: {
-    marginTop: 3,
-    flex: 1,
-    borderRadius: 10,
-    display: "flex",
-    alignItems: "center",
-    alignContent: "center",
-  },
-  content: {
-    flexDirection: "row",
-  },
-});
