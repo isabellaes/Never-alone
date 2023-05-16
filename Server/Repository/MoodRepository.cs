@@ -16,14 +16,16 @@ public class MoodRepository : IMoodRepository
         _context = context;
 
     }
-    public async Task<Mood> CreateMood(string id, string icon)
+    public async Task<MoodDTO> CreateMood(string id, string icon)
     {
         Mood mood = new Mood { id = Guid.NewGuid().ToString(), userId = id, icon = icon, date = DateTime.Now };
 
         _context.Mood.Add(mood);
         await _context.SaveChangesAsync();
 
-        return mood;
+        MoodDTO moodDTO = new MoodDTO { icon = mood.icon, date = mood.date.ToString("yyyy-MM-ddTHH:mm:ss") };
+
+        return moodDTO;
     }
 
     public async Task<IEnumerable<MoodDTO>> GetAllMoods(string id)
