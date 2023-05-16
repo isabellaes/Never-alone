@@ -60,16 +60,14 @@ export default function DailyNotes({ navigation, route }: Props) {
 
   const handleDeleteNote = (id: string) => {
     if (dailyNote && id) {
-      const updatedNotes = dailyNote.filter((note) => note.id !== id);
-      setDailyNote(updatedNotes);
-      console.log(id);
       dispatch(deleteDailyNote({ id: id }));
+      dispatch(getDailyNote());
     }
   };
 
   return (
     <View style={styles.container}>
-      <ScrollView style={{ width: "95%", marginBottom: 65 }}>
+      <ScrollView style={{ width: "95%", marginBottom: 35 }}>
         <Text style={styles.title}>Dagbok</Text>
         <SelectedImage
           stylescontainer={styles.container}
