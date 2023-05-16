@@ -20,7 +20,7 @@ export default function NoteCard({ dailyNote, onDelete, child  }: Props) {
           <Card.Content style={styles.citat} >
             <Text>{dailyNote.content}</Text>
           </Card.Content>
-          <Button onPress={handleDelete} color="#B18DC1">{child}</Button>
+          <Button onPress={handleDelete} color="#c48a9f">{child}</Button>
         </Card>
       </Text>
     </View>

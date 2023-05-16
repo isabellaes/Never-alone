@@ -1,10 +1,9 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import React, { Component } from "react";
+import React  from "react";
 import EditProfileScreen from "../Screens/EditProfileScreen";
 import LogInScreen from "../Screens/LogInScreen";
 import RegisterScreen from "../Screens/RegisterScreen";
-import StoryScreen from "../Screens/StoryScreen";
 import { CustomNavigationBar } from "../Componets/CustomNavigationBar";
 import { useAppSelector } from "../store/store";
 import HomeScreen from "../Screens/HomeScreen";
@@ -22,7 +21,6 @@ export type RootStackParamList = {
   Register: undefined;
   Profile: undefined;
   EditProfile: undefined;
-  Storys: undefined;
   DailyNote: undefined;
   Meditation: undefined;
   PhoneNumber: undefined;
@@ -64,11 +62,6 @@ export const RootNavigator = () => {
               name="EditProfile"
               component={EditProfileScreen}
               options={{ title: "EditProfile" }}
-            />
-            <Stack.Screen
-              name="Storys"
-              component={StoryScreen}
-              options={{ title: "Storys" }}
             />
             <Stack.Screen
               name="DailyNote"

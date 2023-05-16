@@ -68,8 +68,8 @@ const FetchProfileImage = () => {
           </TouchableOpacity>
         </TouchableOpacity>
       ) : (
-        <View style={{ flexDirection: "row", flexWrap: "wrap", marginLeft: 45 , marginBottom: 60}}>
-          <Text style={{marginLeft: 65,  marginRight: 50, marginBottom:10}}>Välj profilbild:</Text>
+        <View style={styles.fetchContainer}>
+          <Text style={styles.fetchtext}>Välj profilbild:</Text>
           {imageUrls.map((url) => (
             <TouchableOpacity key={url} onPress={() => handleImageSelect(url)}>
               <Image style={styles.imageProfile} source={{ uri: url }} />

@@ -38,10 +38,10 @@ const TodosToRemember = ({
 
   return (
     <View>
-      <Text style={{ fontSize: 20, textAlign: "center", padding: 10, marginTop:20 }}>
+      <Text style={styles.title}>
         Komma ihåg!
       </Text>
-      <View>
+      <View style={{flexDirection: "row", alignItems: "center"}}>
         <TextInput
           style={styles.todoinput}
           onChangeText={(text) => setNewTodo(text)}
@@ -53,14 +53,14 @@ const TodosToRemember = ({
           }}
         ></TextInput>
         <TouchableHighlight
-        style={[styles.buttonStandard, {width: "25%", marginLeft: 160, marginBottom: 60, padding: 10, borderRadius: 5 }]}
+        style={[styles.buttonStandard, {width: "16%", marginLeft: 5,marginRight: 10, padding: 10, borderRadius: 5 , }]}
           onPress={() => {
             handleCreate(newTodo);
             setNewTodo("");
           }}
         ><Text>Spara</Text></TouchableHighlight>
       </View>
-      <Text style={{ fontSize: 15, textAlign: "center", padding: 10 }}>
+      <Text style={styles.todotext}>
         {length} {length === 1 ? "sak" : "saker"} i listan!{" "}
       </Text>
       <View style={styles.todo}>
@@ -82,11 +82,13 @@ const TodosToRemember = ({
                     item.checked ? { textDecorationLine: "line-through" } : null
                   }
                 >
+                  <Text style={{fontSize: 20, color: "#c76392"}}>
                   {item.todo}
+                  </Text>
                 </Text>
                 <View>
                   <Icon
-                    style={{ padding: 10, fontSize: 16 }}
+                    style={{ padding: 10, fontSize: 18 }}
                     name="trash-alt"
                     onPress={() => handleDelete(item.id)}
                   />

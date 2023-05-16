@@ -1,5 +1,4 @@
 import { get } from "./securestore";
-import { User } from "./types";
 
 const url = "http://10.0.2.2:5015/api";
 
@@ -100,6 +99,7 @@ export const registerRequest = async (
 
   throw response;
 };
+
 
 export const getDailyNoteRequest = async () => {
   const response = await fetch(`${url}/dailyNote/GetAll`, {
